@@ -23,6 +23,15 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'site_name' => 'required|string|max:255',
+            'site_description' => 'nullable|string|max:1000',
+            'address' => 'nullable|string|max:1000',
+            'phone' => 'nullable|string|max:50',
+            'email' => 'nullable|email|max:255',
+            'fax' => 'nullable|string|max:50',
+        ]);
+
         $keys = ['site_name', 'site_description', 'address', 'phone', 'email', 'fax'];
         foreach ($keys as $key) {
             Setting::set($key, $request->input($key, ''));

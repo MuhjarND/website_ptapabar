@@ -1,9 +1,13 @@
 @extends('layouts.public')
 @section('title', $page->title)
+
+@push('styles')
+<link href="{{ asset('assets/css/public-content.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
 <div class="container">
     <div class="page-layout">
-        <!-- Sidebar -->
         <aside class="page-sidebar">
             <div class="sidebar-menu">
                 <div class="sidebar-title">
@@ -20,15 +24,14 @@
                 @endforeach
                 @if($children->count() > 0)
                     @foreach($children as $child)
-                        <a href="{{ route('page.show', $child->slug) }}" style="padding-left:32px;font-size:12px;">
-                            └ {{ $child->title }}
+                        <a href="{{ route('page.show', $child->slug) }}" class="page-child-link">
+                            <span class="page-child-prefix">|-</span>{{ $child->title }}
                         </a>
                     @endforeach
                 @endif
             </div>
         </aside>
 
-        <!-- Content -->
         <div class="page-content">
             <div class="breadcrumb">
                 <a href="{{ route('home') }}">Beranda</a>

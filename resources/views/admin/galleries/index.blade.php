@@ -6,6 +6,24 @@
         <h2>Foto & Video</h2>
         <a href="{{ route('admin.galleries.create') }}" class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> Tambah Item</a>
     </div>
+    <div class="card-body">
+        <form method="GET" action="{{ route('admin.galleries.index') }}" class="d-flex gap-2" style="flex-wrap:wrap;">
+            <div class="form-group mb-0" style="min-width:240px;flex:1;">
+                <label>Kategori Galeri</label>
+                <select name="gallery_category_id" class="form-control">
+                    <option value="">Semua kategori</option>
+                    @foreach($galleryCategories as $galleryCategory)
+                        <option value="{{ $galleryCategory->id }}" {{ (string) request('gallery_category_id') === (string) $galleryCategory->id ? 'selected' : '' }}>
+                            {{ $galleryCategory->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group mb-0" style="align-self:flex-end;">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+            </div>
+        </form>
+    </div>
     <div class="card-body" style="padding:0">
         <table>
             <thead>
@@ -13,6 +31,7 @@
                     <th>Preview</th>
                     <th>Judul</th>
                     <th>Tipe</th>
+                    <th>Kategori</th>
                     <th>Urutan</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -37,6 +56,7 @@
                     </td>
                     <td>{{ Str::limit($item->title, 40) }}</td>
                     <td><span class="badge {{ $item->type === 'video' ? 'badge-danger' : 'badge-info' }}">{{ $item->type === 'video' ? 'Video' : 'Foto' }}</span></td>
+                    <td class="text-muted">{{ $item->galleryCategory->name ?? '-' }}</td>
                     <td>{{ $item->order }}</td>
                     <td><span class="badge {{ $item->is_active ? 'badge-success' : 'badge-secondary' }}">{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
                     <td>
@@ -50,11 +70,11 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="6" style="text-align:center;color:#999;padding:32px;">Belum ada item galeri.</td></tr>
+                <tr><td colspan="7" style="text-align:center;color:#999;padding:32px;">Belum ada item galeri.</td></tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 </div>
-<div class="pagination">{{ $galleries->links() }}</div>
+<div class="pagination">{{ $galleries->appends(request()->query())->links() }}</div>
 @endsection

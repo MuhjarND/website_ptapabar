@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Setting;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A basic test example.
      *
@@ -14,8 +17,15 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        Setting::set('site_name', 'PTA Test');
+        Setting::set('address', 'Alamat Test');
+        Setting::set('email', 'test@example.com');
+
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertOk();
+        $response->assertSee('PTA Test');
+        $response->assertSee('Alamat Test');
+        $response->assertSee('test@example.com');
     }
 }

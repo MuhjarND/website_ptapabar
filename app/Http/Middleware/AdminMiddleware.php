@@ -9,7 +9,7 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (!Auth::check() || !in_array(Auth::user()->role, ['admin', 'author'])) {
+        if (!Auth::check() || !Auth::user()->canAccessAdminPanel()) {
             return redirect('/login')->with('error', 'Akses ditolak.');
         }
         return $next($request);

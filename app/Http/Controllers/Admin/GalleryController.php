@@ -4,20 +4,30 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Gallery;
+use App\GalleryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $galleries = Gallery::orderBy('order')->paginate(20);
-        return view('admin.galleries.index', compact('galleries'));
+        $galleries = Gallery::with('galleryCategory')
+            ->when($request->gallery_category_id, function ($query) use ($request) {
+                $query->where('gallery_category_id', $request->gallery_category_id);
+            })
+            ->orderBy('order')
+            ->paginate(20);
+        $galleryCategories = GalleryCategory::active()->orderBy('order')->orderBy('name')->get();
+
+        return view('admin.galleries.index', compact('galleries', 'galleryCategories'));
     }
 
     public function create()
     {
-        return view('admin.galleries.create');
+        $galleryCategories = GalleryCategory::active()->orderBy('order')->orderBy('name')->get();
+
+        return view('admin.galleries.create', compact('galleryCategories'));
     }
 
     public function store(Request $request)
@@ -25,13 +35,14 @@ class GalleryController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|in:image,video',
+            'gallery_category_id' => 'required|exists:gallery_categories,id',
             'file' => 'required_if:type,image|nullable|image|max:5120',
             'video_url' => 'required_if:type,video|nullable|url|max:500',
             'description' => 'nullable|string|max:500',
             'order' => 'nullable|integer',
         ]);
 
-        $data = $request->only('title', 'type', 'video_url', 'description', 'order');
+        $data = $request->only('title', 'type', 'gallery_category_id', 'video_url', 'description', 'order');
         $data['is_active'] = $request->has('is_active');
         $data['order'] = $data['order'] ?? 0;
 
@@ -45,7 +56,9 @@ class GalleryController extends Controller
 
     public function edit(Gallery $gallery)
     {
-        return view('admin.galleries.edit', compact('gallery'));
+        $galleryCategories = GalleryCategory::orderBy('is_active', 'desc')->orderBy('order')->orderBy('name')->get();
+
+        return view('admin.galleries.edit', compact('gallery', 'galleryCategories'));
     }
 
     public function update(Request $request, Gallery $gallery)
@@ -53,13 +66,14 @@ class GalleryController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|in:image,video',
+            'gallery_category_id' => 'required|exists:gallery_categories,id',
             'file' => 'nullable|image|max:5120',
             'video_url' => 'required_if:type,video|nullable|url|max:500',
             'description' => 'nullable|string|max:500',
             'order' => 'nullable|integer',
         ]);
 
-        $data = $request->only('title', 'type', 'video_url', 'description', 'order');
+        $data = $request->only('title', 'type', 'gallery_category_id', 'video_url', 'description', 'order');
         $data['is_active'] = $request->has('is_active');
         $data['order'] = $data['order'] ?? 0;
 

@@ -1,0 +1,468 @@
+.post-detail-shell {
+    padding: 40px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-detail-category {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.post-detail-meta {
+    font-size: 13px;
+    color: var(--text-light);
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.post-detail-cover {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+
+.post-documentation {
+    margin-top: 24px;
+}
+
+.post-documentation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.post-documentation-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-documentation-header h2 i {
+    color: var(--gold);
+}
+
+.post-documentation-header h2 span {
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.post-download-all {
+    font-size: 13px;
+    color: var(--green-dark);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.post-download-all:hover {
+    background: var(--green-dark);
+    color: #fff;
+}
+
+.tiled-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 180px;
+    gap: 6px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tile-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--green-dark);
+}
+
+.tile-item.tile-0 {
+    grid-row: span 2;
+}
+
+.tile-item.tile-3 {
+    grid-column: span 2;
+}
+
+.tile-item.tile-5 {
+    grid-row: span 2;
+}
+
+.tile-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.3s;
+}
+
+.tile-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.75);
+}
+
+.tile-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+}
+
+.tile-item:hover .tile-overlay {
+    opacity: 1;
+}
+
+.tile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.tile-caption {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tile-dl {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.tile-dl:hover {
+    background: var(--gold);
+    color: var(--green-dark);
+    transform: scale(1.1);
+}
+
+.pdf-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pdf-list-spaced {
+    margin-top: 20px;
+}
+
+.pdf-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.pdf-card:hover {
+    border-color: #dc3545;
+    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.1);
+    transform: translateY(-2px);
+}
+
+.pdf-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pdf-icon i {
+    font-size: 20px;
+    color: #fff;
+}
+
+.pdf-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.pdf-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pdf-meta {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.pdf-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.pdf-card:hover .pdf-action {
+    background: var(--green);
+    color: #fff;
+}
+
+.post-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.lb-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+}
+
+.lb-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lb-close:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lb-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: none;
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lb-nav:hover {
+    background: var(--gold);
+    color: var(--green-dark);
+}
+
+.lb-prev {
+    left: 20px;
+}
+
+.lb-next {
+    right: 20px;
+}
+
+.lb-content {
+    position: relative;
+    z-index: 5;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#lb-img {
+    max-width: 90vw;
+    max-height: 75vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    transition: opacity 0.25s;
+}
+
+.lb-footer {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    gap: 16px;
+}
+
+#lb-caption {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    flex: 1;
+}
+
+.lb-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#lb-counter {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.lb-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: var(--gold);
+    color: var(--green-dark);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.lb-dl-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(200, 169, 81, 0.4);
+}
+
+.post-related {
+    margin-top: 40px;
+}
+
+.post-related h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+}
+
+.post-related-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.post-related-image {
+    height: 120px;
+}
+
+.post-card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-card-placeholder i {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.post-related-body {
+    padding: 12px;
+}
+
+.post-related-title {
+    font-size: 13px;
+}
+
+.post-related-placeholder i {
+    font-size: 20px;
+}
+
+@media (max-width: 600px) {
+    .tiled-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 140px;
+    }
+
+    .tile-item.tile-0,
+    .tile-item.tile-5 {
+        grid-row: span 1;
+    }
+
+    .tile-item.tile-3 {
+        grid-column: span 1;
+    }
+
+    .lb-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

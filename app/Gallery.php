@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model
 {
-    protected $fillable = ['title', 'type', 'file', 'video_url', 'description', 'order', 'is_active'];
+    protected $fillable = ['title', 'type', 'gallery_category_id', 'file', 'video_url', 'description', 'order', 'is_active'];
+
+    public function galleryCategory()
+    {
+        return $this->belongsTo(GalleryCategory::class);
+    }
 
     public function getThumbnailAttribute()
     {

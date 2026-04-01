@@ -5,27 +5,54 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pages = Page::with('parent')->orderBy('menu_group')->orderBy('order')->paginate(25);
-        return view('admin.pages.index', compact('pages'));
+        $menuGroups = Page::menuGroupOptions();
+        $statusOptions = [
+            'active' => 'Aktif',
+            'inactive' => 'Nonaktif',
+        ];
+        $structureOptions = [
+            'root' => 'Level Atas',
+            'child' => 'Subhalaman',
+        ];
+
+        $pages = Page::query()
+            ->with('parent')
+            ->when($request->filled('keyword'), function ($query) use ($request) {
+                $query->where('title', 'like', '%' . trim($request->keyword) . '%');
+            })
+            ->when($request->filled('menu_group') && array_key_exists($request->menu_group, $menuGroups), function ($query) use ($request) {
+                $query->where('menu_group', $request->menu_group);
+            })
+            ->when($request->status === 'active', function ($query) {
+                $query->where('is_active', true);
+            })
+            ->when($request->status === 'inactive', function ($query) {
+                $query->where('is_active', false);
+            })
+            ->when($request->structure === 'root', function ($query) {
+                $query->whereNull('parent_id');
+            })
+            ->when($request->structure === 'child', function ($query) {
+                $query->whereNotNull('parent_id');
+            })
+            ->orderBy('menu_group')
+            ->orderBy('parent_id')
+            ->orderBy('order')
+            ->paginate(25)
+            ->appends($request->query());
+
+        return view('admin.pages.index', compact('pages', 'menuGroups', 'statusOptions', 'structureOptions'));
     }
 
     public function create()
     {
         $parents = Page::orderBy('menu_group')->orderBy('title')->get();
-        $menuGroups = [
-            'tentang-pengadilan' => 'Tentang Pengadilan',
-            'informasi-umum' => 'Informasi Umum',
-            'informasi-hukum' => 'Informasi Hukum',
-            'transparansi' => 'Transparansi',
-            'peraturan-kebijakan' => 'Peraturan dan Kebijakan',
-            'informasi' => 'Informasi',
-        ];
+        $menuGroups = Page::menuGroupOptions();
         return view('admin.pages.create', compact('parents', 'menuGroups'));
     }
 
@@ -40,7 +67,7 @@ class PageController extends Controller
 
         Page::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => Page::generateUniqueSlug($request->title),
             'content' => $request->content,
             'menu_group' => $request->menu_group,
             'parent_id' => $request->parent_id,
@@ -54,14 +81,7 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         $parents = Page::where('id', '!=', $page->id)->orderBy('menu_group')->orderBy('title')->get();
-        $menuGroups = [
-            'tentang-pengadilan' => 'Tentang Pengadilan',
-            'informasi-umum' => 'Informasi Umum',
-            'informasi-hukum' => 'Informasi Hukum',
-            'transparansi' => 'Transparansi',
-            'peraturan-kebijakan' => 'Peraturan dan Kebijakan',
-            'informasi' => 'Informasi',
-        ];
+        $menuGroups = Page::menuGroupOptions();
         return view('admin.pages.edit', compact('page', 'parents', 'menuGroups'));
     }
 
@@ -76,7 +96,7 @@ class PageController extends Controller
 
         $page->update([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => Page::generateUniqueSlug($request->title, $page->id),
             'content' => $request->content,
             'menu_group' => $request->menu_group,
             'parent_id' => $request->parent_id,

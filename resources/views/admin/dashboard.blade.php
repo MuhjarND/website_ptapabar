@@ -27,7 +27,12 @@
 <div class="card">
     <div class="card-header">
         <h2>Post Terbaru</h2>
-        <a href="{{ route('admin.posts.create') }}" class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> Tambah Baru</a>
+        <div class="d-flex gap-2">
+            <a href="{{ route('admin.berita.create') }}" class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> Tambah Berita</a>
+            @if(auth()->user()->canManageAnnouncements())
+            <a href="{{ route('admin.pengumuman.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tambah Pengumuman</a>
+            @endif
+        </div>
     </div>
     <div class="card-body" style="padding:0">
         <table>

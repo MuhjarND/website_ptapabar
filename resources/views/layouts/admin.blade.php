@@ -120,10 +120,33 @@
                 <i class="fas fa-file-alt"></i> Halaman
             </a>
             @endif
-            <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
-                <i class="fas fa-newspaper"></i> Berita & Pengumuman
+            <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
+                <i class="fas fa-newspaper"></i> Berita
             </a>
+            @if(auth()->user()->canManageAnnouncements())
+            <a href="{{ route('admin.pengumuman.index') }}" class="{{ request()->routeIs('admin.pengumuman.*') ? 'active' : '' }}">
+                <i class="fas fa-bullhorn"></i> Pengumuman
+            </a>
+            @endif
             @if(auth()->user()->isAdmin())
+            <div class="nav-label">Master Data</div>
+            <a href="{{ route('admin.post-categories.index') }}" class="{{ request()->routeIs('admin.post-categories.*') ? 'active' : '' }}">
+                <i class="fas fa-tags"></i> Kategori Post
+            </a>
+            <a href="{{ route('admin.gallery-categories.index') }}" class="{{ request()->routeIs('admin.gallery-categories.*') ? 'active' : '' }}">
+                <i class="fas fa-photo-film"></i> Kategori Galeri
+            </a>
+            <a href="{{ route('admin.site-applications.index') }}" class="{{ request()->routeIs('admin.site-applications.*') ? 'active' : '' }}">
+                <i class="fas fa-th-large"></i> Aplikasi
+            </a>
+            <a href="{{ route('admin.articles.index') }}" class="{{ request()->routeIs('admin.articles.*') ? 'active' : '' }}">
+                <i class="fas fa-book-open"></i> Artikel
+            </a>
+            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                <i class="fas fa-users"></i> User
+            </a>
+
+            <div class="nav-label">Konten Pendukung</div>
             <a href="{{ route('admin.sliders.index') }}" class="{{ request()->routeIs('admin.sliders.*') ? 'active' : '' }}">
                 <i class="fas fa-images"></i> Slider
             </a>
@@ -135,6 +158,9 @@
             </a>
             <a href="{{ route('admin.galleries.index') }}" class="{{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
                 <i class="fas fa-photo-video"></i> Foto & Video
+            </a>
+            <a href="{{ route('admin.integrity-zones.index') }}" class="{{ request()->routeIs('admin.integrity-zones.*') ? 'active' : '' }}">
+                <i class="fas fa-shield-alt"></i> Zona Integritas
             </a>
             @endif
 

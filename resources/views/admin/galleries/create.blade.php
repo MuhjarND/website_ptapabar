@@ -17,6 +17,18 @@
                     <option value="video" {{ old('type') == 'video' ? 'selected' : '' }}>Video (YouTube)</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label>Kategori Foto/Video</label>
+                <select name="gallery_category_id" class="form-control" style="max-width:320px;" required>
+                    <option value="">Pilih kategori galeri</option>
+                    @foreach($galleryCategories as $galleryCategory)
+                        <option value="{{ $galleryCategory->id }}" {{ (string) old('gallery_category_id') === (string) $galleryCategory->id ? 'selected' : '' }}>
+                            {{ $galleryCategory->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <small style="color:#999;font-size:12px;">Kelola kategori melalui master data kategori galeri.</small>
+            </div>
             <div class="form-group" id="file-group">
                 <label>File Foto</label>
                 <input type="file" name="file" class="form-control" accept="image/*">

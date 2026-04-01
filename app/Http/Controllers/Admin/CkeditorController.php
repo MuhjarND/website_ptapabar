@@ -9,15 +9,18 @@ class CkeditorController extends Controller
 {
     public function upload(Request $request)
     {
+        $request->validate([
+            'upload' => 'required|file|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+        ]);
+
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('storage/uploads'), $filename);
-            $url = asset('storage/uploads/' . $filename);
+            $path = $file->store('uploads', 'public');
+            $url = asset('storage/' . $path);
 
             return response()->json([
                 'uploaded' => 1,
-                'fileName' => $filename,
+                'fileName' => basename($path),
                 'url' => $url,
             ]);
         }

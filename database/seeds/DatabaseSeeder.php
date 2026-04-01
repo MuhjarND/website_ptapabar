@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             'role' => 'author',
         ]);
 
+        $this->call(SatkerAuthorSeeder::class);
+
         // Settings
         Setting::set('site_name', 'Pengadilan Tinggi Agama Papua Barat');
         Setting::set('site_description', 'Website Resmi Pengadilan Tinggi Agama Papua Barat - Mahkamah Agung Republik Indonesia');
@@ -277,5 +279,7 @@ class DatabaseSeeder extends Seeder
         ] as $i => $t) {
             Page::create(['title' => $t, 'slug' => Str::slug($t), 'content' => $placeholder, 'menu_group' => $menuGroup, 'order' => $i, 'is_active' => true]);
         }
+
+        $this->call(SiteApplicationSeeder::class);
     }
 }

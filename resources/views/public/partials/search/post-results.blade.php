@@ -4,8 +4,8 @@
 
 @forelse($posts as $post)
     <a href="{{ $post->category === 'pengumuman' ? route('pengumuman.detail', $post->slug) : route('post.detail', $post->slug) }}" class="search-post-item">
-        @if($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="search-post-image">
+        @if($post->image_url)
+            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="search-post-image" loading="lazy">
         @endif
         <div>
             <strong class="search-post-title">{{ $post->title }}</strong>

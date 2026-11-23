@@ -2,21 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Agenda;
 use App\Article;
 use App\GalleryCategory;
 use App\IntegrityZone;
 use App\Page;
 use App\Post;
 use App\PostCategory;
+use App\ServiceRequest;
+use App\Setting;
 use App\SiteApplication;
 use App\Slider;
+use App\Support\HomeLayout;
 use App\SurveyIndex;
+use App\TransparencyDocument;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Throwable;
 
 class PublicController extends Controller
 {
     public function index()
     {
+        $homePopup = Setting::homePopup();
+        $homeLayout = HomeLayout::saved();
+        if ($homeLayout !== null) {
+            usort($homeLayout, fn ($a, $b) => [$a['y'], $a['x']] <=> [$b['y'], $b['x']]);
+        }
         $sliders = Slider::where('is_active', true)->orderBy('order')->get();
         $beritaTerkini = Post::with(['postCategory', 'user'])
             ->published()
@@ -40,18 +55,35 @@ class PublicController extends Controller
         $galleries = \App\Gallery::with('galleryCategory')->where('is_active', true)->orderBy('order')->take(16)->get();
         $galleryCategories = GalleryCategory::active()->orderBy('order')->orderBy('name')->get();
         $integrityZones = IntegrityZone::active()->orderBy('order')->orderBy('title')->get();
-        $ptaInnovationApps = SiteApplication::active()
-            ->where('group_type', SiteApplication::GROUP_PTA_INOVASI)
+        $agendas = Agenda::active()
+            ->upcoming()
+            ->orderBy('start_at')
+            ->take(6)
+            ->get();
+        $applications = SiteApplication::active()
+            ->whereIn('group_type', [
+                SiteApplication::GROUP_PTA_INOVASI,
+                SiteApplication::GROUP_MAHKAMAH_AGUNG,
+            ])
+            ->whereRaw('LOWER(title) != ?', ['buku tamu'])
+            ->orderByRaw("CASE WHEN group_type = ? THEN 0 WHEN group_type = ? THEN 1 ELSE 2 END", [
+                SiteApplication::GROUP_MAHKAMAH_AGUNG,
+                SiteApplication::GROUP_PTA_INOVASI,
+            ])
             ->orderBy('order')
             ->orderBy('title')
-            ->get();
-        $mahkamahAgungApps = SiteApplication::active()
-            ->where('group_type', SiteApplication::GROUP_MAHKAMAH_AGUNG)
-            ->orderBy('order')
-            ->orderBy('title')
-            ->get();
+            ->get()
+            ->map(function ($application) {
+                $application->source_label = $application->group_type === SiteApplication::GROUP_PTA_INOVASI
+                    ? 'PTA Papua Barat'
+                    : 'MA';
+
+                return $application;
+            });
 
         return view('public.home', compact(
+            'homePopup',
+            'homeLayout',
             'sliders',
             'beritaTerkini',
             'beritaPeradilanAgama',
@@ -63,29 +95,70 @@ class PublicController extends Controller
             'galleries',
             'galleryCategories',
             'integrityZones',
-            'ptaInnovationApps',
-            'mahkamahAgungApps'
+            'agendas',
+            'applications'
         ));
+    }
+
+    public function agendas()
+    {
+        $agendaTypes = Agenda::typeOptions();
+        $activeAgendaType = request('agenda_type');
+        $agendas = Agenda::active()
+            ->agendaType(array_key_exists($activeAgendaType, $agendaTypes) ? $activeAgendaType : null)
+            ->orderBy('start_at')
+            ->paginate(12);
+
+        return view('public.agendas', [
+            'agendas' => $agendas,
+            'agendaTypes' => $agendaTypes,
+            'activeAgendaType' => array_key_exists($activeAgendaType, $agendaTypes) ? $activeAgendaType : null,
+        ]);
     }
 
     public function page($slug)
     {
+        $dedicatedPages = ['jadwal-sidang' => 'court-hearings.index', 'statistik-perkara' => 'case-statistics.index'];
+        if (isset($dedicatedPages[$slug])) {
+            return redirect()->route($dedicatedPages[$slug], request()->query());
+        }
+
         $page = Page::where('slug', $slug)->where('is_active', true)->firstOrFail();
         $breadcrumbs = $page->ancestors();
         $siblings = $page->parent
             ? $page->parent->activeChildren
             : Page::where('menu_group', $page->menu_group)->whereNull('parent_id')->where('is_active', true)->orderBy('order')->get();
         $children = $page->activeChildren;
-        return view('public.page', compact('page', 'breadcrumbs', 'siblings', 'children'));
+        $documents = collect();
+        if ($page->menu_group === TransparencyDocument::PAGE_GROUP && Schema::hasTable('transparency_documents')) {
+            $documents = TransparencyDocument::published()->where('page_id', $page->id)
+                ->orderByDesc('year')->latest('published_at')->orderByDesc('id')->get();
+        }
+
+        return view('public.page', compact('page', 'breadcrumbs', 'siblings', 'children', 'documents'));
+    }
+
+    public function transparencyDocumentDownload($document)
+    {
+        abort_unless(Schema::hasTable('transparency_documents'), 404);
+
+        return TransparencyDocument::visibleToPublic()->findOrFail($document)->download();
     }
 
     public function berita()
     {
         $newsScopes = Post::newsScopeOptions();
         $activeNewsScope = request('news_scope');
+        $hasWordPressArchive = Schema::hasColumn('posts', 'wordpress_id')
+            && Post::published()->berita()->whereNotNull('wordpress_id')->exists();
+        $showWordPressArchive = $hasWordPressArchive && request('sumber') === 'wordpress';
         $posts = Post::published()
             ->berita()
-            ->newsScope(array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null)
+            ->when($showWordPressArchive, function ($query) {
+                $query->whereNotNull('wordpress_id');
+            }, function ($query) use ($activeNewsScope, $newsScopes) {
+                $query->newsScope(array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null);
+            })
             ->latest()
             ->paginate(12);
 
@@ -94,7 +167,9 @@ class PublicController extends Controller
             'title' => 'Berita',
             'category' => 'berita',
             'newsScopes' => $newsScopes,
-            'activeNewsScope' => array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null,
+            'activeNewsScope' => !$showWordPressArchive && array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null,
+            'hasWordPressArchive' => $hasWordPressArchive,
+            'showWordPressArchive' => $showWordPressArchive,
             'announcementCategories' => [],
             'activeAnnouncementCategory' => null,
         ]);
@@ -154,19 +229,62 @@ class PublicController extends Controller
         ]);
     }
 
+    public function serviceRequestForm()
+    {
+        return view('public.service-request', [
+            'requestTypes' => ServiceRequest::typeOptions(),
+        ]);
+    }
+
+    public function submitServiceRequest(Request $request)
+    {
+        $data = $request->validate([
+            'request_type' => 'required|in:' . implode(',', array_keys(ServiceRequest::typeOptions())),
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:50',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|max:3000',
+            'attachment' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
+        ]);
+
+        if ($request->hasFile('attachment')) {
+            $data['attachment'] = $request->file('attachment')->store('private-service-requests', 'local');
+            if (!$data['attachment']) {
+                throw ValidationException::withMessages(['attachment' => 'Lampiran tidak dapat disimpan.']);
+            }
+        }
+
+        $data['status'] = ServiceRequest::STATUS_BARU;
+        $serviceRequest = ServiceRequest::create($data);
+
+        $mailTarget = Setting::get('email', config('mail.from.address'));
+
+        if ($mailTarget) {
+            try {
+                Mail::to($mailTarget)->send(new \App\Mail\ServiceRequestSubmitted($serviceRequest));
+                $serviceRequest->update([
+                    'emailed_to' => $mailTarget,
+                    'emailed_at' => now(),
+                ]);
+            } catch (Throwable $exception) {
+                report($exception);
+            }
+        }
+
+        return redirect()->route('service-request.form')->with('success', 'Permintaan Anda berhasil dikirim. Tim kami akan menindaklanjuti.');
+    }
+
     public function postDetail($slug)
     {
         $post = Post::with(['photos', 'user'])->published()->where('slug', $slug)->firstOrFail();
         $related = Post::published()->where('category', $post->category)->where('id', '!=', $post->id)->latest()->take(4)->get();
-        $imageFiles = $post->photos->filter(function ($photo) {
-            return !Str::endsWith(strtolower($photo->image), '.pdf');
-        })->values();
-        $pdfFiles = $post->photos->filter(function ($photo) {
-            return Str::endsWith(strtolower($photo->image), '.pdf');
-        })->values();
+        [$pdfFiles, $imageFiles] = $post->photos->filter(fn ($photo) => $photo->file_url)->partition('is_pdf');
+        $pdfFiles = $pdfFiles->values();
+        $imageFiles = $imageFiles->values();
         $lightboxPhotos = $imageFiles->map(function ($photo) {
             return [
-                'url' => asset('storage/' . $photo->image),
+                'url' => $photo->file_url,
                 'caption' => $photo->caption,
             ];
         })->values();

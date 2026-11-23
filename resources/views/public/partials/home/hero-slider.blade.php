@@ -1,13 +1,15 @@
 <div class="hero-slider" id="heroSlider">
     @forelse($sliders as $index => $slider)
         <div class="slide {{ $index === 0 ? 'active' : '' }}">
-            <img src="{{ asset('storage/' . $slider->image) }}" alt="{{ $slider->title }}">
-            @if($slider->title)
+            <img src="{{ $slider->image_url }}" alt="{{ $slider->title }}">
+            @if($slider->title && !$slider->wordpress_id)
                 <div class="slide-overlay pos-{{ $slider->text_position ?? 'bottom-left' }}">
+                    <span class="hero-kicker">Informasi Publik</span>
                     <h3>{{ $slider->title }}</h3>
                     @if($slider->description)
                         <p>{{ $slider->description }}</p>
                     @endif
+                    <a href="{{ route('berita.index') }}" class="hero-more-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
                 </div>
             @endif
         </div>
@@ -15,8 +17,10 @@
         <div class="slide slide-fallback active">
             <div class="slide-fallback-content">
                 <div class="slide-fallback-icon"><i class="fas fa-landmark"></i></div>
+                <span class="hero-kicker">Website Resmi</span>
                 <h3>Pengadilan Tinggi Agama Papua Barat</h3>
                 <p>Mahkamah Agung Republik Indonesia</p>
+                <a href="{{ route('berita.index') }}" class="hero-more-link">Lihat Informasi <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     @endforelse

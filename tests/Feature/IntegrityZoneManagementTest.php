@@ -4,14 +4,14 @@ namespace Tests\Feature;
 
 use App\IntegrityZone;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class IntegrityZoneManagementTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_admin_can_create_and_update_integrity_zone()
     {

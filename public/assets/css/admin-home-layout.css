@@ -1,0 +1,125 @@
+.home-editor {
+    --editor-ink: #173a2e;
+    --editor-muted: #51695f;
+    --editor-line: #ceded6;
+    --editor-green: #075b3e;
+}
+
+.home-editor-header, .home-editor-toolbar, .home-editor-add, .home-editor-actions,
+.home-editor-dialog-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.home-editor-header, .home-editor-toolbar { justify-content: space-between; }
+.home-editor-header p, .home-editor-hint { color: #51695f; font-size: 13px; line-height: 1.5; }
+.home-editor-header p { margin-top: 4px; }
+.home-editor-hint { margin: 12px 0; }
+.home-editor-add select { width: 230px; max-width: 100%; padding-right: 32px; }
+.home-editor-outline { border: 1px solid #ceded6; background: #fff; color: #075b3e; }
+.home-editor-outline:hover { background: #e5f2eb; }
+.home-editor :disabled { opacity: .55; cursor: not-allowed; }
+
+.home-editor-scroll {
+    max-height: 70vh;
+    overflow: auto;
+    border: 1px solid var(--editor-line);
+    border-radius: 12px;
+    background: #eaf1ee;
+}
+
+.home-editor-board { min-width: 690px; padding: 0 8px 8px; }
+.home-editor-ruler, .home-editor-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.home-editor-ruler {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #eaf1ee;
+    color: var(--editor-muted);
+    text-align: center;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    padding: 8px 0;
+}
+
+.home-editor-grid {
+    --editor-row: 80px;
+    grid-auto-rows: var(--editor-row);
+    min-height: calc(var(--editor-row) * 3);
+    background-image: linear-gradient(to right, #d0e0d980 1px, transparent 1px),
+        linear-gradient(to bottom, #d0e0d980 1px, transparent 1px);
+    background-size: calc(100% / 12) var(--editor-row);
+}
+
+.home-editor-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 4px;
+    padding: 6px 7px;
+    min-width: 0;
+    border: 1px solid var(--editor-line);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px #123e2520;
+    color: var(--editor-ink);
+    overflow: hidden;
+}
+
+.home-editor-tile.is-moving { z-index: 1; outline: 2px solid #277352; opacity: .9; }
+.home-editor-tile.is-invalid { outline-color: #b13636; }
+.home-editor-tile-top { display: flex; width: 100%; min-width: 0; gap: 5px; align-items: center; }
+.home-editor-tile-icon { font-size: 12px; color: var(--editor-green); }
+.home-editor-tile-title, .home-editor-tile-kind { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-editor-tile-title { flex: 1; font-size: 13px; }
+.home-editor-tile-kind, .home-editor-tile-size { max-width: 100%; color: var(--editor-muted); font-size: 11px; }
+.home-editor-tile-size { margin-top: auto; font-variant-numeric: tabular-nums; }
+.home-editor-move, .home-editor-edit, .home-editor-resize {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    border-radius: 5px;
+    background: #ebf4f0;
+    color: var(--editor-green);
+    font-size: 11px;
+}
+
+.home-editor-move { cursor: grab; }
+.home-editor-edit { cursor: pointer; }
+.home-editor-resize { position: absolute; bottom: 3px; right: 3px; cursor: nwse-resize; }
+.home-editor-move, .home-editor-resize { touch-action: none; user-select: none; }
+.home-editor-resize i { transform: rotate(90deg); }
+.home-editor-tile.is-slim .home-editor-tile-icon, .home-editor-tile.is-slim .home-editor-tile-title { display: none; }
+.home-editor-tile.is-slim .home-editor-tile-top { justify-content: space-between; gap: 0; }
+
+.home-editor-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(500px, calc(100% - 24px));
+    max-height: calc(100% - 24px);
+    overflow: auto;
+    padding: 22px;
+    border: 1px solid #ceded6;
+    border-radius: 14px;
+    color: #173a2e;
+}
+
+.home-editor-dialog::backdrop { background: #10241db3; }
+.home-editor-dialog [hidden] { display: none; }
+.home-editor-dialog h2 { font-size: 20px; }
+.home-editor-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.home-editor-fields label { font-size: 13px; font-weight: 600; }
+.home-editor-fields .form-control { margin-top: 4px; }
+.home-editor-full { grid-column: 1 / -1; }
+.home-editor-status { min-height: 1.4em; margin-top: 8px; color: #51695f; font-size: 13px; }
+.home-editor-status.is-error { color: #a32727; }
+.home-editor-dialog-actions { justify-content: flex-end; margin-top: 8px; }
+#home-editor-remove { margin-right: auto; }
+.home-editor-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

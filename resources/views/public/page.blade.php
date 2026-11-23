@@ -43,6 +43,9 @@
             <h1>{{ $page->title }}</h1>
             <div class="content-body">
                 {!! $page->content !!}
+                @if($documents->isNotEmpty())
+                    @include('public.partials.transparency-documents')
+                @endif
             </div>
         </div>
     </div>

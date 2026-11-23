@@ -23,6 +23,7 @@
                 <label>Label Keterangan</label>
                 <input type="text" name="label" class="form-control" value="{{ old('label', $survey->label) }}" required>
             </div>
+            @include('admin.surveys.report-fields', ['reportSurvey' => $survey])
             <div class="form-group">
                 <label>Urutan</label>
                 <input type="number" name="order" class="form-control" value="{{ old('order', $survey->order) }}" style="max-width:120px">

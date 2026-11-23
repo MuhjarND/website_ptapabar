@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Support\WordPressContent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -104,7 +105,7 @@ class Article extends Model
     public function getPdfHrefAttribute()
     {
         if ($this->pdf_url) {
-            return $this->pdf_url;
+            return $this->wordpress_id ? WordPressContent::archiveUrl($this->pdf_url) : $this->pdf_url;
         }
 
         if ($this->pdf_file) {
@@ -114,14 +115,23 @@ class Article extends Model
         return null;
     }
 
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image ? asset('storage/' . $this->image) : WordPressContent::imageUrl($this->wordpress_cover_path);
+    }
+
     public function getTargetUrlAttribute()
     {
+        if ($this->wordpress_id && filled($this->content)) {
+            return route('article.detail', $this);
+        }
+
         return $this->pdf_href ?: route('article.detail', $this);
     }
 
     public function getTargetIsExternalAttribute()
     {
-        return (bool) $this->pdf_href;
+        return (bool) $this->pdf_href && (!$this->wordpress_id || blank($this->content));
     }
 
     public function hasPdf()

@@ -13,7 +13,7 @@
         </div>
         @if($category === 'berita')
             <div class="archive-filter-bar">
-                <a href="{{ route('berita.index') }}" class="archive-filter-button {{ !$activeNewsScope ? 'is-active' : '' }}">
+                <a href="{{ route('berita.index') }}" class="archive-filter-button {{ !$activeNewsScope && !$showWordPressArchive ? 'is-active' : '' }}">
                     Semua
                 </a>
                 @foreach($newsScopes as $value => $label)
@@ -24,6 +24,12 @@
                         {{ $label }}
                     </a>
                 @endforeach
+                @if($hasWordPressArchive)
+                    <a href="{{ route('berita.index', ['sumber' => 'wordpress']) }}"
+                       class="archive-filter-button {{ $showWordPressArchive ? 'is-active' : '' }}">
+                        Arsip Website Lama
+                    </a>
+                @endif
             </div>
         @elseif($category === 'pengumuman')
             <div class="archive-filter-bar">
@@ -44,8 +50,8 @@
             @forelse($posts as $post)
                 <a href="{{ $category === 'berita' ? route('post.detail', $post->slug) : route('pengumuman.detail', $post->slug) }}" class="post-card">
                     <div class="card-img">
-                        @if($post->image)
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                        @if($post->image_url)
+                            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" loading="lazy">
                         @else
                             <div class="post-card-placeholder">
                                 <i class="fas fa-{{ $category === 'berita' ? 'newspaper' : 'bullhorn' }}"></i>

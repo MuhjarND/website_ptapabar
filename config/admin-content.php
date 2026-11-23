@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'pages' => [
+        'rencana-dan-kinerja' => ['Rencana Aksi Kinerja', 'transparansi'],
+        'laporan-tahunan' => ['Laporan Tahunan', 'transparansi'],
+        'laporan-penggunaan-biaya-perkara' => ['Laporan Penggunaan Biaya Perkara', 'informasi-hukum'],
+        'dipa' => ['DIPA', 'transparansi'],
+        'realisasi-anggaran' => ['Realisasi Anggaran', 'transparansi'],
+        'catatan-atas-laporan-keuangan-calk' => ['Catatan Atas Laporan Keuangan (CALK)', 'transparansi'],
+        'pengadaan-barang-dan-jasa' => ['Pengadaan Barang dan Jasa', 'transparansi'],
+        'renstra' => ['Renstra', 'transparansi'],
+        'rkt' => ['Rencana Kinerja Tahunan (RKT)', 'transparansi'],
+        'perjanjian-kinerja' => ['Perjanjian Kinerja', 'transparansi'],
+        'iku' => ['Indikator Kinerja Utama (IKU)', 'transparansi'],
+        'lkjip' => ['LKjIP', 'transparansi'],
+        'visi-dan-misi' => ['Visi dan Misi', 'tentang-pengadilan'],
+        'ecourt' => ['e-Court', 'informasi-hukum'],
+        'prosedur-pengajuan-dan-biaya-perkara' => ['Prosedur Pengajuan dan Biaya Perkara', 'informasi-hukum'],
+        'biaya-proses-berperkara' => ['Biaya Proses Berperkara', 'informasi-hukum'],
+        'standar-dan-maklumat-pelayanan' => ['Standar dan Maklumat Pelayanan', 'informasi-umum'],
+        'fungsi-tugas-dan-yuridiksi-pengadilan' => ['Tugas Pokok dan Fungsi Pengadilan', 'tentang-pengadilan'],
+        'struktur-organisasi-pengadilan' => ['Struktur Organisasi Pengadilan', 'tentang-pengadilan'],
+        'alamat-dan-kontak' => ['Alamat dan Kontak', 'tentang-pengadilan'],
+        'panggilan-ghaib' => ['Panggilan Ghaib', 'informasi-hukum', 'Isi penjelasan dan rujukan ke pengadilan tingkat pertama. Jangan menyalin data pihak atau relaas.'],
+        'daftar-nama-pejabat-dan-hakim' => ['Pejabat & Pegawai', 'tentang-pengadilan', 'Publikasikan hanya profil pejabat dan pegawai yang telah disetujui untuk tayang.'],
+        'laporan-lhkpn-dan-lhkasn' => ['LHKPN / LHKASN', 'transparansi', 'Cantumkan periode dan ikhtisar yang boleh dipublikasikan. PDF atau tautan dapat ditambahkan melalui Arsip Dokumen.'],
+        'wilayah-yurisdiksi' => ['Wilayah Yurisdiksi', 'tentang-pengadilan', 'Isi daftar wilayah hukum dan peta yurisdiksi yang telah diverifikasi.'],
+        'laporan-rekapitulasi-pengaduan' => ['Laporan Rekapitulasi Pengaduan', 'informasi-umum', 'Terbitkan rekap resmi yang telah disetujui. Jangan memuat isi tiket, identitas, atau lampiran pelapor.'],
+        'hukuman-disiplin' => ['Hukuman Disiplin', 'informasi-hukum', 'Terbitkan hanya ringkasan resmi yang telah disetujui dan tidak memuat identitas lengkap.'],
+        'laporan-akses-informasi' => ['Laporan Akses Informasi', 'informasi-umum', 'Isi periode dan rekap permohonan informasi, hasil, waktu pemenuhan, serta alasan penolakan. Jangan memuat data pemohon.'],
+    ],
+];

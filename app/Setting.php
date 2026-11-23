@@ -33,4 +33,10 @@ class Setting extends Model
 
         return $defaults;
     }
+
+    public static function homePopup(): array
+    {
+        $popup = json_decode(static::get('home_popup') ?? '{}', true);
+        return is_array($popup) ? $popup : [];
+    }
 }

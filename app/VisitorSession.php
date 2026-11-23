@@ -18,5 +18,5 @@ class VisitorSession extends Model
         'last_seen_at',
     ];
 
-    protected $dates = ['first_seen_at', 'last_seen_at'];
+    protected $casts = ['first_seen_at' => 'datetime', 'last_seen_at' => 'datetime'];
 }

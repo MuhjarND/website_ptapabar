@@ -4,12 +4,12 @@ namespace Tests\Feature;
 
 use App\SiteApplication;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class SiteApplicationManagementTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_admin_can_create_and_update_site_application()
     {

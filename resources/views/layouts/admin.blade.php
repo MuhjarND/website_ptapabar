@@ -12,23 +12,26 @@
         body { font-family: 'Inter', sans-serif; background: #f0f4f1; color: #1a1a2e; display: flex; min-height: 100vh; }
 
         /* Sidebar */
-        .sidebar { width: 260px; background: linear-gradient(180deg, #062d17 0%, #0d5c2f 100%); color: #fff; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; overflow-y: auto; transition: 0.3s; }
-        .sidebar-brand { padding: 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 12px; }
+        .sidebar { width: 235px; background: linear-gradient(180deg, #064735, #0b543b); color: #fff; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; overflow-y: auto; transition: 0.3s; }
+        .sidebar-brand { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 12px; }
         .sidebar-brand .brand-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .sidebar-brand .brand-icon img { width: 100%; height: 100%; object-fit: contain; }
         .sidebar-brand span { font-size: 14px; font-weight: 600; line-height: 1.3; }
-        .sidebar-nav { padding: 16px 0; }
-        .sidebar-nav a { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; transition: 0.2s; border-left: 3px solid transparent; }
+        .sidebar-nav { padding-bottom: 12px; }
+        .sidebar-nav a { display: flex; align-items: center; gap: 10px; padding: 8px 14px; color: #edf7f2; text-decoration: none; font-size: 13px; border-left: 3px solid transparent; }
         .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(255,255,255,0.08); color: #fff; border-left-color: #c8a951; }
-        .sidebar-nav a i { width: 20px; text-align: center; font-size: 15px; }
-        .sidebar-nav .nav-label { padding: 20px 20px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); font-weight: 600; }
+        .sidebar-nav a i { width: 18px; flex: 0 0 18px; text-align: center; font-size: 13px; color: #e6cb78; }
+        .sidebar-nav .nav-label { padding: 14px 16px 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: #b1d1c1; font-weight: 600; }
 
         /* Main Content */
-        .main-content { margin-left: 260px; flex: 1; min-height: 100vh; }
+        .main-content { margin-left: 235px; flex: 1; min-width: 0; min-height: 100vh; }
         .topbar { background: #fff; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
         .topbar h1 { font-size: 18px; font-weight: 600; color: #0d5c2f; }
         .topbar .user-info { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #555; }
-        .topbar .user-info .avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #c8a951, #e6c964); display: flex; align-items: center; justify-content: center; color: #062d17; font-weight: 700; font-size: 14px; }
+        .topbar, .topbar .user-info, .topbar-heading { gap: 12px; flex-wrap: wrap; }
+        .topbar-heading { display: flex; align-items: center; }
+        .topbar .btn-outline { background: #fff; border: 1px solid currentColor; color: #0d5c2f; }
+        .topbar .btn-logout { color: #a52838; }
         .content-area { padding: 32px; }
 
         /* Cards */
@@ -97,9 +100,13 @@
         .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
         .checkbox-label input[type="checkbox"] { width: 18px; height: 18px; }
 
-        .logout-form { display: inline; }
-        .logout-form button { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 14px; font-family: inherit; display: flex; align-items: center; gap: 12px; padding: 12px 20px; width: 100%; border-left: 3px solid transparent; transition: 0.2s; }
-        .logout-form button:hover { background: rgba(255,255,255,0.08); color: #fff; }
+        @media (max-width: 680px) {
+            body { display: block; }
+            .sidebar { position: static; width: auto; height: auto; }
+            .sidebar-nav { max-height: 30vh; overflow-y: auto; }
+            .main-content { margin-left: 0; }
+            .topbar, .content-area { padding: 16px; }
+        }
     </style>
     @yield('styles')
 </head>
@@ -108,85 +115,24 @@
     <aside class="sidebar">
         <div class="sidebar-brand">
             <div class="brand-icon"><img src="{{ asset('logo_pta.png') }}" alt="Logo PTA"></div>
-            <span>Panel Admin<br>PTA Papua Barat</span>
+            <span>PTA Papua Barat<br><small>Panel Admin</small></span>
         </div>
-        <nav class="sidebar-nav">
-            <div class="nav-label">Menu Utama</div>
-            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <i class="fas fa-chart-pie"></i> Dashboard
-            </a>
-            @if(auth()->user()->isAdmin())
-            <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
-                <i class="fas fa-file-alt"></i> Halaman
-            </a>
-            @endif
-            <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
-                <i class="fas fa-newspaper"></i> Berita
-            </a>
-            @if(auth()->user()->canManageAnnouncements())
-            <a href="{{ route('admin.pengumuman.index') }}" class="{{ request()->routeIs('admin.pengumuman.*') ? 'active' : '' }}">
-                <i class="fas fa-bullhorn"></i> Pengumuman
-            </a>
-            @endif
-            @if(auth()->user()->isAdmin())
-            <div class="nav-label">Master Data</div>
-            <a href="{{ route('admin.post-categories.index') }}" class="{{ request()->routeIs('admin.post-categories.*') ? 'active' : '' }}">
-                <i class="fas fa-tags"></i> Kategori Post
-            </a>
-            <a href="{{ route('admin.gallery-categories.index') }}" class="{{ request()->routeIs('admin.gallery-categories.*') ? 'active' : '' }}">
-                <i class="fas fa-photo-film"></i> Kategori Galeri
-            </a>
-            <a href="{{ route('admin.site-applications.index') }}" class="{{ request()->routeIs('admin.site-applications.*') ? 'active' : '' }}">
-                <i class="fas fa-th-large"></i> Aplikasi
-            </a>
-            <a href="{{ route('admin.articles.index') }}" class="{{ request()->routeIs('admin.articles.*') ? 'active' : '' }}">
-                <i class="fas fa-book-open"></i> Artikel
-            </a>
-            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                <i class="fas fa-users"></i> User
-            </a>
-
-            <div class="nav-label">Konten Pendukung</div>
-            <a href="{{ route('admin.sliders.index') }}" class="{{ request()->routeIs('admin.sliders.*') ? 'active' : '' }}">
-                <i class="fas fa-images"></i> Slider
-            </a>
-            <a href="{{ route('admin.surveys.index') }}" class="{{ request()->routeIs('admin.surveys.*') ? 'active' : '' }}">
-                <i class="fas fa-chart-bar"></i> Survei & Indeks
-            </a>
-            <a href="{{ route('admin.quicklinks.index') }}" class="{{ request()->routeIs('admin.quicklinks.*') ? 'active' : '' }}">
-                <i class="fas fa-external-link-square-alt"></i> Link Cepat
-            </a>
-            <a href="{{ route('admin.galleries.index') }}" class="{{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
-                <i class="fas fa-photo-video"></i> Foto & Video
-            </a>
-            <a href="{{ route('admin.integrity-zones.index') }}" class="{{ request()->routeIs('admin.integrity-zones.*') ? 'active' : '' }}">
-                <i class="fas fa-shield-alt"></i> Zona Integritas
-            </a>
-            @endif
-
-            <div class="nav-label">Pengaturan</div>
-            @if(auth()->user()->isAdmin())
-            <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                <i class="fas fa-cog"></i> Pengaturan Situs
-            </a>
-            @endif
-            <a href="{{ route('home') }}" target="_blank">
-                <i class="fas fa-external-link-alt"></i> Lihat Situs
-            </a>
-            <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                @csrf
-                <button type="submit"><i class="fas fa-sign-out-alt"></i> Keluar</button>
-            </form>
-        </nav>
+        @include('admin.partials.sidebar')
     </aside>
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="topbar">
-            <h1>@yield('title', 'Dashboard')</h1>
+            <div class="topbar-heading">
+                <a href="{{ route('home') }}" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Lihat Situs</a>
+                <h1>@yield('title', 'Dashboard')</h1>
+            </div>
             <div class="user-info">
-                <span>{{ auth()->user()->name }}</span>
-                <div class="avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
+                <span>{{ auth()->user()->name }} &middot; {{ auth()->user()->role_label }}</span>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-outline btn-logout btn-sm"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Keluar</button>
+                </form>
             </div>
         </div>
         <div class="content-area">

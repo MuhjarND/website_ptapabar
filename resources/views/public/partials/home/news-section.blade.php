@@ -17,8 +17,8 @@
                     data-news-page-item="{{ $newsFilterKey }}"
                 >
                     <div class="card-img">
-                        @if($post->image)
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                        @if($post->image_url)
+                            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" loading="lazy">
                         @else
                             <div class="post-card-placeholder">
                                 <i class="fas fa-newspaper"></i>

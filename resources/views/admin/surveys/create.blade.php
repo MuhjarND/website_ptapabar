@@ -23,6 +23,7 @@
                 <label>Label Keterangan</label>
                 <input type="text" name="label" class="form-control" value="{{ old('label') }}" required placeholder="cth: Sangat Baik">
             </div>
+            @include('admin.surveys.report-fields', ['reportSurvey' => null])
             <div class="form-group">
                 <label>Urutan</label>
                 <input type="number" name="order" class="form-control" value="{{ old('order', 0) }}" style="max-width:120px">

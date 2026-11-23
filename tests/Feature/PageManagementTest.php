@@ -4,12 +4,12 @@ namespace Tests\Feature;
 
 use App\Page;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PageManagementTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_page_slug_is_generated_uniquely_on_create()
     {

@@ -6,12 +6,12 @@ use App\Page;
 use App\Post;
 use App\PostPhoto;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PublicPostFlowTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_post_detail_renders_documentation_related_posts_and_page_assets()
     {

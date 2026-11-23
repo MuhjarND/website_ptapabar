@@ -26,6 +26,8 @@ class SurveyController extends Controller
             'icon' => 'nullable|string|max:255',
             'value' => 'required|numeric',
             'label' => 'required|string|max:255',
+            'period' => 'nullable|string|max:80|required_with:report_url',
+            'report_url' => ['nullable', 'url', 'max:2048', 'regex:/\Ahttps:\/\//i'],
         ]);
 
         SurveyIndex::create([
@@ -33,6 +35,8 @@ class SurveyController extends Controller
             'icon' => $request->icon ?: 'fas fa-chart-bar',
             'value' => $request->value,
             'label' => $request->label,
+            'period' => $request->period,
+            'report_url' => $request->report_url,
             'order' => $request->order ?? 0,
             'is_active' => $request->has('is_active'),
         ]);
@@ -52,6 +56,8 @@ class SurveyController extends Controller
             'icon' => 'nullable|string|max:255',
             'value' => 'required|numeric',
             'label' => 'required|string|max:255',
+            'period' => 'nullable|string|max:80|required_with:report_url',
+            'report_url' => ['nullable', 'url', 'max:2048', 'regex:/\Ahttps:\/\//i'],
         ]);
 
         $survey->update([
@@ -59,6 +65,8 @@ class SurveyController extends Controller
             'icon' => $request->icon ?: 'fas fa-chart-bar',
             'value' => $request->value,
             'label' => $request->label,
+            'period' => $request->period,
+            'report_url' => $request->report_url,
             'order' => $request->order ?? 0,
             'is_active' => $request->has('is_active'),
         ]);

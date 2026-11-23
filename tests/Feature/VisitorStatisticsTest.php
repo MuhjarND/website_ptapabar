@@ -6,15 +6,41 @@ use App\Http\Middleware\TrackVisitors;
 use App\Setting;
 use App\VisitorCount;
 use App\VisitorSession;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class VisitorStatisticsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
+
+    public function test_different_sessions_share_the_same_daily_count(): void
+    {
+        $this->freezeTime(function () {
+            $this->get('/')->assertOk();
+            $this->get('/')->assertOk();
+            $this->assertSame(1, (int) VisitorCount::sole()->count);
+
+            $this->flushSession();
+            $this->get('/')->assertOk();
+            $this->assertSame(2, (int) VisitorCount::sole()->count);
+        });
+    }
+
+    public function test_date_only_record_is_reused_without_creating_a_duplicate(): void
+    {
+        $this->freezeTime(function () {
+            DB::table('visitor_counts')->insert(['visit_date' => now()->toDateString(), 'count' => 3]);
+
+            $this->get('/')->assertOk();
+            $this->assertSame(4, (int) VisitorCount::sole()->count);
+        });
+    }
 
     public function test_footer_displays_detailed_visitor_statistics()
     {
+        Carbon::setTestNow(Carbon::parse('2026-03-31 12:00:00'));
         $this->withoutMiddleware(TrackVisitors::class);
 
         Setting::set('site_name', 'PTA Test');
@@ -89,5 +115,7 @@ class VisitorStatisticsTest extends TestCase
         $response->assertSee('United Kingdom');
         $response->assertSee('Germany');
         $response->assertSee('Online: 4');
+
+        Carbon::setTestNow();
     }
 }

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class VisitorCount extends Model
 {
     protected $fillable = ['visit_date', 'count'];
-    protected $dates = ['visit_date'];
+    protected $casts = ['visit_date' => 'date'];
 }

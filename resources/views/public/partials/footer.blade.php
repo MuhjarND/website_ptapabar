@@ -21,7 +21,7 @@
                 <div class="footer-profile-map">
                     <h4>Lokasi Kantor</h4>
                     <div class="footer-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.682!2d134.0816!3d-0.8613!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d540a6e252a3c1d%3A0x3b7b0e86f5a7b84e!2sManokwari%2C+Papua+Barat!5e0!3m2!1sid!2sid!4v1" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps?q={{ rawurlencode($publicSiteSettings['address'] ?: $publicSiteSettings['site_name']) }}&amp;output=embed" title="Peta lokasi kantor PTA Papua Barat" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -29,22 +29,60 @@
             <div class="footer-links-panel">
                 <h4>Tautan Cepat</h4>
                 <ul>
-                    <li><a href="{{ route('home') }}">Beranda</a></li>
-                    <li><a href="{{ route('berita.index') }}">Berita</a></li>
-                    <li><a href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
+                    @forelse(($publicFooterLinks[\App\FooterLink::SECTION_QUICK] ?? collect()) as $link)
+                        <li><a href="{{ $link->url }}" @if(\Illuminate\Support\Str::startsWith($link->url, 'http')) target="_blank" rel="noopener noreferrer" @endif>{{ $link->title }}</a></li>
+                    @empty
+                        <li><span class="text-muted">Belum ada tautan.</span></li>
+                    @endforelse
+                </ul>
+            </div>
+
+            <div class="footer-links-panel">
+                <h4>PA Sewilayah Hukum</h4>
+                <ul>
+                    @forelse(($publicFooterLinks[\App\FooterLink::SECTION_RELIGIOUS_COURTS] ?? collect()) as $link)
+                        <li><a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a></li>
+                    @empty
+                        <li><span class="text-muted">Belum ada tautan.</span></li>
+                    @endforelse
                 </ul>
             </div>
 
             <div class="footer-links-panel">
                 <h4>Tautan Eksternal</h4>
                 <ul>
-                    <li><a href="https://www.mahkamahagung.go.id" target="_blank">Mahkamah Agung RI</a></li>
-                    <li><a href="https://badilag.mahkamahagung.go.id" target="_blank">Badilag</a></li>
-                    <li><a href="https://sipp.mahkamahagung.go.id" target="_blank">SIPP</a></li>
+                    @forelse(($publicFooterLinks[\App\FooterLink::SECTION_EXTERNAL] ?? collect()) as $link)
+                        <li><a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a></li>
+                    @empty
+                        <li><span class="text-muted">Belum ada tautan.</span></li>
+                    @endforelse
                 </ul>
             </div>
 
-            <div class="footer-statistics-panel">
+            @if(!empty($publicSiteSettings['instagram_url']) || !empty($publicSiteSettings['facebook_url']) || !empty($publicSiteSettings['youtube_url']))
+                <div class="footer-links-panel footer-social-panel">
+                    <h4>Sosial Media</h4>
+                    <div class="footer-social-links">
+                        @if(!empty($publicSiteSettings['instagram_url']))
+                            <a href="{{ $publicSiteSettings['instagram_url'] }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        @endif
+                        @if(!empty($publicSiteSettings['facebook_url']))
+                            <a href="{{ $publicSiteSettings['facebook_url'] }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        @endif
+                        @if(!empty($publicSiteSettings['youtube_url']))
+                            <a href="{{ $publicSiteSettings['youtube_url'] }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            @endif
+
+            <div class="footer-statistics-panel" id="statistik-web">
                 <div class="footer-statistics-head">
                     <div class="footer-statistics-icon"><i class="fas fa-chart-line"></i></div>
                     <div>

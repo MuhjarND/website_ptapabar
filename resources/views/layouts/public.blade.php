@@ -9,16 +9,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('assets/css/public-site.css') }}" rel="stylesheet">
     @stack('styles')
+    <link href="{{ asset('assets/css/public-usability.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="@yield('body-class')">
+    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
     @include('public.partials.site-chrome')
 
-    @yield('content')
+    <main id="main-content" tabindex="-1">
+        @yield('content')
+    </main>
 
     @include('public.partials.footer')
     @include('public.partials.accessibility-widgets')
 
     <script src="{{ asset('assets/js/public-layout.js') }}"></script>
+    <script src="{{ asset('assets/js/public-usability.js') }}" defer></script>
     @stack('scripts')
     @yield('scripts')
 </body>

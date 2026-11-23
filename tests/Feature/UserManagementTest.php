@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserManagementTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_admin_can_create_and_update_user()
     {

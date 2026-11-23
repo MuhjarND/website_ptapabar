@@ -16,8 +16,8 @@
             </div>
             <div class="form-group">
                 <label>Gambar Slider</label>
-                @if($slider->image)
-                    <div style="margin-bottom:8px"><img src="{{ asset('storage/'.$slider->image) }}" style="max-height:100px;border-radius:6px"></div>
+                @if($slider->image_url)
+                    <div style="margin-bottom:8px"><img src="{{ $slider->image_url }}" alt="" style="max-height:100px;border-radius:6px"></div>
                 @endif
                 <input type="file" name="image" class="form-control" accept="image/*">
             </div>

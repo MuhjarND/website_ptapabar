@@ -1,0 +1,241 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e3]:
+    - text: 
+    - generic [ref=f6e4]:
+      - link " ptapapuabarat@gmail.com" [ref=f6e5] [cursor=pointer]:
+        - /url: mailto:ptapapuabarat@gmail.com
+        - generic [ref=f6e6]: 
+        - text: ptapapuabarat@gmail.com
+      - link " 0811 4088 3744" [ref=f6e7] [cursor=pointer]:
+        - /url: tel:081140883744
+        - generic [ref=f6e8]: 
+        - text: 0811 4088 3744
+  - banner [ref=f6e9]:
+    - generic [ref=f6e11]:
+      - link "Beranda Pengadilan Tinggi Agama Papua Barat" [ref=f6e12] [cursor=pointer]:
+        - /url: http://127.0.0.1:8001
+        - img "Logo PTA Papua Barat" [ref=f6e14]
+        - generic [ref=f6e15]:
+          - heading "Mahkamah Agung Republik Indonesia" [level=1] [ref=f6e16]
+          - heading "Pengadilan Tinggi Agama Papua Barat" [level=2] [ref=f6e17]
+      - text:  
+  - navigation [ref=f6e18]:
+    - generic [ref=f6e19]:
+      - button " Menu" [ref=f6e20] [cursor=pointer]:
+        - generic [ref=f6e21]: 
+        - generic [ref=f6e22]: Menu
+      - text:    > > > >  > > > > > > >  > >  >   
+  - generic [ref=f6e25]:
+    - generic [ref=f6e26]: 
+    - generic [ref=f6e28]: Website Resmi
+    - heading "Pengadilan Tinggi Agama Papua Barat" [level=3] [ref=f6e29]
+    - paragraph [ref=f6e30]: Mahkamah Agung Republik Indonesia
+    - link "Lihat Informasi " [ref=f6e31] [cursor=pointer]:
+      - /url: http://127.0.0.1:8001/berita
+      - text: Lihat Informasi
+      - generic [ref=f6e32]: 
+  - generic "Peringatan penipuan" [ref=f6e33]:
+    - generic [ref=f6e35]:
+      - generic [ref=f6e36]:  HATI-HATI PENIPUAN MENGATASNAMAKAN PENGADILAN TINGGI AGAMA PAPUA BARAT. SELURUH INFORMASI DAN LAYANAN RESMI HANYA DISAMPAIKAN MELALUI KANAL RESMI PTA PAPUA BARAT.
+      - generic [aria-hidden] [ref=f6e37]:  HATI-HATI PENIPUAN MENGATASNAMAKAN PENGADILAN TINGGI AGAMA PAPUA BARAT. SELURUH INFORMASI DAN LAYANAN RESMI HANYA DISAMPAIKAN MELALUI KANAL RESMI PTA PAPUA BARAT.
+  - generic [ref=f6e39]:
+    - heading " Selamat Datang di Website Resmi PTA Papua Barat" [level=3] [ref=f6e40]:
+      - generic [ref=f6e41]: 
+      - text: Selamat Datang di Website Resmi PTA Papua Barat
+    - paragraph [ref=f6e42]: Melayani Masyarakat dengan Integritas, Profesionalitas dan Akuntabilitas
+  - generic [ref=f6e46]:
+    - generic [ref=f6e47]:
+      - heading "Pengumuman" [level=2] [ref=f6e48]
+      - link "Selengkapnya " [ref=f6e49] [cursor=pointer]:
+        - /url: http://127.0.0.1:8001/pengumuman
+        - text: Selengkapnya
+        - generic [ref=f6e50]: 
+    - generic [ref=f6e51]:
+      - button "Semua" [ref=f6e52] [cursor=pointer]
+      - button "PTA Papua Barat" [ref=f6e53] [cursor=pointer]
+      - button "Mahkamah Agung" [ref=f6e54] [cursor=pointer]
+      - button "Badilag" [ref=f6e55] [cursor=pointer]
+      - button "Lain-lain" [ref=f6e56] [cursor=pointer]
+    - list [ref=f6e58]:
+      - listitem [ref=f6e59]: Belum ada pengumuman.
+  - generic [ref=f6e61]:
+    - generic [ref=f6e62]:
+      - heading "Berita Terkini" [level=2] [ref=f6e63]
+      - link "Selengkapnya " [ref=f6e64] [cursor=pointer]:
+        - /url: http://127.0.0.1:8001/berita
+        - text: Selengkapnya
+        - generic [ref=f6e65]: 
+    - generic [ref=f6e67]:
+      - generic [ref=f6e68]: 
+      - text: Belum ada berita terkini.
+  - generic [ref=f6e70]:
+    - generic [ref=f6e71]:
+      - heading "Berita Peradilan Agama Papua Barat" [level=2] [ref=f6e72]
+      - link "Selengkapnya " [ref=f6e73] [cursor=pointer]:
+        - /url: http://127.0.0.1:8001/berita
+        - text: Selengkapnya
+        - generic [ref=f6e74]: 
+    - generic [ref=f6e76]:
+      - generic [ref=f6e77]: 
+      - text: Belum ada berita Peradilan Agama Papua Barat.
+  - generic [ref=f6e79]:
+    - heading "Daftar Aplikasi" [level=2] [ref=f6e81]
+    - generic [ref=f6e83]:
+      - link " e-Court MA" [ref=f6e84] [cursor=pointer]:
+        - /url: https://ecourt.mahkamahagung.go.id
+        - generic [ref=f6e85]: 
+        - generic [ref=f6e87]: e-Court
+        - generic [ref=f6e88]: MA
+      - link " SIPP MA" [ref=f6e89] [cursor=pointer]:
+        - /url: https://sipp.mahkamahagung.go.id
+        - generic [ref=f6e90]: 
+        - generic [ref=f6e92]: SIPP
+        - generic [ref=f6e93]: MA
+      - link " SIWAS MA" [ref=f6e94] [cursor=pointer]:
+        - /url: https://siwas.mahkamahagung.go.id
+        - generic [ref=f6e95]: 
+        - generic [ref=f6e97]: SIWAS
+        - generic [ref=f6e98]: MA
+      - link " Direktori Putusan MA" [ref=f6e99] [cursor=pointer]:
+        - /url: https://putusan3.mahkamahagung.go.id
+        - generic [ref=f6e100]: 
+        - generic [ref=f6e102]: Direktori Putusan
+        - generic [ref=f6e103]: MA
+      - link " Portal Inovasi PTA PTA Papua Barat" [ref=f6e104] [cursor=pointer]:
+        - /url: https://example.com/portal-inovasi-pta
+        - generic [ref=f6e105]: 
+        - generic [ref=f6e107]: Portal Inovasi PTA
+        - generic [ref=f6e108]: PTA Papua Barat
+      - link " Antrian PTSP Online PTA Papua Barat" [ref=f6e109] [cursor=pointer]:
+        - /url: https://example.com/antrian-ptsp
+        - generic [ref=f6e110]: 
+        - generic [ref=f6e112]: Antrian PTSP Online
+        - generic [ref=f6e113]: PTA Papua Barat
+      - link " Monitoring Kinerja PTA PTA Papua Barat" [ref=f6e114] [cursor=pointer]:
+        - /url: https://example.com/monitoring-kinerja
+        - generic [ref=f6e115]: 
+        - generic [ref=f6e117]: Monitoring Kinerja PTA
+        - generic [ref=f6e118]: PTA Papua Barat
+      - link " Arsip Digital PTA PTA Papua Barat" [ref=f6e119] [cursor=pointer]:
+        - /url: https://example.com/arsip-digital
+        - generic [ref=f6e120]: 
+        - generic [ref=f6e122]: Arsip Digital PTA
+        - generic [ref=f6e123]: PTA Papua Barat
+  - contentinfo [ref=f6e124]:
+    - generic [ref=f6e125]:
+      - generic [ref=f6e126]:
+        - generic [ref=f6e127]:
+          - generic [ref=f6e128]:
+            - heading "Pengadilan Tinggi Agama Papua Barat" [level=4] [ref=f6e129]
+            - paragraph [ref=f6e130]: Jl. Brawijaya, Kelurahan Manokwari Timur, Distrik Manokwari, Provinsi Papua Barat. Kode POS 98311
+            - generic [ref=f6e131]:
+              - generic [ref=f6e132]:
+                - generic [ref=f6e133]: 
+                - generic [ref=f6e134]: 0811 4088 3744
+              - generic [ref=f6e135]:
+                - generic [ref=f6e136]: 
+                - generic [ref=f6e137]: ptapapuabarat@gmail.com
+          - generic [ref=f6e138]:
+            - heading "Lokasi Kantor" [level=4] [ref=f6e139]
+            - iframe [ref=f6e141]:
+              - link "Open in Maps (opens in new tab)" [ref=f7e4] [cursor=pointer]:
+                - /url: about:invalid#zClosurez
+                - text: Open in Maps
+        - generic [ref=f6e142]:
+          - heading "Tautan Cepat" [level=4] [ref=f6e143]
+          - list [ref=f6e144]:
+            - listitem [ref=f6e145]:
+              - link "> Beranda" [ref=f6e146] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f6e147]:
+              - link "> Berita" [ref=f6e148] [cursor=pointer]:
+                - /url: /berita
+            - listitem [ref=f6e149]:
+              - link "> Pengumuman" [ref=f6e150] [cursor=pointer]:
+                - /url: /pengumuman
+        - generic [ref=f6e151]:
+          - heading "PA Sewilayah Hukum" [level=4] [ref=f6e152]
+          - list [ref=f6e153]:
+            - listitem [ref=f6e154]:
+              - link "> PA Manokwari" [ref=f6e155] [cursor=pointer]:
+                - /url: https://www.pa-manokwari.go.id
+            - listitem [ref=f6e156]:
+              - link "> PA Sorong" [ref=f6e157] [cursor=pointer]:
+                - /url: https://www.pa-sorong.go.id
+            - listitem [ref=f6e158]:
+              - link "> PA Kaimana" [ref=f6e159] [cursor=pointer]:
+                - /url: https://pa-kaimana.go.id
+            - listitem [ref=f6e160]:
+              - link "> PA Fakfak" [ref=f6e161] [cursor=pointer]:
+                - /url: https://www.pa-fakfak.go.id
+        - generic [ref=f6e162]:
+          - heading "Tautan Eksternal" [level=4] [ref=f6e163]
+          - list [ref=f6e164]:
+            - listitem [ref=f6e165]:
+              - link "> Mahkamah Agung RI" [ref=f6e166] [cursor=pointer]:
+                - /url: https://www.mahkamahagung.go.id
+            - listitem [ref=f6e167]:
+              - link "> Badilag" [ref=f6e168] [cursor=pointer]:
+                - /url: https://badilag.mahkamahagung.go.id
+            - listitem [ref=f6e169]:
+              - link "> SIPP" [ref=f6e170] [cursor=pointer]:
+                - /url: https://sipp.mahkamahagung.go.id
+        - generic [ref=f6e171]:
+          - generic [ref=f6e172]:
+            - generic [ref=f6e173]: 
+            - generic [ref=f6e175]:
+              - heading "STATISTIK WEB" [level=4] [ref=f6e176]
+              - paragraph [ref=f6e177]: Ringkasan kunjungan situs PTA Papua Barat
+          - generic [ref=f6e178]:
+            - generic [ref=f6e179]:
+              - generic [ref=f6e180]:
+                - generic [ref=f6e181]: Hari ini
+                - strong [ref=f6e182]: "1"
+              - generic [ref=f6e183]:
+                - generic [ref=f6e184]: Minggu ini
+                - strong [ref=f6e185]: "1"
+              - generic [ref=f6e186]:
+                - generic [ref=f6e187]: Bulan ini
+                - strong [ref=f6e188]: "1"
+              - generic [ref=f6e189]:
+                - generic [ref=f6e190]: Total
+                - strong [ref=f6e191]: "1"
+            - generic [ref=f6e192]:
+              - generic [ref=f6e193]:
+                - heading " Perangkat" [level=5] [ref=f6e194]:
+                  - generic [ref=f6e195]: 
+                  - text: Perangkat
+                - generic [ref=f6e196]:
+                  - generic [ref=f6e197]: Mobile
+                  - strong [ref=f6e198]: "0"
+                - generic [ref=f6e199]:
+                  - generic [ref=f6e200]: Desktop
+                  - strong [ref=f6e201]: "1"
+                - generic [ref=f6e202]:
+                  - generic [ref=f6e203]: Tablet
+                  - strong [ref=f6e204]: "0"
+                - generic [ref=f6e205]:
+                  - generic [ref=f6e206]: Unknown
+                  - strong [ref=f6e207]: "0"
+              - generic [ref=f6e208]:
+                - heading " Negara Teratas" [level=5] [ref=f6e209]:
+                  - generic [ref=f6e210]: 
+                  - text: Negara Teratas
+                - generic [ref=f6e211]:
+                  - generic [ref=f6e212]: 🌐 Unknown
+                  - strong [ref=f6e213]: "1"
+              - generic [ref=f6e214]:
+                - generic [ref=f6e215]:
+                  - generic [ref=f6e216]: 
+                  - text: Pengunjung Online
+                - strong [ref=f6e217]: "1"
+                - paragraph [ref=f6e218]: "Online: 1"
+                - paragraph [ref=f6e219]: Jumlah sesi aktif dalam beberapa menit terakhir.
+      - generic [ref=f6e220]: © 2026 Pengadilan Tinggi Agama Papua Barat. Hak Cipta Dilindungi.
+  - link "Buku Tamu" [ref=f6e221] [cursor=pointer]:
+    - /url: https://bukutamu.pta-papuabarat.go.id/employees
+    - generic [ref=f6e222]: Ingin berkunjung ke PTA, lihat ketersediaan pegawai
+    - img "Buku Tamu" [ref=f6e225]
+  - generic [ref=f6e226]:
+    - button "" [ref=f6e227] [cursor=pointer]
+    - text:     

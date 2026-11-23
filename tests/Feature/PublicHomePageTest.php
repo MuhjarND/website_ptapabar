@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Article;
+use App\Agenda;
+use App\FloatingIcon;
 use App\Gallery;
 use App\GalleryCategory;
 use App\IntegrityZone;
@@ -13,12 +15,12 @@ use App\SiteApplication;
 use App\Slider;
 use App\SurveyIndex;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PublicHomePageTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_homepage_renders_key_public_modules_and_page_assets()
     {
@@ -119,6 +121,17 @@ class PublicHomePageTest extends TestCase
             'is_active' => true,
         ]);
 
+        Agenda::create([
+            'title' => 'Kegiatan Pimpinan Homepage',
+            'slug' => 'kegiatan-pimpinan-homepage',
+            'agenda_type' => Agenda::TYPE_KEGIATAN,
+            'summary' => 'Kegiatan pimpinan untuk homepage.',
+            'start_at' => now()->addDays(2),
+            'location' => 'Aula PTA',
+            'is_active' => true,
+            'user_id' => $author->id,
+        ]);
+
         SiteApplication::create([
             'title' => 'Aplikasi Inovasi PTA',
             'description' => 'Aplikasi unggulan internal',
@@ -149,6 +162,15 @@ class PublicHomePageTest extends TestCase
             'is_active' => true,
         ]);
 
+        FloatingIcon::create([
+            'title' => 'Buku Tamu',
+            'text' => 'Ingin berkunjung ke PTA, lihat ketersediaan pegawai',
+            'icon' => 'floating-icons/buku-tamu-default.svg',
+            'url' => 'https://bukutamu.pta-papuabarat.go.id/employees',
+            'order' => 1,
+            'is_active' => true,
+        ]);
+
         IntegrityZone::create([
             'title' => 'Area 1',
             'image' => 'integrity-zones/area-1.jpg',
@@ -171,6 +193,8 @@ class PublicHomePageTest extends TestCase
         $response->assertSee('PA Manokwari');
         $response->assertSee('Pengumuman Homepage');
         $response->assertSee('Pengumuman Badilag Homepage');
+        $response->assertSee('Agenda Pimpinan');
+        $response->assertSee('Kegiatan Pimpinan Homepage');
         $response->assertSee('Artikel Homepage');
         $response->assertSee('Artikel');
         $response->assertSee('Tinta Peradilan');
@@ -178,14 +202,14 @@ class PublicHomePageTest extends TestCase
         $response->assertSee('Galeri Layanan');
         $response->assertSee('IKM');
         $response->assertSee('98.76');
+        $response->assertSee('Ingin berkunjung ke PTA, lihat ketersediaan pegawai');
         $response->assertSee('Aplikasi Inovasi PTA');
         $response->assertSee('e-Court');
         $response->assertSee('Eviden Zona Integritas');
         $response->assertSee('Area 1');
-        $response->assertSee('Aplikasi Inovasi PTA Papua Barat');
-        $response->assertSee('Aplikasi yang Digunakan di Mahkamah Agung');
+        $response->assertSee('Daftar Aplikasi');
         $response->assertSee('PTA Papua Barat');
-        $response->assertSee('Mahkamah Agung');
+        $response->assertSee('MA');
         $response->assertSee('Badilag');
         $response->assertSee('Rapat');
         $response->assertSee('Sosialisasi');

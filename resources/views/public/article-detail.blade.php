@@ -19,7 +19,10 @@
                     <a href="{{ $article->pdf_href }}" target="_blank" class="section-link">Buka PDF <i class="fas fa-arrow-right"></i></a>
                 </div>
             @endif
-            <div class="content-body">{!! $article->content !!}</div>
+            @if($article->wordpress_id && $article->image_url && !str_contains($article->content, '<img'))
+                <img src="{{ $article->image_url }}" alt="{{ $article->title }}" style="display:block;max-width:100%;height:auto;margin-bottom:24px">
+            @endif
+            <div class="content-body">{!! $article->wordpress_id ? \App\Support\WordPressContent::archiveHtml($article->content) : $article->content !!}</div>
         </div>
     </div>
 </section>

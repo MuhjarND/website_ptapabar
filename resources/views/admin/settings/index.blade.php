@@ -30,6 +30,18 @@
                 <label>Fax</label>
                 <input type="text" name="fax" class="form-control" value="{{ $settings['fax'] }}" style="max-width:300px">
             </div>
+            <div class="form-group">
+                <label>Instagram</label>
+                <input type="url" name="instagram_url" class="form-control" value="{{ $settings['instagram_url'] }}" placeholder="https://instagram.com/..." style="max-width:500px">
+            </div>
+            <div class="form-group">
+                <label>Facebook</label>
+                <input type="url" name="facebook_url" class="form-control" value="{{ $settings['facebook_url'] }}" placeholder="https://facebook.com/..." style="max-width:500px">
+            </div>
+            <div class="form-group">
+                <label>YouTube</label>
+                <input type="url" name="youtube_url" class="form-control" value="{{ $settings['youtube_url'] }}" placeholder="https://youtube.com/..." style="max-width:500px">
+            </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Pengaturan</button>
         </form>
     </div>

@@ -1,6 +1,8 @@
+@php($publicationPart = $publicationPart ?? null)
 <section class="section section-white">
     <div class="container">
-        <div class="announcement-section-layout {{ $articles->count() ? 'has-article-sidebar' : '' }}">
+        <div class="announcement-section-layout {{ !$publicationPart && $articles->count() ? 'has-article-sidebar' : '' }}">
+            @if($publicationPart !== 'article')
             <div class="announcement-column">
                 <div class="section-header fade-up announcement-column-header">
                     <h2 class="section-title">Pengumuman</h2>
@@ -58,7 +60,8 @@
                     @endif
                 </div>
             </div>
-            @if($articles->count())
+            @endif
+            @if($publicationPart === 'article' || (!$publicationPart && $articles->count()))
                 <aside class="announcement-column announcement-article-sidebar">
                     <div class="section-header fade-up announcement-column-header announcement-article-section-header">
                         <h2 class="section-title">Tinta Peradilan</h2>
@@ -71,7 +74,7 @@
                         @endforeach
                     </div>
                     <ul class="pengumuman-list announcement-article-list" data-article-pagination data-article-per-page="5">
-                        @foreach($articles as $article)
+                        @forelse($articles as $article)
                             <li class="announcement-article-entry fade-up">
                                 <a
                                     href="{{ $article->target_url }}"
@@ -92,10 +95,14 @@
                                 </div>
                                 </a>
                             </li>
-                        @endforeach
-                        <li class="section-empty section-empty-compact article-empty-state" data-article-empty-message hidden>
-                            Belum ada artikel untuk kategori ini.
-                        </li>
+                        @empty
+                            <li class="section-empty section-empty-compact">Belum ada artikel.</li>
+                        @endforelse
+                        @if($articles->count())
+                            <li class="section-empty section-empty-compact article-empty-state" data-article-empty-message hidden>
+                                Belum ada artikel untuk kategori ini.
+                            </li>
+                        @endif
                     </ul>
                     @php($articlePageCount = (int) ceil($articles->count() / 5))
                     @if($articlePageCount > 1)

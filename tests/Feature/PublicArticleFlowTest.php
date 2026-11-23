@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Article;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PublicArticleFlowTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_public_article_detail_renders()
     {

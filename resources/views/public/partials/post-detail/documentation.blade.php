@@ -14,13 +14,13 @@
             <div class="tiled-gallery">
                 @foreach($imageFiles as $index => $photo)
                     <div class="tile-item tile-{{ $index % 6 }}" onclick="openLightbox({{ $index }})">
-                        <img src="{{ asset('storage/' . $photo->image) }}" alt="{{ $photo->caption ?? 'Foto ' . ($index + 1) }}" loading="lazy">
+                        <img src="{{ $photo->file_url }}" alt="{{ $photo->caption ?? 'Foto ' . ($index + 1) }}" loading="lazy">
                         <div class="tile-overlay">
                             <div class="tile-actions">
                                 @if($photo->caption)
                                     <span class="tile-caption">{{ $photo->caption }}</span>
                                 @endif
-                                <a href="{{ asset('storage/' . $photo->image) }}" download class="tile-dl file-dl" onclick="event.stopPropagation();" title="Unduh foto">
+                                <a href="{{ $photo->file_url }}" download target="_blank" rel="noopener noreferrer" class="tile-dl file-dl" onclick="event.stopPropagation();" title="Unduh atau buka foto">
                                     <i class="fas fa-download"></i>
                                 </a>
                             </div>
@@ -33,12 +33,12 @@
         @if($pdfFiles->count() > 0)
             <div class="pdf-list {{ $imageFiles->count() > 0 ? 'pdf-list-spaced' : '' }}">
                 @foreach($pdfFiles as $pdf)
-                    <a href="{{ asset('storage/' . $pdf->image) }}" target="_blank" class="pdf-card file-dl" rel="noopener noreferrer">
+                    <a href="{{ $pdf->file_url }}" target="_blank" class="pdf-card file-dl" rel="noopener noreferrer">
                         <div class="pdf-icon">
                             <i class="fas fa-file-pdf"></i>
                         </div>
                         <div class="pdf-info">
-                            <span class="pdf-name">{{ $pdf->caption ?? basename($pdf->image) }}</span>
+                            <span class="pdf-name">{{ $pdf->caption ?? $pdf->filename }}</span>
                             <span class="pdf-meta">Dokumen PDF - Klik untuk membuka</span>
                         </div>
                         <div class="pdf-action" title="Unduh PDF">
@@ -62,7 +62,7 @@
                     <span id="lb-caption"></span>
                     <div class="lb-footer-actions">
                         <span id="lb-counter"></span>
-                        <a id="lb-download" href="" download class="lb-dl-btn"><i class="fas fa-download"></i> Unduh</a>
+                        <a id="lb-download" href="" download target="_blank" rel="noopener noreferrer" class="lb-dl-btn"><i class="fas fa-download"></i> Unduh</a>
                     </div>
                 </div>
             </div>

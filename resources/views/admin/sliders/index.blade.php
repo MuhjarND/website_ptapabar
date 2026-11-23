@@ -12,7 +12,7 @@
             <tbody>
                 @forelse($sliders as $slider)
                 <tr>
-                    <td><img src="{{ asset('storage/'.$slider->image) }}" style="height:50px;border-radius:6px;object-fit:cover"></td>
+                    <td><img src="{{ $slider->image_url }}" alt="" style="height:50px;border-radius:6px;object-fit:cover"></td>
                     <td>{{ $slider->title ?? '-' }}</td>
                     <td>{{ $slider->order }}</td>
                     <td><span class="badge {{ $slider->is_active ? 'badge-success' : 'badge-secondary' }}">{{ $slider->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>

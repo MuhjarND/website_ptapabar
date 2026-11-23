@@ -281,5 +281,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call(SiteApplicationSeeder::class);
+        $this->call(FooterLinkSeeder::class);
+        $this->call(FloatingIconSeeder::class);
     }
 }

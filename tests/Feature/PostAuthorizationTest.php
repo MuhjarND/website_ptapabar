@@ -6,12 +6,12 @@ use App\Post;
 use App\PostCategory;
 use App\PostPhoto;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PostAuthorizationTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_author_only_sees_their_own_posts()
     {
@@ -275,7 +275,7 @@ class PostAuthorizationTest extends TestCase
             'is_published' => '1',
         ])->assertRedirect(route('admin.berita.index'));
 
-        $posts = Post::where('title', $title)->orderBy('id')->get();
+        $posts = Post::where('title', trim($title))->orderBy('id')->get();
 
         $this->assertCount(2, $posts);
         $this->assertNotSame($posts[0]->slug, $posts[1]->slug);

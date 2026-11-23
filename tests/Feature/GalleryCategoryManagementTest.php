@@ -5,12 +5,12 @@ namespace Tests\Feature;
 use App\Gallery;
 use App\GalleryCategory;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class GalleryCategoryManagementTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_admin_can_create_and_update_gallery_category()
     {

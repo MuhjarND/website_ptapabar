@@ -27,10 +27,8 @@ class TrackVisitors
         }
 
         if (!session()->has($sessionKey)) {
-            $visitorCount = VisitorCount::firstOrCreate(
-                ['visit_date' => $today],
-                ['count' => 0]
-            );
+            $visitorCount = VisitorCount::whereDate('visit_date', $today)
+                ->firstOrCreate([], ['visit_date' => $today, 'count' => 0]);
             $visitorCount->increment('count');
             session([$sessionKey => true]);
         }

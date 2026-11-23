@@ -90,8 +90,8 @@
 @endif
 <div class="form-group">
     <label>Gambar Utama</label>
-    @if(optional($post)->image)
-        <div style="margin-bottom:8px"><img src="{{ asset('storage/' . $post->image) }}" style="max-height:100px;border-radius:6px"></div>
+    @if(optional($post)->image_url)
+        <div style="margin-bottom:8px"><img src="{{ $post->image_url }}" alt="Foto berita saat ini" style="max-height:100px;border-radius:6px"></div>
     @endif
     <input type="file" name="image" class="form-control" accept="image/*">
 </div>
@@ -100,9 +100,21 @@
     <textarea name="content" class="form-control rich-editor" rows="12">{{ old('content', optional($post)->content) }}</textarea>
 </div>
 <div class="form-group">
-    <label class="checkbox-label">
-        <input type="checkbox" name="is_published" {{ old('is_published', optional($post)->is_published ?? true) ? 'checked' : '' }}> Publikasikan
-    </label>
+    <label>Status Workflow</label>
+    <select name="workflow_status" class="form-control" style="max-width:280px;">
+        @foreach($workflowStatusOptions as $value => $label)
+            <option value="{{ $value }}" {{ old('workflow_status', optional($post)->workflow_status ?: (optional($post)->is_published ? \App\Post::STATUS_PUBLISHED : \App\Post::STATUS_DRAFT)) === $value ? 'selected' : '' }}>
+                {{ $label }}
+            </option>
+        @endforeach
+    </select>
+    <small class="text-muted">
+        @if(auth()->user()->isAdmin())
+            Admin dapat mengatur seluruh status publikasi.
+        @else
+            Author hanya dapat menyimpan sebagai draft atau mengirim untuk review.
+        @endif
+    </small>
 </div>
 
 <div class="card" style="margin-top:24px;border:2px dashed #d1d5db;">
@@ -111,18 +123,18 @@
     </div>
     <div class="card-body">
         @if(!empty($post) && $post->photos->count() > 0)
-            <p style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px;">File yang sudah diupload ({{ $post->photos->count() }})</p>
+            <p style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px;">File dokumentasi ({{ $post->photos->count() }})</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:20px;">
                 @foreach($post->photos as $photo)
                     <div style="position:relative;border-radius:8px;overflow:hidden;border:1px solid #e8ecf0;">
-                        @if(Str::endsWith(strtolower($photo->image), '.pdf'))
+                        @if($photo->is_pdf)
                             <div style="width:100%;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#dc3545,#c82333);">
                                 <i class="fas fa-file-pdf" style="font-size:32px;color:#fff;margin-bottom:6px;"></i>
                                 <span style="font-size:10px;color:rgba(255,255,255,0.8);font-weight:600;">PDF</span>
                             </div>
-                            <div style="padding:6px 8px;font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ basename($photo->image) }}</div>
+                            <div style="padding:6px 8px;font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $photo->filename }}</div>
                         @else
-                            <img src="{{ asset('storage/' . $photo->image) }}" style="width:100%;height:110px;object-fit:cover;">
+                            <img src="{{ $photo->file_url }}" alt="{{ $photo->caption ?? '' }}" style="width:100%;height:110px;object-fit:cover;">
                             @if($photo->caption)
                                 <div style="padding:6px 8px;font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $photo->caption }}</div>
                             @endif

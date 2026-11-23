@@ -470,6 +470,11 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        var homePopup = document.getElementById('homeImagePopup');
+        if (homePopup && typeof homePopup.showModal === 'function') {
+            homePopup.showModal();
+        }
+
         refreshSliderElements();
 
         if (slides.length > 1) {

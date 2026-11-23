@@ -6,6 +6,9 @@
     <div class="card-body">
         <form method="POST" action="{{ route('admin.pages.update', $page) }}">
             @csrf @method('PUT')
+            @if($guidance)
+                <p style="margin-bottom:16px">{{ $guidance }}</p>
+            @endif
             <div class="form-group">
                 <label>Judul Halaman</label>
                 <input type="text" name="title" class="form-control" value="{{ old('title', $page->title) }}" required>

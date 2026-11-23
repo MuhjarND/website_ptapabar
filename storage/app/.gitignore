@@ -1,3 +1,9 @@
 *
 !public/
+!transparency-documents/
+transparency-documents/*
+!transparency-documents/.htaccess
+!private-service-requests/
+private-service-requests/*
+!private-service-requests/.htaccess
 !.gitignore

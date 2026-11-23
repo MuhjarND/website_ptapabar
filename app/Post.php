@@ -4,10 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Support\WordPressContent;
 use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    const STATUS_DRAFT = 'draft';
+    const STATUS_REVIEW = 'review';
+    const STATUS_PUBLISHED = 'published';
+    const STATUS_ARCHIVED = 'archived';
+
     const NEWS_SCOPE_TERKINI = 'terkini';
     const NEWS_SCOPE_PERADILAN_AGAMA_PAPUA_BARAT = 'peradilan-agama-papua-barat';
 
@@ -16,7 +22,17 @@ class Post extends Model
     const ANNOUNCEMENT_CATEGORY_BADILAG = 'badilag';
     const ANNOUNCEMENT_CATEGORY_LAIN_LAIN = 'lain-lain';
 
-    protected $fillable = ['title', 'slug', 'content', 'excerpt', 'image', 'category', 'post_category_id', 'news_scope', 'announcement_category', 'is_published', 'user_id'];
+    protected $fillable = ['title', 'slug', 'content', 'excerpt', 'image', 'category', 'post_category_id', 'news_scope', 'announcement_category', 'workflow_status', 'published_at', 'is_published', 'user_id'];
+
+    protected $casts = [
+        'is_published' => 'boolean',
+        'published_at' => 'datetime',
+    ];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : WordPressContent::imageUrl($this->wordpress_cover_path);
+    }
 
     public static function sanitizeExcerpt($value, $limit = null)
     {
@@ -76,6 +92,16 @@ class Post extends Model
         ];
     }
 
+    public static function workflowStatusOptions()
+    {
+        return [
+            self::STATUS_DRAFT => 'Draft',
+            self::STATUS_REVIEW => 'Menunggu Review',
+            self::STATUS_PUBLISHED => 'Published',
+            self::STATUS_ARCHIVED => 'Archived',
+        ];
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -93,7 +119,21 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('is_published', true);
+        return $query->where(function ($innerQuery) {
+            $innerQuery->where('workflow_status', self::STATUS_PUBLISHED)
+                ->orWhere(function ($legacyQuery) {
+                    $legacyQuery->whereNull('workflow_status')->where('is_published', true);
+                });
+        });
+    }
+
+    public function scopeWorkflowStatus($query, $status)
+    {
+        if (!$status) {
+            return $query;
+        }
+
+        return $query->where('workflow_status', $status);
     }
 
     public function scopeBerita($query)
@@ -180,5 +220,15 @@ class Post extends Model
     public function getExcerptPlainAttribute()
     {
         return static::sanitizeExcerpt($this->excerpt);
+    }
+
+    public function getWorkflowStatusLabelAttribute()
+    {
+        return static::workflowStatusOptions()[$this->workflow_status ?: ($this->is_published ? self::STATUS_PUBLISHED : self::STATUS_DRAFT)] ?? 'Draft';
+    }
+
+    public function isPublishedStatus()
+    {
+        return ($this->workflow_status ?: ($this->is_published ? self::STATUS_PUBLISHED : self::STATUS_DRAFT)) === self::STATUS_PUBLISHED;
     }
 }

@@ -5,12 +5,12 @@ namespace Tests\Feature;
 use App\Post;
 use App\PostCategory;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PostCategoryManagementTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_admin_can_create_and_update_post_category()
     {

@@ -4,12 +4,12 @@ namespace Tests\Feature;
 
 use App\Gallery;
 use App\GalleryCategory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PublicGalleryFlowTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_public_gallery_archive_can_be_filtered_by_category()
     {

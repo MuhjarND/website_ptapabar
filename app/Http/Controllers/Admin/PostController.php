@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\PostCategory;
 use App\PostPhoto;
+use App\Support\ActivityLogger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -107,7 +108,9 @@ class PostController extends Controller
         $photo = PostPhoto::with('post')->findOrFail($id);
         $this->authorizePostAccess($photo->post);
 
-        Storage::disk('public')->delete($photo->image);
+        if (!$photo->wordpress_path && $photo->image) {
+            Storage::disk('public')->delete($photo->image);
+        }
         $photo->delete();
 
         return back()->with('success', 'Foto dokumentasi berhasil dihapus.');
@@ -138,6 +141,10 @@ class PostController extends Controller
 
         if ($fixedCategory !== 'berita' && $request->announcement_category) {
             $query->announcementCategory($request->announcement_category);
+        }
+
+        if ($request->workflow_status) {
+            $query->workflowStatus($request->workflow_status);
         }
 
         if (auth()->user()->isAuthorSatker()) {
@@ -189,9 +196,12 @@ class PostController extends Controller
             'post_category_id' => $category === 'berita' ? ($validated['post_category_id'] ?? null) : null,
             'news_scope' => $category === 'berita' ? $this->resolveNewsScope($validated) : null,
             'announcement_category' => $category === 'pengumuman' ? ($validated['announcement_category'] ?? null) : null,
-            'is_published' => $request->has('is_published'),
+            'workflow_status' => $this->resolveWorkflowStatus($request),
+            'is_published' => false,
             'user_id' => auth()->id(),
         ];
+
+        $data = $this->applyPublicationState($data);
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('posts', 'public');
@@ -199,6 +209,10 @@ class PostController extends Controller
 
         $post = Post::create($data);
         $this->storeDocumentationFiles($request, $post);
+        ActivityLogger::record('post.created', $post, 'Menambahkan ' . $category . ' baru.', [
+            'workflow_status' => $post->workflow_status,
+            'category' => $post->category,
+        ]);
 
         return redirect()->route($this->successRedirectRouteName($fixedCategory, $category))->with('success', ucfirst($category) . ' berhasil ditambahkan.');
     }
@@ -221,8 +235,10 @@ class PostController extends Controller
             'post_category_id' => $category === 'berita' ? ($validated['post_category_id'] ?? null) : null,
             'news_scope' => $category === 'berita' ? $this->resolveNewsScope($validated, $post) : null,
             'announcement_category' => $category === 'pengumuman' ? ($validated['announcement_category'] ?? null) : null,
-            'is_published' => $request->has('is_published'),
+            'workflow_status' => $this->resolveWorkflowStatus($request, $post),
         ];
+
+        $data = $this->applyPublicationState($data, $post);
 
         if ($request->hasFile('image')) {
             if ($post->image) {
@@ -233,6 +249,10 @@ class PostController extends Controller
 
         $post->update($data);
         $this->storeDocumentationFiles($request, $post);
+        ActivityLogger::record('post.updated', $post, 'Memperbarui ' . $category . '.', [
+            'workflow_status' => $post->workflow_status,
+            'category' => $post->category,
+        ]);
 
         return redirect()->route($this->successRedirectRouteName($fixedCategory, $category))->with('success', ucfirst($category) . ' berhasil diperbarui.');
     }
@@ -244,7 +264,9 @@ class PostController extends Controller
         $this->ensureCategoryMatchesContext($post, $fixedCategory);
 
         foreach ($post->photos as $photo) {
-            Storage::disk('public')->delete($photo->image);
+            if (!$photo->wordpress_path && $photo->image) {
+                Storage::disk('public')->delete($photo->image);
+            }
         }
 
         if ($post->image) {
@@ -255,6 +277,10 @@ class PostController extends Controller
 
         $post->photos()->delete();
         $post->delete();
+        ActivityLogger::record('post.deleted', null, 'Menghapus ' . $category . '.', [
+            'title' => $post->title,
+            'category' => $category,
+        ]);
 
         return redirect()->route($this->successRedirectRouteName($fixedCategory, $category))->with('success', ucfirst($category) . ' berhasil dihapus.');
     }
@@ -270,6 +296,7 @@ class PostController extends Controller
             'post_category_id' => 'nullable|exists:post_categories,id',
             'news_scope' => 'nullable|in:' . implode(',', array_keys(Post::newsScopeOptions())),
             'announcement_category' => 'nullable|required_if:category,pengumuman|in:' . implode(',', array_keys(Post::announcementCategoryOptions())),
+            'workflow_status' => 'nullable|in:' . implode(',', array_keys(Post::workflowStatusOptions())),
             'image' => 'nullable|image|max:2048',
             'photos.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,webp,pdf|max:10240',
             'captions.*' => 'nullable|string|max:255',
@@ -340,6 +367,12 @@ class PostController extends Controller
     protected function buildViewData($fixedCategory = null, Post $post = null)
     {
         $category = $fixedCategory ?: optional($post)->category;
+        $workflowStatusOptions = auth()->user()->isAdmin()
+            ? Post::workflowStatusOptions()
+            : [
+                Post::STATUS_DRAFT => Post::workflowStatusOptions()[Post::STATUS_DRAFT],
+                Post::STATUS_REVIEW => Post::workflowStatusOptions()[Post::STATUS_REVIEW],
+            ];
 
         if ($category === 'berita') {
             return [
@@ -358,6 +391,8 @@ class PostController extends Controller
                 'showNewsCategoryFilter' => true,
                 'showNewsScopeFilter' => !auth()->user()->isAuthorSatker(),
                 'showAnnouncementCategoryFilter' => false,
+                'showWorkflowStatusFilter' => true,
+                'workflowStatusOptions' => $workflowStatusOptions,
             ];
         }
 
@@ -378,6 +413,8 @@ class PostController extends Controller
                 'showNewsCategoryFilter' => false,
                 'showNewsScopeFilter' => false,
                 'showAnnouncementCategoryFilter' => true,
+                'showWorkflowStatusFilter' => true,
+                'workflowStatusOptions' => $workflowStatusOptions,
             ];
         }
 
@@ -397,6 +434,8 @@ class PostController extends Controller
             'showNewsCategoryFilter' => true,
             'showNewsScopeFilter' => !auth()->user()->isAuthorSatker(),
             'showAnnouncementCategoryFilter' => true,
+            'showWorkflowStatusFilter' => true,
+            'workflowStatusOptions' => $workflowStatusOptions,
         ];
     }
 
@@ -425,5 +464,43 @@ class PostController extends Controller
     protected function authorizePostAccess(Post $post)
     {
         abort_unless($post->canBeManagedBy(auth()->user()), 403);
+    }
+
+    protected function resolveWorkflowStatus(Request $request, Post $post = null)
+    {
+        $requestedStatus = $request->input('workflow_status');
+        $legacyPublished = $request->boolean('is_published');
+
+        if (auth()->user()->isAdmin()) {
+            if ($requestedStatus) {
+                return $requestedStatus;
+            }
+
+            if ($legacyPublished) {
+                return Post::STATUS_PUBLISHED;
+            }
+
+            return optional($post)->workflow_status ?: (optional($post)->is_published ? Post::STATUS_PUBLISHED : Post::STATUS_DRAFT);
+        }
+
+        if ($requestedStatus === Post::STATUS_REVIEW) {
+            return Post::STATUS_REVIEW;
+        }
+
+        return Post::STATUS_DRAFT;
+    }
+
+    protected function applyPublicationState(array $data, Post $post = null)
+    {
+        $status = $data['workflow_status'] ?? optional($post)->workflow_status ?? Post::STATUS_DRAFT;
+        $data['is_published'] = $status === Post::STATUS_PUBLISHED;
+
+        if ($status === Post::STATUS_PUBLISHED) {
+            $data['published_at'] = optional($post)->published_at ?: now();
+        } else {
+            $data['published_at'] = null;
+        }
+
+        return $data;
     }
 }

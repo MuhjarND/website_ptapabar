@@ -7,6 +7,28 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Menjalankan Portal PTA Papua Barat
+
+Proyek ini menggunakan Laravel 12 dan PHP 8.5. Jalankan Composer dan Artisan dengan PHP 8.5, bukan PHP lama bawaan XAMPP.
+
+```powershell
+Set-Location C:\xampp\htdocs\web_pta
+$phpDir = Join-Path $env:LOCALAPPDATA 'Programs\PTA-php-8.5'
+$env:Path = "$phpDir;$env:Path"
+php "$phpDir\composer.phar" install
+php artisan test
+$env:APP_URL = 'http://127.0.0.1:8001'
+php artisan serve --host=127.0.0.1 --port=8001
+```
+
+Tes memakai SQLite di memori. Untuk pratinjau dengan data yang sudah ada, jalankan MySQL XAMPP dan arahkan `.env` ke `web_pta_preview`. Jangan jalankan seeder demo atau reset migrasi terhadap database berisi data. Pada hosting, pilih PHP 8.5 dan arahkan document root ke direktori Laravel `public`.
+
+## Pelaporan SINOVA
+
+Dashboard Utama tetap tersedia di `/admin`. Buka `/admin/sinova` dengan akun admin untuk melihat butir pelaporan serta menyalin URL publik yang tersedia.
+
+Jika alamat publik berbeda dari alamat panel admin, atur `SINOVA_PUBLIC_URL` ke URL HTTPS situs publik, termasuk subdirektori jika ada. Isi `COURT_VERDICTS_URL` dengan URL koleksi putusan PTA Papua Barat, bukan beranda Direktori Putusan. Periksa kembali isi, periode, dan akses tanpa login sebelum melaporkan. Checklist dan penilaian API tetap diisi di sistem penilaian.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

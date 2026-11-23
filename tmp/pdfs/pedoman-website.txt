@@ -1,0 +1,1002 @@
+===== HALAMAN 1 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+DIREKTUR JENDERAL BADAN PERADILAN AGAMA 
+MAHKAMAH AGUNG REPUBLIK INDONESIA 
+KEPUTUSAN DIREKTUR JENDERAL BADAN PERADILAN AGAMA 
+NOMOR: 2722/DJA/SK.TI1/X/2026 
+TENTANG 
+PETUNJUK TEKNIS PEMBARUAN, TATA KELOLA, DAN EVALUASI WEBSITE 
+SATUAN KERJA DI LINGKUNGAN PERADILAN AGAMA 
+DIREKTUR JENDERAL BADAN PERADILAN AGAMA 
+Menimbang a. bahwa untuk menjamin keseragaman jenis informasi dan
+mendukung keterbukaan informasi publik sebagaimana
+diamanatkan dalam Keputusan Ketua Mahkamah Agung
+Nomor 2-144/KMA/SK/VIII/2022, dipandang perlu
+melakukan penyesuaian terhadap pedoman standardisasi
+website pengadilan di lingkungan Peradilan Agama;
+b. bahwa petunjuk teknis dan kriteria penilaian website satuan
+kerja yang berlaku sejak tahun 2020 dinilai sudah tidak
+relevan dengan lompatan perkembangan teknologi
+informasi, dinamika kebutuhan hukum masyarakat, serta
+tuntutan standardisasi keamanan siber nasional;
+c. bahwa berdasarkan pertimbangan sebagaimana dimaksud
+dalam huruf a  dan huruf b perlu menetapkan Keputusan
+Direktur Jenderal Badan Peradilan Agama tentang Petunjuk
+Teknis Pembaruan, Tata Kelola dan Evaluasi Website Satuan
+Kerja di Lingkungan Peradilan Agama Mahkamah Agung
+Republik Indonesia.
+Mengingat 1. Undang-Undang Nomor 14 Tahun 1985 tentang Mahkamah
+Agung sebagaimana telah beberapa kali diubah terakhir
+dengan Undang Undang Nomor 3 Tahun 2009;
+
+
+===== HALAMAN 2 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+2. Undang-Undang Nomor 7 Tahun 1989 tentang Peradilan
+Agama sebagaimana telah diubah terakhir dengan Undang -
+Undang Nomor 50 Tahun 2009;
+3. Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan
+Informasi Publik;
+4. Undang-Undang Nomor 25 Tahun 2009 tentang Pelayanan
+Publik;
+5. Undang-Undang Nomor 11 Tahun 2008 tentang Informasi
+dan Transaksi Elektronik sebagaimana telah diubah
+beberapa kali, terakhir dengan Undang -Undang Nomor 1
+Tahun 2024;
+6. Peraturan Pemerintah Nomor 61 Tahun 2010 tentang
+Pelaksanaan Undang Undang Nomor 14 Tahun 2008 tentang
+Keterbukaan Informasi Publik;
+7. Keputusan Ketua Mahkamah Agung RI Nomor
+026/KMA/SK/II/2012 tentang Standar Pelayanan Peradilan;
+8. Keputusan Ketua Mahkamah Agung Republik Indonesia
+Nomor 2 -144/KMA/SK/VIII/2022 tentang Standar
+Pelayanan Informasi di Pengadilan.
+MEMUTUSKAN 
+Menetapkan : KEPUTUSAN DIREKTUR JENDERAL BADAN PERADILAN 
+AGAMA TENTANG PETUNJUK TEKNIS PEMBARUAN, TATA 
+KELOLA DAN EVALUASI WEBSITE SATUAN KERJA DI 
+LINGKUNGAN PERADILAN AGAMA MAHKAMAH AGUNG 
+REPUBLIK INDONESIA. 
+KESATU : Menetapkan dan memberlakukan Petunjuk Teknis Pembaruan, 
+Tata Kelola, dan Evaluasi Website Satuan Kerja di Lingkungan 
+Peradilan Agama sebagaimana tercantum dalam Lampiran I 
+yang merupakan bagian tidak terpisahkan dalam keputusan ini. 
+KEDUA 
+KETIGA 
+: 
+: 
+Menetapkan dan memberlakukan Kriteria Penilaian Pengelolaan 
+Website Peradilan Agama sebagaimana tercantum dalam 
+Lampiran II yang merupakan bagian tidak terpisahkan dalam 
+keputusan ini. 
+Mewajibkan kepada seluruh Pengadilan Tinggi 
+Agama/Mahkamah Syar'iyah Aceh dan Pengadilan 
+
+===== HALAMAN 3 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+Agama/Mahkamah Syar'iyah untuk menyesuaikan arsitektur 
+perangkat lunak, penyajian konten, dan tata cara monitoring 
+evaluasi website sesuai dengan ketentuan dalam petunjuk 
+teknis ini. 
+KEEMPAT : Penilaian kepatuhan dan fungsionalitas teknis website satuan 
+kerja dilaksanakan secara elektronik dan berkala melalui 
+aplikasi SINOVA (Sistem Informasi Evaluasi dan Inovasi) 
+Direktorat Jenderal Badan Peradilan Agama. 
+KELIMA : Pada saat keputusan ini berlaku: 
+a. Keputusan Direktur Jenderal Badan Peradilan Agama
+Nomor 003.a/DJA/SK/I/2015 tanggal 15 Januari 2015
+perihal Pedoman Pelayanan Informasi melalui Website di
+Lingkungan Peradilan Agama;
+b. Surat Edaran Direktur Jenderal Badan Peradilan Agama
+Nomor 4060/DJA/HM.02.3/12/2020 tanggal 8 Desember
+2020 perihal Pemberlakuan Sistem Integrasi Penilaian
+Website Peradilan Agama;
+dicabut dan dinyatakan tidak berlaku. 
+KEENAM : Keputusan ini berlaku sejak tanggal ditetapkan, dengan 
+ketentuan apabila di kemudian hari terdapat kekeliruan akan 
+dilakukan perbaikan sebagaimana mestinya. 
+Ditetapkan di  Jakarta 
+Pada Tanggal 12 Oktober 2026 
+
+
+===== HALAMAN 4 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+Lampiran I 
+Keputusan Direktur Jenderal  
+Badan Peradilan Agama 
+Nomor : 2722/DJA/SK.TI1/X/2026 
+Tanggal : 12 Oktober 2026 
+PETUNJUK TEKNIS PEMBARUAN, TATA KELOLA, DAN EVALUASI 
+WEBSITE SATUAN KERJA DI LINGKUNGAN PERADILAN AGAMA 
+BAB I 
+PENDAHULUAN 
+A. Latar Belakang
+Keterbukaan informasi di lingkungan pengadilan merupakan hak 
+konstitusional masyarakat yang dilindungi oleh undang -undang. Sejak 
+diterbitkannya standar penilaian website terdahulu, lanskap digital telah 
+mengalami perubahan masif. Website pengadilan tidak boleh lagi 
+diposisikan pasif sebagai papan pengumuman elektronik berbasis teks 
+yang kaku, melainkan harus bertransformasi menjadi portal pelayanan 
+interaktif yang andal, aman, mudah diakses, serta responsif terhadap 
+kebutuhan pencari keadilan di era modern. 
+B. Maksud dan Tujuan
+Petunjuk teknis ini dimaksudkan sebagai panduan baku bagi 
+satuan kerja dalam memperbaharui struktur, infrastruktur, dan konten 
+website. Tujuannya adalah menciptakan keseragaman standar website 
+peradilan agama yang berkinerja tinggi, menjamin kebebasan inovasi 
+teknologi di daerah dengan mengedepankan aspek keamanan siber 
+nasional, serta menyederhanakan proses monitoring evaluasi internal 
+melalui pemanfaatan sistem kecerdasan otomatisasi. 
+C. Ruang Lingkup
+Ruang lingkup petunjuk teknis ini mencakup pengelolaan dan 
+keamanan infrastruktur teknologi informasi , standar website, identitas 
+visual, dan struktur konten , serta evaluasi website melalui aplikasi 
+SINOVA. 
+
+===== HALAMAN 5 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+BAB II 
+TATA KELOLA DAN KEAMANAN INFRASTRUKTUR 
+TEKNOLOGI INFORMASI 
+Untuk menjamin ketersediaan layanan ( availability), keutuhan data ( integrity), 
+dan kerahasiaan ( confidentiality) dengan tetap memberikan ruang fleksibilitas 
+inovasi di daerah, setiap satuan kerja wajib menerapkan standar infrastruktur 
+sebagai berikut: 
+A. Pemilihan dan Standar Keamanan Web Server
+1. Fleksibilitas Penggunaan
+Satuan kerja diberikan kebebasan penuh untuk memilih dan
+menentukan jenis perangkat lunak Web Server (seperti Nginx, Apache
+HTTP Server, LiteSpeed, atau perangkat sejenisnya) yang dinilai paling
+sesuai dengan karakteristik beban server dan kapasitas infrastruktur
+lokal (baik On-Premise, lingkungan virtualisasi Proxmox, maupun
+Cloud).
+2. Kewajiban Non-EOL
+Syarat mutlak pemanfaatan perangkat lunak tersebut adalah versi
+sistem operasi dan Web Server  yang dijalankan wajib berupa versi
+stabil yang masih menerima dukungan pembaruan keamanan resmi
+dari vendor pengembang (tidak berstatus End of Life / EOL).
+3. Hardening Server
+Pengelola server wajib mengkonfigurasi keamanan tingkat dasar,
+meliputi penonaktifan penjelajahan direktori ( directory
+indexing/listing) untuk mencegah paparan struktur arsip, serta
+menyembunyikan informasi versi perangkat lunak yang digunakan
+(server signature/tokens) guna meminimalkan celah eksploitasi.
+B. Pemilihan dan Keamanan Aplikasi Pembangun (CMS dan Framework)
+1. Fleksibilitas Sistem
+Pengembangan dan pengelolaan tata muka website dapat dilakukan
+secara mandiri menggunakan kerangka kerja ( Framework seperti
+CodeIgniter, Laravel, dll.) maupun menggunakan Sistem Manajemen
+Konten (Content Management System / CMS) publik seperti WordPress,
+Joomla, atau Drupal.
+
+===== HALAMAN 6 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+2. Kewajiban Pembaruan
+Seluruh core software  pembangun website wajib dipastikan berada
+pada versi mutakhir dan mendapatkan patch keamanan berkala.
+Migrasi wajib dilakukan segera apabila versi yang digunakan saat ini
+masuk dalam kategori EOL atau tidak lagi didukung oleh
+komunitas/vendor resmi.
+3. Validasi Input dan Proteksi Login
+Aplikasi berbasis Framework maupun CMS wajib menerapkan sanitasi
+pada setiap form masukan (input validation) untuk mencegah eksekusi
+skrip berbahaya seperti SQL Injection atau XSS. Halaman administratif
+(backend login) wajib dilindungi dengan metode pembatasan percobaan
+gagal ( rate limiting/brute -force protection ) dan penggunaan sistem
+Captcha dan/atau mengaktifkan fitur MFA ( Multi Factor
+Authentication).
+C. Kebijakan Komponen Pihak Ketiga (Plugin & Ekstensi)
+1. Syarat Legalitas dan Keamanan
+Penggunaan plugin, modul tambahan, ekstensi, atau pustaka skrip
+(library) pihak ketiga ( third-party) diperbolehkan untuk menunjang
+fungsionalitas inovasi layanan. Namun, satuan kerja wajib
+memastikan bahwa seluruh komponen tersebut diunduh hanya dari
+saluran/repositori resmi pengembang dan memiliki lisensi yang sah.
+2. Larangan Piranti Bajakan
+Dilarang keras menggunakan perangkat lunak hasil modifikasi ilegal
+(nulled plugins/themes ) atau bajakan, karena berisiko tinggi
+mengandung sisipan kode perusak (malware/backdoor).
+3. Audit Berkala
+Tim IT satuan kerja wajib melakukan pemantauan dan pembaruan
+plugin secara berkala untuk menutup kerentanan keamanan yang
+ditemukan.
+D. Sistem Keamanan Jaringan dan Akses Lanjutan
+1. Manajemen Port
+Hanya port esensial yang diizinkan terbuka untuk lalu lintas publik,
+yakni Port 80 (HTTP) dan 443 (HTTPS). Port lainnya wajib ditutup
+secara otomatis (default deny) dari lalu lintas luar.
+
+===== HALAMAN 7 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+2. Akses Kontrol Jarak Jauh Terproteksi
+Jalur akses jarak jauh administrator (SSH/RDP) dilarang
+menggunakan port standar. Sangat direkomendasikan agar akses
+administrasi server dikunci ( lockdown) hanya melalui jaringan Virtual
+Private Network (VPN) atau daftar putih alamat IP (IP Whitelisting).
+3. Web Application Firewall (WAF)
+Satuan kerja wajib mengimplementasikan lapisan pelindung WAF
+untuk menepis anomali serangan siber berbasis web.
+E. Manajemen Keamanan Basis Data (Database)
+1. Isolasi Jaringan Database
+Layanan basis data (MySQL, MariaDB, PostgreSQL, d an lain -lain)
+dilarang diekspos secara langsung ke jaringan publik ( internet) dan
+hanya boleh melayani interaksi dari jaringan internal ( bind-address
+127.0.0.1 / localhost).
+2. Pemisahan Kredensial
+Dilarang menggunakan pengguna utama bawaan ( default root user )
+untuk koneksi basis data website. Setiap aplikasi/ website harus
+memiliki kredensial pengguna basis data tersendiri dengan kata sandi
+kompleks dan hak akses (privileges) yang dibatasi secara spesifik.
+F. Enkripsi dan Proteksi Transmisi Data (SSL/TLS)
+1. Kewajiban HTTPS
+Seluruh lalu lintas data komunikasi website wajib dienkripsi penuh
+menggunakan sertifikat SSL/TLS yang valid. Protokol HTTP tak
+terenkripsi (Port 80) wajib diarahkan (force redirect) secara otomatis ke
+HTTPS (Port 443).
+2. Protokol Mutakhir
+Pengelola server wajib menonaktifkan dukungan terhadap protokol
+enkripsi yang telah usang dan rentan (seperti SSLv3, TLS 1.0, dan TLS
+1.1), serta menjamin kompatibilitas minimal pada protokol TLS 1.2
+atau yang lebih baru.
+G. Pencadangan (Backup) dan Pemantauan (Monitoring)
+1. Pencadangan Offsite Berkala
+Sistem wajib dikonfigurasi untuk melakukan pencadangan otomatis
+(sumber kode dan basis data) minimal mingguan. Berkas pencadangan
+
+===== HALAMAN 8 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+wajib disimpan pada media fisik atau komputasi awan yang terpisah 
+(offsite) dari server utama. 
+2. Log dan Uptime
+Pencatatan interaksi ( access log ) dan galat ( error log ) sistem wajib
+diaktifkan untuk keperluan forensik. Satuan kerja disarankan
+menggunakan layanan peringatan pihak ketiga ( uptime monitoring )
+untuk mengetahui status ketersediaan server secara real-time.
+BAB III 
+STANDAR WEBSITE, IDENTITAS VISUAL, DAN STRUKTUR KONTEN 
+Untuk memastikan pelayanan informasi yang prima, pengadilan wajib 
+memedomani standar tata kelola dan pedoman struktur konten website sebagai 
+berikut: 
+A. Prinsip Pengelolaan Website
+1. Aksesibilitas
+Website harus dapat diakses dengan mudah pada berbagai jenis
+sambungan internet. Website juga harus memenuhi standar
+aksesibilitas internasional agar dapat digunakan oleh seluruh
+pengguna, termasuk penyandang disabilitas (kelompok rentan).
+2. Komunikatif / Informatif
+Informasi yang disajikan harus mudah dipahami, relevan, dan
+memberikan manfaat bagi masyarakat pencari keadilan secara ringkas
+dan tidak menimbulkan ambiguitas.
+3. User Friendly
+Navigasi, struktur menu, tampilan konten, dan fitur pencarian harus
+disusun secara logis sehingga pengguna dapat menemukan informasi
+dengan cepat.
+4. Estetis
+Website harus memiliki desain visual yang menarik, konsisten, dan
+mencerminkan wibawa lembaga Peradilan Agama.
+5. Ekonomis
+Menghindari penggunaan elemen berat seperti animasi berlebihan
+atau live streaming  langsung pada halaman utama yang dapat
+memperlambat akses bagi masyarakat di daerah dengan jaringan
+internet terbatas.
+
+===== HALAMAN 9 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+B. Pedoman Dasar dan Identitas Visual Website
+1. Identitas Warna Peradilan Agama
+Pengelolaan layout dan template antarmuka ( User Interface ) website
+wajib memedomani identitas visual kelembagaan dengan
+menggunakan kombinasi warna standar, yakni Warna Utama
+(Primary): #056e4f dan Warna Sekunder (Secondary): #ff9900.
+2. Alamat Website
+Menggunakan domain resmi pemerintah yaitu .go.id sesuai ketentuan
+penggunaan domain bagi instansi pemerintah.
+3. Keandalan Hosting
+Dilarang keras menggunakan layanan alamat website atau hosting
+gratis (seperti blogspot.com, wordpress.com, dan sejenisnya). Satuan
+kerja wajib memastikan pembayaran langganan Hosting maupun
+Internet Service Provider (ISP) tepat waktu.
+4. Penggunaan Server Internal
+Penggunaan server lokal pengadilan untuk hosting website
+diperbolehkan selama dipisahkan dari server aplikasi internal (seperti
+SIPP) dan dilindungi oleh firewall yang ketat.
+C. Prinsip Desain Halaman Depan (Front Page)
+Desain halaman depan (beranda) harus mencerminkan profesionalitas
+dan pelayanan publik dengan prinsip:
+1. Sederhana, jelas, dan mudah dinavigasi
+Tampilan tidak terlalu ramai dan informasi utama (seperti SIPP dan
+Jadwal Sidang) dapat ditemukan dalam 2 (dua) klik atau kurang.
+2. Responsif di berbagai perangkat
+Tampilan harus optimal pada desktop, tablet, dan ponsel ( Mobile
+Responsiveness).
+3. Profesional dan konsisten
+Menggunakan font, ikon, dan tipografi yang konsisten selaras dengan
+identitas lembaga. Menghindari slider yang terlalu berat (maksimal 3-
+5 slide).
+4. Aksesibilitas untuk semua
+Menggunakan kontras warna yang baik, memberikan alt text pada
+gambar, serta menyediakan fitur perbesar teks tanpa merusak layout.
+
+===== HALAMAN 10 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+5. Kecepatan akses dan efisiensi data
+Memanfaatkan kompresi gambar dan sistem aching agar halaman
+depan dimuat dengan sangat cepat.
+D. Prinsip Konten/Isi Website
+1. Setiap tautan harus mengarah ke halaman yang sesuai, dan
+dipastikan tidak terdapat dead link atau error 404.
+2. Tidak menampilkan tautan maupun konten yang tidak relevan dengan
+tugas dan fungsi pengadilan.
+3. Seluruh informasi yang ditampilkan harus terbaru up to date  dan
+dimutakhirkan secara berkala.
+4. Berita kegiatan pengadilan harus berorientasi pada pelayanan
+masyarakat dan inovasi, bukan sekadar memuat liputan seremonial
+internal secara monoton.
+5. Menyediakan ruang publikasi khusus guna mempublikasikan inovasi
+layanan satuan kerja, beserta opini dan gagasan aparatur peradilan
+tentang reformasi birokrasi, tugas, dan fungsi pengadilan.
+E. Kategori Informasi Publik
+Berdasarkan regulasi keterbukaan informasi sesuai Surat Keputusan
+Mahkamah Agung Nomor Nomor 2 -144/KMA/SK/VIII/2022 Tentang
+Standar Pelayanan Informasi Publik di Pengadilan, konten website
+dikategorikan menjadi:
+1. Informasi Berkala
+Profil pengadilan, prosedur beracara, agenda sidang, hak masyarakat
+(bantuan hukum/prodeo), pengumuman pengadaan barang,
+LAKIP/SAKIP, laporan keuangan, dan LHKPN.
+2. Informasi Serta Merta
+Rencana pemeliharaan ( downtime) server/layanan publik atau
+informasi darurat yang berpotensi mempengaruhi pelayanan
+masyarakat.
+3. Informasi Tersedia Setiap Saat
+Register perkara, statistik perkara, tahap penyelesaian perkara, dan
+laporan akses informasi publik.
+
+===== HALAMAN 11 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+4. Informasi Dikecualikan
+Informasi proses musyawarah hakim termasuk advisblaad, data
+pribadi/identitas rahasia, dokumen evaluasi kinerja, serta informasi
+yang menghambat proses penegakan hukum.
+F. Standar Konsolidasi dan Struktur Menu Utama Website
+Untuk merampingkan pencarian informasi dan standardisasi menu
+navigasi, seluruh satuan kerja wajib menerapkan konsolidasi menu
+utama sebagai berikut:
+1. Menu Beranda (Home)
+Menampilkan Banner digital/Slider informasi terkini, pintasan
+shortcut menuju SIPP, e -Court, Direktori Putusan, serta tautan
+menuju sistem survei terpadu dan saluran pengaduan.
+2. Menu Profil Pengadilan
+Menggabungkan Visi Misi, Tugas Pokok Fungsi, Wilayah Yurisdiksi
+(peta geografis), Struktur Organisasi, dan Profil Pimpinan.
+3. Menu Layanan Hukum (Kepaniteraan)
+Memuat informasi teknis perkara seperti Jadwal Persidangan, Rincian
+Panjar Biaya, Radius Biaya Panggilan, Prosedur Berperkara, Hak-hak
+Pencari Keadilan (Prodeo/Posbakum), Panggilan Ghaib, dan Mediasi.
+4. Menu Transparansi (Kesekretariatan)
+Mengonsolidasikan dokumen Dokumen SAKIP (Renstra, RKT, IKU,
+LKjIP), Laporan Keuangan (DIPA, LRA, CALK), dan Transparansi
+Pegawai (LHKPN/LHKASN).
+5. Menu Layanan Publik & Pengaduan
+Menyediakan Maklumat Pelayanan, Layanan Informasi (Formulir
+PPID), Prosedur Pengaduan (SIWAS MARI), Layanan Kelompok
+Rentan/Disabilitas, dan integrasi instrumen Survei Pelayanan Publik
+(SKM/SPAK).
+6. Menu Berita dan Publikasi
+Kanal artikel dinamis yang memuat pengumuman resmi, kegiatan
+peradilan, dan galeri infografis pelayanan.
+
+===== HALAMAN 12 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+BAB IV 
+INDIKATOR MONITORING DAN EVALUASI WEBSITE MELALUI 
+APLIKASI SINOVA 
+Proses monitoring, evaluasi, dan penilaian kepatuhan penyediaan menu website 
+satuan kerja dilakukan sepenuhnya secara digital menggunakan platform 
+SINOVA. 
+A. Matriks Indikator Penilaian Terbaru
+Indikator penilaian website didasarkan pada 3 (tiga) aspek utama tata
+kelola informasi dengan pembobotan sebagai berikut:
+No Aspek Penilaian Bobot Indikator Inti Pengujian Metode Validasi 
+1 Kualitas & 
+Kepatuhan 
+Konten Wajib 
+60% Kesesuaian 
+penyediaan Profil 
+Pengadilan, Layanan 
+Hukum, kelengkapan 
+unggahan Dokumen 
+SAKIP dan 
+Transparansi 
+Keuangan tahun 
+berjalan. 
+Validasi URL 
+dan review 
+visual eviden 
+oleh Tim Penilai. 
+2 Desain, 
+UI/UX, & 
+Aksesibilitas 
+20% Kepatuhan 
+responsivitas Mobile, 
+kemudahan hirarki 
+navigasi menu, dan 
+tersedianya alat 
+bantu disabilitas 
+screen 
+reader/kontras). 
+Tangkapan layar 
+resolusi mobile 
+dan pengujian 
+aksesibilitas. 
+3 Performa, 
+Keamanan & 
+Infrastruktur 
+20% Protokol keamanan 
+SSL/HTTPS valid, 
+page load speed, 
+tidak adanya broken 
+links, dan kepatuhan 
+pengamanan server. 
+Automasi 
+ekstraksi header 
+protokol HTTPS 
+dan evaluasi 
+konektivitas 
+server. 
+
+===== HALAMAN 13 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+B. Alur Mekanisme Penilaian Mandiri
+Penilaian dilaksanakan dengan prosedur asinkron sebagai berikut:
+1. Operator satuan kerja pengadilan tingkat pertama menginputkan URL
+tautan spesifik sesuai dengan indikator pada aplikasi SINOVA.
+2. Sistem SINOVA menginisialisasi sistem untuk memverifikasi URL dan
+mengambil gambar tangkapan layar ( screenshot) secara otomatis
+sebagai bukti visual (visual evidence).
+3. Bukti visual tersebut dikunci dalam sistem sebagai dasar penilaian
+tingkat banding.
+C. Verifikasi Tingkat Banding dan Ketentuan Nilai Baku
+1. Tim penilai Pengadilan Tinggi Agama / Mahkamah Syar'iyah Aceh
+memverifikasi indikator menggunakan metode perbandingan visual
+pada SINOVA.
+2. Pemberian nilai dilakukan secara baku, yaitu:  10 (Sempurna), 5
+(Kurang Lengkap/Perlu Perbaikan), atau 0 (Tidak Sesuai/Tautan
+Rusak). Pemberian nilai 5 (Kurang Lengkap/Perlu Perbaikan) wajib
+disertai dengan argumentasi/catatan perbaikan di dalam sistem.
+3. Untuk kategori tertentu, pemberian nilai dengan pilihan Ya (nilai
+penuh) atau Tidak (nilai kosong).
+D. Prosedur Penyelesaian Sanggah Nilai
+1. Satuan Kerja Tingkat Pertama
+Pengadilan Agama (PA) melakukan pengajuan sanggahan dilakukan
+melalui aplikasi SINOVA dengan menyertakan argumen sebelum masa
+sanggah berakhir.
+2. Satuan Kerja Tingkat Banding
+Pengadilan Tinggi Agama (PTA) meninjau kembali pengajuan tersebut
+dan berwenang untuk menerima atau menolak sanggahan.
+3. Direktorat Jenderal Badan Peradilan Agama (Ditjen Badilag)
+Apabila sanggahan ditolak oleh PTA, Satuan Kerja dapat memilih opsi
+"Eskalasi ke Pusat". Ditjen Badilag akan meninjau riwayat sanggahan
+untuk memberikan keputusan penilaian final. Ditjen Badilag
+
+===== HALAMAN 14 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+berwenang melakukan penyesuaian nilai, baik berupa penerimaan 
+sanggahan maupun pengurangan nilai akhir. 
+BAB V 
+PENUTUP 
+Petunjuk teknis ini disusun untuk menjadi pedoman operasional tata kelola 
+website satuan kerja di lingkungan Peradilan Agama secara berkelanjutan. 
+Penyesuaian teknis terhadap matriks penilaian di dalam aplikasi SINOVA dapat 
+disesuaikan kemudian oleh Direktorat Jenderal Badan Peradilan Agama 
+mengikuti regulasi terbaru serta kebutuhan pe mbaruan instrumen pelayanan 
+publik peradilan. 
+
+
+===== HALAMAN 15 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+Lampiran II 
+Keputusan Direktur Jenderal  
+Badan Peradilan Agama 
+Nomor : 2722/DJA/SK.TI1/X/2026 
+Tanggal : 12 Oktober 2026 
+KRITERIA PENILAIAN PENGELOLAAN WEBSITE PERADILAN AGAMA 
+A. Kepatuhan Updating Konten (60%)
+1. Informasi berkala (Bobot 40%)
+No Kriteria Penilaian Nilai Sempurna 
+1. Informasi Umum
+1 1.1. Rencana Aksi 
+Kinerja 
+Daftar dan tautan ke dokumen: 
+1. Rencana Aksi Kinerja 5 tahun
+terakhir untuk satuan kerja yang
+sudah 5 tahun atau lebih
+dibentuk
+2. Rencana Aksi Kinerja sampai
+dengan periode terbaru untuk
+satuan kerja yang baru dibentuk
+(dibawah 5 tahun)
+2 1.2. Laporan 
+Pelaksanaan 
+Kegiatan 
+Daftar dan tautan ke dokumen: 
+1. Laporan Tahunan/Laporan
+Pelaksanaan Kegiatan 5 tahun
+terakhir untuk satuan kerja yang
+sudah 5 tahun atau lebih
+dibentuk
+2. Laporan Tahunan/Laporan
+Pelaksanaan Kegiatan sampai
+dengan periode terbaru untuk
+satuan kerja yang baru dibentuk
+(dibawah 5 tahun).
+2. Kepaniteraan
+3 2.1. Sistem 
+Informasi 
+1. Pengadilan Agama Tingkat
+Pertama: tautan menuju aplikasi
+
+===== HALAMAN 16 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+Penelusuran 
+Perkara (SIPP) 
+Sistem Informasi Penelusuran 
+Perkara (SIPP) versi website 
+satuan kerja 
+2. Pengadilan Agama Tingkat
+Banding: tautan aplikasi Sistem
+Informasi Penelusuran Perkara
+(SIPP) Tingkat Banding di
+Mahkamah Agung RI
+(https://banding.mahkamahagu
+ng.go.id/)
+4 2.2. Agenda/Jadwal 
+Persidangan 
+1. Pengadilan Tingkat Pertama:
+jadwal persidangan per hari
+2. Pengadilan Tingkat Banding:
+jadwal persidangan per hari
+5 2.3. Statistik 
+perkara 
+Statistik jumlah perkara per bulan, 
+yang meliputi: 
+1. Jumlah sisa perkara bulan lalu
+2. Jumlah perkara masuk
+3. Jumlah perkara putus
+4. Jumlah sisa perkara saat ini
+6 2.4. Panggilan 
+Ghaib 
+1. Pengadilan Tingkat Pertama:
+daftar panggilan ghaib yang
+berisi:
+a. Nama pihak
+b. Nomor perkara
+c. Tanggal sidang
+d. Tautan ke dokumen
+pemanggilan (relaas)
+2. Pengadilan Tingkat Banding:
+penjelasan tentang Panggilan
+Ghaib pada Pengadilan Tingkat I
+7 2.5. Laporan 
+penggunaan 
+biaya perkara 
+Rincian penggunaan biaya perkara 
+per bulan 
+8 2.6. Laporan 
+pengembalian 
+sisa panjar 
+perkara 
+Pengadilan Tingkat pertama: rincian 
+pengembalian sisa panjar perkara per 
+bulan 
+
+===== HALAMAN 17 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+3. Kesekretariatan
+9 3.1. Laporan Harta 
+Kekayaan 
+Penyelenggara 
+Negara (LHKP) 
+1. Daftar nama para pejabat dan
+tahun penerbitan LHKPN terakhir
+2. Tautan ke dokumen LHKPN
+(minimal 2 tahun yang lalu)
+untuk setiap pejabat yang ada
+dalam daftar
+3. Dokumen yang ditampilkan
+adalah Ikhtisar Kekayaan
+10 3.2. Daftar Isian 
+Pelaksanaan 
+Anggaran 
+(DIPA) 
+1. Daftar Isian Pelaksanaan
+Anggaran (DIPA)
+2. Rencana Penggunaan Anggaran
+3. Realisasi DIPA
+11 3.3. Laporan 
+Realisasi 
+Anggaran (LRA) 
+Laporan Realisasi Anggaran (LRA) 
+12 3.4. Catatan Atas 
+Laporan 
+Keuangan 
+(CALK) 
+Catatan Atas Laporan Keuangan 
+(CALK) 
+13 3.5. Pengadaan 
+Barang dan 
+Jasa 
+Rencana Umum Pengadaan Barang 
+dan Jasa (PBJ) 
+14 3.6. Rencana 
+Strategis 
+(Renstra) 
+1. Daftar dan tautan salah satu
+atau beberapa dokumen berikut:
+a. Rancangan Renstra
+b. Renstra
+c. Reviu Renstra
+2. Dengan ketentuan:
+a. dokumen minimal 5 (lima)
+tahun terakhir untuk
+satuan kerja yang sudah 5
+(lima) tahun atau lebih
+dibentuk
+b. dokumen tahun saat ini
+untuk satuan kerja yang
+baru dibentuk
+
+===== HALAMAN 18 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+15 3.7. Rencana 
+Kinerja 
+Tahunan (RKT) 
+Daftar dan tautan ke dokumen: 
+1. RKT minimal 5 (lima) tahun
+terakhir untuk satuan kerja yang
+sudah 5 (lima) tahun atau lebih
+dibentuk
+2. RKT tahun saat ini untuk satuan
+kerja yang baru dibentuk
+16 3.8. Rencana Aksi 
+Kinerja 
+Daftar dan tautan ke dokumen 
+Rencana Aksi Kinerja minimal tahun 
+saat ini 
+17 3.9. Perjanjian 
+Kinerja (PK) 
+Daftar dan tautan ke dokumen: 
+1. PK minimal 5 (lima) tahun
+terakhir untuk satuan kerja yang
+sudah 5 (lima) tahun atau lebih
+dibentuk
+2. PK tahun saat ini untuk satuan
+kerja yang baru dibentuk
+18 3.10. Indikator 
+Kinerja Utama 
+(IKU) dan Reviu 
+IKU 
+1. Daftar dan tautan salah satu
+atau beberapa dokumen berikut:
+a. IKU
+b. Reviu IKU
+2. Dengan ketentuan:
+a. dokumen minimal 5 (lima)
+tahun terakhir untuk
+satuan kerja yang sudah 5
+(lima) tahun atau lebih
+dibentuk
+b. dokumen tahun saat ini
+untuk satuan kerja yang
+baru dibentuk
+19 3.11. Laporan 
+Kinerja Instansi 
+Pemerintah 
+(LKjIP) 
+Daftar dan tautan ke dokumen: 
+1. LKjIP minimal 5 (lima) tahun
+terakhir untuk satuan kerja yang
+sudah 5 (lima) tahun atau lebih
+dibentuk
+2. LKjIP minimal 1 (satu) tahun
+terakhir untuk satuan kerja yang
+sudah 1 (satu) tahun dibentuk
+
+===== HALAMAN 19 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+4. Layanan Publik
+20 4.1. Laporan Akses 
+Informasi 
+1. Jumlah permohonan Informasi
+yang diterima
+2. Waktu yang diperlukan dalam
+memenuhi setiap permohonan
+Informasi
+3. Jumlah permohonan informasi
+yang dikabulkan baik sebagian
+atau seluruhnya dan
+permohonan Informasi yang
+ditolak
+4. Alasan penolakan permohonan
+Informasi
+21 4.2. Laporan 
+Rekapitulasi 
+Pengaduan 
+1. Inisial nama pelapor
+2. Jenis pelanggaran yang
+dilaporkan
+3. Deskripsi singkat laporan
+pelanggaran
+4. Tindak lanjut/status
+pemeriksaan yang sedang
+dilakukan oleh Pengadilan atau
+Badan Pengawasan MA RI
+5. Hukuman Disiplin yang
+diberikan
+22 4.3. Hukuman 
+Disiplin Hasil 
+Pengawasan 
+1. Inisial nama yang diberikan
+hukuman disiplin
+2. Jenis pelanggaran
+3. Deskripsi singkat pelanggaran
+4. Tindak lanjut/status
+pemeriksaan yang sedang
+dilakukan oleh Pengadilan atau
+Badan Pengawasan MA RI
+5. Hukuman Disiplin yang
+diberikan
+23 4.4. Survei 
+Pelayanan 
+Masyarakat 
+Memuat Nilai & Laporan Survei 
+Kepuasan Masyarakat, Survei 
+Persepsi Anti Korupsi, Survei 
+Persepsi Kualitas Layanan 
+
+===== HALAMAN 20 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+5. Informasi Lainnya
+24 5.1. Statistik 
+Kunjungan 
+Website 
+Informasi statistik pengunjung 
+website satuan kerja dengan rentang 
+waktu tertentu 
+2. Informasi Wajib (Bobot 20%)
+No Kriteria Penilaian Nilai Sempurna 
+1. Profil Pengadilan
+1 1.1. Visi dan Misi 
+Pengadilan 
+1. Visi Pengadilan
+2. Misi Pengadilan
+2 1.2. Tugas Pokok dan 
+Fungsi 
+Pengadilan 
+1. Tugas Pokok Pengadilan
+2. Fungsi Pengadilan
+3 1.3. Wilayah 
+Yurisdiksi 
+1. Nama-nama wilayah yurisdiksi:
+a. Pengadilan Tingkat Banding:
+nama kabupaten dan/atau
+kota
+b. Pengadilan Tingkat Pertama:
+nama kecamatan
+2. Peta wilayah yurisdiksi
+4 1.4. Struktur 
+Organisasi 
+1. Struktur organisasi dalam
+bentuk diagram.
+2. Nama Pejabat
+3. Nama Jabatan
+Catatan: Staff dan Tenaga Honorer 
+tidak perlu ditampilkan 
+5 1.5. Alamat dan 
+Kontak 
+Pengadilan 
+1. Alamat lengkap:
+a. Nama jalan
+b. Nama desa/kelurahan
+c. Nama kecamatan
+d. Nama provinsi
+e. Kode pos
+
+===== HALAMAN 21 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+f. Nomor telpon/kontak
+2. Alamat surat elektronik
+3. Alamat URL situs pengadilan
+4. Foto gedung kantor pengadilan
+2. Kepaniteraan
+6 2.1. e-Court 1. Informasi/definisi tentang e -
+Court Mahkamah Agung RI 
+(landing page) 
+2. Tautan ke e -Court Mahkamah
+Agung RI.
+7 2.2. Direktori 
+Putusan 
+1. Tautan ke aplikasi Direktori
+Putusan Mahkamah Agung RI
+2. Tautan tersebut langsung
+direktori putusan untuk satuan
+kerja tersebut.
+8 2.3. Prosedur 
+berperkara 
+Prosedur berperkara: 
+1. Tingkat Pertama
+2. Tingkat Banding
+3. Kasasi
+4. Peninjauan Kembali
+5. Pengambilan Produk Pengadilan
+6. Gugatan Sederhana
+9 2.4. Biaya proses 
+berperkara 
+Rincian biaya proses berperkara 
+3. Kesekretariatan
+10 3.1. Profil Pejabat 
+dan Pegawai 
+1. Daftar nama para pejabat, 
+pegawai dan tenaga honorer
+2. Profil singkat aparatur pengadilan
+(dapat diambil dari SIMTEPA),
+dengan rincian informasi:
+a. Foto
+b. Nama lengkap dan gelar
+c. Pangkat/Golongan (untuk 
+PNS)
+d. T. M. T. jabatan terakhir/T.
+M. T. mulai bekerja di
+
+===== HALAMAN 22 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+No Kriteria Penilaian Nilai Sempurna 
+pengadilan 
+e. Riwayat pendidikan
+f. Riwayat jabatan (untuk PNS)
+4. Layanan Publik
+11 4.1. Standar dan 
+Maklumat 
+Pelayanan 
+Pengadilan 
+Standar dan Maklumat Pelayanan 
+Pengadilan 
+B. Desain, UI/UX dan Aksesibilitas (20%)
+No Kriteria Keterangan Pembobotan 
+1 Mobile 
+Responsiveness 
+Tampilan website 
+menyesuaikan dengan 
+sempurna saat dibuka 
+melalui smartphone atau 
+tablet 
+40% 
+2 Aksesibilitas 
+(Ramah 
+Disabilitas / 
+WCAG 
+Compliance) 
+Website harus memiliki fitur 
+1. pembaca layar (screen
+reader)
+2. mode kontras tinggi
+(untuk tuna netra/low
+vision)
+3. opsi perbesar teks
+(zoom-in).
+30% 
+3 Navigasi & 
+Pencarian 
+(Searchability) 
+Terdapat kolom pencarian 
+internal yang berfungsi baik 
+dan menu yang hierarkis 
+(tidak membingungkan 
+masyarakat awam) 
+30% 
+
+===== HALAMAN 23 =====
+Catatan: 
+• UU ITE No 11 Tahun 2008 Pasal 5 ayat 1 :  “Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya
+merupakan alat bukti hukum yang sah.”
+• Surat ini ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan BSrE
+C. Performa keamanan dan infrastruktur IT (20%)
+No Kriteria Keterangan Pembobotan 
+1 Keamanan 
+Website 
+(Security) 
+1. Tersedia SSL/HTTPS
+yang valid
+2. Penggunaan MFA pada
+halaman login
+3. Versi CMS dan PHP
+40% 
+2 Kecepatan 
+Akses (Page 
+Load Speed) 
+Waktu muat halaman 
+pertama kali: 
+1. <5 detik (nilai 10)
+2. 5-15 detik (nilai 5)
+3. >15 detik (nilai 0)
+30% 
+3 Validitas 
+Tautan (Broken 
+Links) 
+Penilaian terhadap tidak 
+adanya dead link atau 
+halaman error 404 pada 
+menu-menu utama 
+30% 

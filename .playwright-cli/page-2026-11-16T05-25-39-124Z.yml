@@ -1,0 +1,704 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - text: Jl. Brawijaya, Kelurahan Manokwari Timur, Distrik Manokwari, Provinsi Papua Barat. Kode POS 98311
+    - generic [ref=e6]:
+      - link " ptapapuabarat@gmail.com" [ref=e7]:
+        - /url: mailto:ptapapuabarat@gmail.com
+        - generic [ref=e8]: 
+        - text: ptapapuabarat@gmail.com
+      - link " 0811 4088 3744" [ref=e9]:
+        - /url: tel:081140883744
+        - generic [ref=e10]: 
+        - text: 0811 4088 3744
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Beranda Pengadilan Tinggi Agama Papua Barat" [ref=e14]:
+        - /url: http://127.0.0.1:8001
+        - img "Logo PTA Papua Barat" [ref=e16]
+        - generic [ref=e17]:
+          - heading "Mahkamah Agung Republik Indonesia" [level=1] [ref=e18]
+          - heading "Pengadilan Tinggi Agama Papua Barat" [level=2] [ref=e19]
+          - paragraph [ref=e20]: Berintegritas, Profesional, Akuntabel dan Melayani
+      - generic "Layanan utama" [ref=e21]:
+        - link " Zona Integritas Menuju WBK / WBBM" [ref=e22]:
+          - /url: http://127.0.0.1:8001#zona-integritas
+          - generic [ref=e23]: 
+          - generic [ref=e24]:
+            - strong [ref=e25]: Zona Integritas
+            - generic [ref=e26]: Menuju WBK / WBBM
+        - link " Layanan Publik Aspirasi & Pengaduan" [ref=e27]:
+          - /url: http://127.0.0.1:8001/layanan-publik
+          - generic [ref=e28]: 
+          - generic [ref=e29]:
+            - strong [ref=e30]: Layanan Publik
+            - generic [ref=e31]: Aspirasi & Pengaduan
+  - navigation [ref=e32]:
+    - generic [ref=e33]:
+      - text: 
+      - list [ref=e34]:
+        - listitem [ref=e35]:
+          - link " Beranda" [ref=e36]:
+            - /url: http://127.0.0.1:8001
+            - generic [ref=e37]: 
+            - text: Beranda
+        - listitem [ref=e38]:
+          - link "Tentang Pengadilan " [ref=e39]:
+            - /url: "#"
+            - text: Tentang Pengadilan
+            - generic [ref=e40]: 
+        - listitem [ref=e41]:
+          - link "Informasi Umum " [ref=e42]:
+            - /url: "#"
+            - text: Informasi Umum
+            - generic [ref=e43]: 
+          - text: "> > > >"
+        - listitem [ref=e44]:
+          - link "Informasi Hukum " [ref=e45]:
+            - /url: "#"
+            - text: Informasi Hukum
+            - generic [ref=e46]: 
+          - text: "> > > > > > >"
+        - listitem [ref=e47]:
+          - link "Transparansi " [ref=e48]:
+            - /url: "#"
+            - text: Transparansi
+            - generic [ref=e49]: 
+          - text: "> >"
+        - listitem [ref=e50]:
+          - link "Peraturan & Kebijakan " [ref=e51]:
+            - /url: "#"
+            - text: Peraturan & Kebijakan
+            - generic [ref=e52]: 
+          - text: ">"
+        - listitem [ref=e53]:
+          - link "Informasi " [ref=e54]:
+            - /url: "#"
+            - text: Informasi
+            - generic [ref=e55]: 
+        - listitem [ref=e56]:
+          - generic [ref=e57]:
+            - button " Cari" [ref=e58]:
+              - generic [ref=e59]: 
+              - generic [ref=e60]: Cari
+            - text: 
+  - generic [ref=e61]:
+    - generic [ref=e62]:
+      - img "Pelayanan Peradilan yang Profesional dan Berintegritas" [ref=e63]
+      - generic [ref=e64]:
+        - generic [ref=e65]: Informasi Publik
+        - heading "Pelayanan Peradilan yang Profesional dan Berintegritas" [level=3] [ref=e66]
+        - paragraph [ref=e67]: PTA Papua Barat berkomitmen memberikan layanan hukum yang cepat, transparan, dan mudah diakses masyarakat.
+        - link "Selengkapnya " [ref=e68]:
+          - /url: http://127.0.0.1:8001/berita
+          - text: Selengkapnya
+          - generic [ref=e69]: 
+    - generic [ref=e70]:
+      - img "Sinergi Peradilan Agama Se-Papua Barat" [ref=e71]
+      - generic [ref=e72]:
+        - generic [ref=e73]: Informasi Publik
+        - heading "Sinergi Peradilan Agama Se-Papua Barat" [level=3] [ref=e74]
+        - paragraph [ref=e75]: Memperkuat koordinasi dan kualitas pelayanan pada seluruh satuan kerja di wilayah hukum PTA Papua Barat.
+        - link "Selengkapnya " [ref=e76]:
+          - /url: http://127.0.0.1:8001/berita
+          - text: Selengkapnya
+          - generic [ref=e77]: 
+    - generic [ref=e78]:
+      - img "Informasi Publik dalam Satu Akses" [ref=e79]
+      - generic [ref=e80]:
+        - generic [ref=e81]: Informasi Publik
+        - heading "Informasi Publik dalam Satu Akses" [level=3] [ref=e82]
+        - paragraph [ref=e83]: Temukan berita, agenda pimpinan, pengumuman, dan layanan pengadilan melalui website resmi kami.
+        - link "Selengkapnya " [ref=e84]:
+          - /url: http://127.0.0.1:8001/berita
+          - text: Selengkapnya
+          - generic [ref=e85]: 
+    - generic [ref=e86]:
+      - button "Pindah ke slide 1" [ref=e87]
+      - button "Pindah ke slide 2" [ref=e88]
+      - button "Pindah ke slide 3" [ref=e89]
+    - generic [ref=e90]:
+      - button "Slide sebelumnya" [ref=e91]:
+        - generic [ref=e92]: 
+      - button "Slide berikutnya" [ref=e93]:
+        - generic [ref=e94]: 
+  - generic "Peringatan penipuan" [ref=e95]:
+    - generic [ref=e97]:
+      - generic [ref=e98]:  HATI-HATI PENIPUAN MENGATASNAMAKAN PENGADILAN TINGGI AGAMA PAPUA BARAT. SELURUH INFORMASI DAN LAYANAN RESMI HANYA DISAMPAIKAN MELALUI KANAL RESMI PTA PAPUA BARAT.
+      - generic [aria-hidden] [ref=e99]:  HATI-HATI PENIPUAN MENGATASNAMAKAN PENGADILAN TINGGI AGAMA PAPUA BARAT. SELURUH INFORMASI DAN LAYANAN RESMI HANYA DISAMPAIKAN MELALUI KANAL RESMI PTA PAPUA BARAT.
+  - generic [ref=e101]:
+    - heading " Selamat Datang di Website Resmi PTA Papua Barat" [level=3] [ref=e102]:
+      - generic [ref=e103]: 
+      - text: Selamat Datang di Website Resmi PTA Papua Barat
+    - paragraph [ref=e104]: Melayani Masyarakat dengan Integritas, Profesionalitas dan Akuntabilitas
+  - generic [ref=e106]:
+    - generic [ref=e107]:
+      - text: Layanan Pengadilan
+      - heading "Akses Cepat Layanan" [level=2] [ref=e108]
+      - paragraph [ref=e109]: Temukan layanan peradilan dan informasi yang paling sering digunakan.
+    - generic [ref=e110]:
+      - link " E-Court Pendaftaran perkara, pembayaran, dan persidangan secara elektronik." [ref=e111]:
+        - /url: https://ecourt.mahkamahagung.go.id
+        - generic [ref=e112]: 
+        - generic [ref=e114]:
+          - heading "E-Court" [level=4] [ref=e115]
+          - paragraph [ref=e116]: Pendaftaran perkara, pembayaran, dan persidangan secara elektronik.
+      - link " SIPP Informasi penelusuran perkara pada pengadilan." [ref=e117]:
+        - /url: https://sipp.mahkamahagung.go.id
+        - generic [ref=e118]: 
+        - generic [ref=e120]:
+          - heading "SIPP" [level=4] [ref=e121]
+          - paragraph [ref=e122]: Informasi penelusuran perkara pada pengadilan.
+      - link " Direktori Putusan Akses putusan Mahkamah Agung dan badan peradilan." [ref=e123]:
+        - /url: https://putusan3.mahkamahagung.go.id
+        - generic [ref=e124]: 
+        - generic [ref=e126]:
+          - heading "Direktori Putusan" [level=4] [ref=e127]
+          - paragraph [ref=e128]: Akses putusan Mahkamah Agung dan badan peradilan.
+      - link " Badilag Portal resmi Direktorat Jenderal Badan Peradilan Agama." [ref=e129]:
+        - /url: https://badilag.mahkamahagung.go.id
+        - generic [ref=e130]: 
+        - generic [ref=e132]:
+          - heading "Badilag" [level=4] [ref=e133]
+          - paragraph [ref=e134]: Portal resmi Direktorat Jenderal Badan Peradilan Agama.
+      - link " SIWAS Sistem informasi pengawasan Mahkamah Agung." [ref=e135]:
+        - /url: https://siwas.mahkamahagung.go.id
+        - generic [ref=e136]: 
+        - generic [ref=e138]:
+          - heading "SIWAS" [level=4] [ref=e139]
+          - paragraph [ref=e140]: Sistem informasi pengawasan Mahkamah Agung.
+      - link " Layanan Publik Sampaikan aspirasi, pengaduan, atau permohonan informasi." [ref=e141]:
+        - /url: http://localhost/web_pta/public/layanan-publik
+        - generic [ref=e142]: 
+        - generic [ref=e144]:
+          - heading "Layanan Publik" [level=4] [ref=e145]
+          - paragraph [ref=e146]: Sampaikan aspirasi, pengaduan, atau permohonan informasi.
+  - generic [ref=e149]:
+    - generic [ref=e150]:
+      - generic [ref=e151]:
+        - heading "Pengumuman" [level=2] [ref=e152]
+        - link "Selengkapnya " [ref=e153]:
+          - /url: http://127.0.0.1:8001/pengumuman
+          - text: Selengkapnya
+          - generic [ref=e154]: 
+      - generic [ref=e155]:
+        - button "Semua" [ref=e156]
+        - button "PTA Papua Barat" [ref=e157]
+        - button "Mahkamah Agung" [ref=e158]
+        - button "Badilag" [ref=e159]
+        - button "Lain-lain" [ref=e160]
+      - generic [ref=e161]:
+        - list [ref=e162]:
+          - listitem [ref=e163]:
+            - link "16 Nov Jadwal Pelayanan PTSP Bulan November 2026 PTA Papua Barat Informasi resmi terkait jadwal pelayanan ptsp bulan november 2026. Silakan membuka pengumuman untuk..." [ref=e164]:
+              - /url: http://127.0.0.1:8001/pengumuman/jadwal-pelayanan-ptsp-bulan-november
+              - generic [ref=e165]:
+                - generic [ref=e166]: "16"
+                - generic [ref=e167]: Nov
+              - generic [ref=e168]:
+                - heading "Jadwal Pelayanan PTSP Bulan November 2026" [level=4] [ref=e169]
+                - generic [ref=e170]: PTA Papua Barat
+                - paragraph [ref=e171]: Informasi resmi terkait jadwal pelayanan ptsp bulan november 2026. Silakan membuka pengumuman untuk...
+          - listitem [ref=e172]:
+            - link "15 Nov Pengumuman Seleksi Terbuka Mahkamah Agung RI Mahkamah Agung Informasi resmi terkait pengumuman seleksi terbuka mahkamah agung ri. Silakan membuka pengumuman unt..." [ref=e173]:
+              - /url: http://127.0.0.1:8001/pengumuman/pengumuman-seleksi-terbuka-mahkamah-agung
+              - generic [ref=e174]:
+                - generic [ref=e175]: "15"
+                - generic [ref=e176]: Nov
+              - generic [ref=e177]:
+                - heading "Pengumuman Seleksi Terbuka Mahkamah Agung RI" [level=4] [ref=e178]
+                - generic [ref=e179]: Mahkamah Agung
+                - paragraph [ref=e180]: Informasi resmi terkait pengumuman seleksi terbuka mahkamah agung ri. Silakan membuka pengumuman unt...
+          - listitem [ref=e181]:
+            - link "14 Nov Informasi Pembinaan Tenaga Teknis Peradilan Agama Badilag Informasi resmi terkait informasi pembinaan tenaga teknis peradilan agama. Silakan membuka pengumuma..." [ref=e182]:
+              - /url: http://127.0.0.1:8001/pengumuman/informasi-pembinaan-tenaga-teknis-badilag
+              - generic [ref=e183]:
+                - generic [ref=e184]: "14"
+                - generic [ref=e185]: Nov
+              - generic [ref=e186]:
+                - heading "Informasi Pembinaan Tenaga Teknis Peradilan Agama" [level=4] [ref=e187]
+                - generic [ref=e188]: Badilag
+                - paragraph [ref=e189]: Informasi resmi terkait informasi pembinaan tenaga teknis peradilan agama. Silakan membuka pengumuma...
+          - listitem [ref=e190]:
+            - link "13 Nov Pemeliharaan Layanan Website pada Akhir Pekan Lain-lain Informasi resmi terkait pemeliharaan layanan website pada akhir pekan. Silakan membuka pengumuman un..." [ref=e191]:
+              - /url: http://127.0.0.1:8001/pengumuman/pemeliharaan-layanan-website-akhir-pekan
+              - generic [ref=e192]:
+                - generic [ref=e193]: "13"
+                - generic [ref=e194]: Nov
+              - generic [ref=e195]:
+                - heading "Pemeliharaan Layanan Website pada Akhir Pekan" [level=4] [ref=e196]
+                - generic [ref=e197]: Lain-lain
+                - paragraph [ref=e198]: Informasi resmi terkait pemeliharaan layanan website pada akhir pekan. Silakan membuka pengumuman un...
+          - listitem [ref=e199]:
+            - link "12 Nov Perubahan Jadwal Kegiatan Pimpinan PTA Papua Barat PTA Papua Barat Informasi resmi terkait perubahan jadwal kegiatan pimpinan pta papua barat. Silakan membuka pengumum..." [ref=e200]:
+              - /url: http://127.0.0.1:8001/pengumuman/perubahan-jadwal-kegiatan-pimpinan
+              - generic [ref=e201]:
+                - generic [ref=e202]: "12"
+                - generic [ref=e203]: Nov
+              - generic [ref=e204]:
+                - heading "Perubahan Jadwal Kegiatan Pimpinan PTA Papua Barat" [level=4] [ref=e205]
+                - generic [ref=e206]: PTA Papua Barat
+                - paragraph [ref=e207]: Informasi resmi terkait perubahan jadwal kegiatan pimpinan pta papua barat. Silakan membuka pengumum...
+        - generic [ref=e208]:
+          - button "1" [ref=e209]
+          - button "2" [ref=e210]
+    - complementary [ref=e211]:
+      - generic [ref=e212]:
+        - heading "Tinta Peradilan" [level=2] [ref=e213]
+        - link "Selengkapnya " [ref=e214]:
+          - /url: http://127.0.0.1:8001/tinta-peradilan
+          - text: Selengkapnya
+          - generic [ref=e215]: 
+      - generic [ref=e216]:
+        - button "Semua" [ref=e217]
+        - button "PTA Papua Barat" [ref=e218]
+        - button "Mahkamah Agung" [ref=e219]
+        - button "Badilag" [ref=e220]
+        - button "Lain-lain" [ref=e221]
+      - list [ref=e222]:
+        - listitem [ref=e223]:
+          - link "16 Nov Membangun Budaya Pelayanan Prima di Lingkungan Peradilan PTA Papua Barat Tulisan pegawai mengenai membangun budaya pelayanan prima di lingkungan peradilan sebagai bagia..." [ref=e224]:
+            - /url: http://127.0.0.1:8001/artikel/membangun-budaya-pelayanan-prima
+            - generic [ref=e225]:
+              - generic [ref=e226]: "16"
+              - generic [ref=e227]: Nov
+            - generic [ref=e228]:
+              - heading "Membangun Budaya Pelayanan Prima di Lingkungan Peradilan" [level=4] [ref=e229]
+              - generic [ref=e230]: PTA Papua Barat
+              - paragraph [ref=e231]: Tulisan pegawai mengenai membangun budaya pelayanan prima di lingkungan peradilan sebagai bagia...
+        - listitem [ref=e232]:
+          - link "16 Nov Transformasi Digital dalam Administrasi Perkara Mahkamah Agung Tulisan pegawai mengenai transformasi digital dalam administrasi perkara sebagai bagian dari pe..." [ref=e233]:
+            - /url: http://127.0.0.1:8001/artikel/transformasi-digital-administrasi-perkara
+            - generic [ref=e234]:
+              - generic [ref=e235]: "16"
+              - generic [ref=e236]: Nov
+            - generic [ref=e237]:
+              - heading "Transformasi Digital dalam Administrasi Perkara" [level=4] [ref=e238]
+              - generic [ref=e239]: Mahkamah Agung
+              - paragraph [ref=e240]: Tulisan pegawai mengenai transformasi digital dalam administrasi perkara sebagai bagian dari pe...
+        - listitem [ref=e241]:
+          - link "16 Nov Mediasi sebagai Solusi Sengketa Keluarga Badilag Tulisan pegawai mengenai mediasi sebagai solusi sengketa keluarga sebagai bagian dari pengemban..." [ref=e242]:
+            - /url: http://127.0.0.1:8001/artikel/mediasi-sebagai-solusi-sengketa-keluarga
+            - generic [ref=e243]:
+              - generic [ref=e244]: "16"
+              - generic [ref=e245]: Nov
+            - generic [ref=e246]:
+              - heading "Mediasi sebagai Solusi Sengketa Keluarga" [level=4] [ref=e247]
+              - generic [ref=e248]: Badilag
+              - paragraph [ref=e249]: Tulisan pegawai mengenai mediasi sebagai solusi sengketa keluarga sebagai bagian dari pengemban...
+        - listitem [ref=e250]:
+          - link "16 Nov Pentingnya Literasi Hukum bagi Masyarakat Lain-lain Tulisan pegawai mengenai pentingnya literasi hukum bagi masyarakat sebagai bagian dari pengemba..." [ref=e251]:
+            - /url: http://127.0.0.1:8001/artikel/pentingnya-literasi-hukum-bagi-masyarakat
+            - generic [ref=e252]:
+              - generic [ref=e253]: "16"
+              - generic [ref=e254]: Nov
+            - generic [ref=e255]:
+              - heading "Pentingnya Literasi Hukum bagi Masyarakat" [level=4] [ref=e256]
+              - generic [ref=e257]: Lain-lain
+              - paragraph [ref=e258]: Tulisan pegawai mengenai pentingnya literasi hukum bagi masyarakat sebagai bagian dari pengemba...
+        - listitem [ref=e259]:
+          - link "16 Nov Integritas Aparatur dan Kepercayaan Publik PTA Papua Barat Tulisan pegawai mengenai integritas aparatur dan kepercayaan publik sebagai bagian dari pengemb..." [ref=e260]:
+            - /url: http://127.0.0.1:8001/artikel/integritas-aparatur-dan-kepercayaan-publik
+            - generic [ref=e261]:
+              - generic [ref=e262]: "16"
+              - generic [ref=e263]: Nov
+            - generic [ref=e264]:
+              - heading "Integritas Aparatur dan Kepercayaan Publik" [level=4] [ref=e265]
+              - generic [ref=e266]: PTA Papua Barat
+              - paragraph [ref=e267]: Tulisan pegawai mengenai integritas aparatur dan kepercayaan publik sebagai bagian dari pengemb...
+        - listitem
+      - generic [ref=e268]:
+        - button "1" [ref=e269]
+        - button "2" [ref=e270]
+  - generic [ref=e272]:
+    - generic [ref=e273]:
+      - heading "Berita Terkini" [level=2] [ref=e274]
+      - link "Selengkapnya " [ref=e275]:
+        - /url: http://127.0.0.1:8001/berita
+        - text: Selengkapnya
+        - generic [ref=e276]: 
+    - generic [ref=e277]:
+      - link "PTA Papua Barat Perkuat Layanan Terpadu Satu Pintu Berita  16 Nov 2026 PTA Papua Barat Perkuat Layanan Terpadu Satu Pintu Rapat Peningkatan mutu layanan menjadi fokus utama untuk memberikan akses peradilan yang mudah dan transparan." [ref=e278]:
+        - /url: http://127.0.0.1:8001/berita/pta-papua-barat-perkuat-layanan-terpadu-satu-pintu
+        - generic [ref=e279]:
+          - img "PTA Papua Barat Perkuat Layanan Terpadu Satu Pintu" [ref=e280]
+          - generic [ref=e281]: Berita
+        - generic [ref=e282]:
+          - generic [ref=e283]:
+            - generic [ref=e284]: 
+            - text: 16 Nov 2026
+          - heading "PTA Papua Barat Perkuat Layanan Terpadu Satu Pintu" [level=3] [ref=e285]
+          - generic [ref=e286]: Rapat
+          - paragraph [ref=e287]: Peningkatan mutu layanan menjadi fokus utama untuk memberikan akses peradilan yang mudah dan transparan.
+      - link "Pimpinan PTA Papua Barat Buka Rapat Koordinasi Wilayah Berita  15 Nov 2026 Pimpinan PTA Papua Barat Buka Rapat Koordinasi Wilayah Rakor Rapat koordinasi membahas evaluasi kinerja dan penguatan pelayanan publik di seluruh satuan kerja." [ref=e288]:
+        - /url: http://127.0.0.1:8001/berita/pimpinan-pta-papua-barat-buka-rapat-koordinasi
+        - generic [ref=e289]:
+          - img "Pimpinan PTA Papua Barat Buka Rapat Koordinasi Wilayah" [ref=e290]
+          - generic [ref=e291]: Berita
+        - generic [ref=e292]:
+          - generic [ref=e293]:
+            - generic [ref=e294]: 
+            - text: 15 Nov 2026
+          - heading "Pimpinan PTA Papua Barat Buka Rapat Koordinasi Wilayah" [level=3] [ref=e295]
+          - generic [ref=e296]: Rakor
+          - paragraph [ref=e297]: Rapat koordinasi membahas evaluasi kinerja dan penguatan pelayanan publik di seluruh satuan kerja.
+      - link "Sosialisasi Pelayanan Prima bagi Seluruh Aparatur Berita  14 Nov 2026 Sosialisasi Pelayanan Prima bagi Seluruh Aparatur Sosialisasi Kegiatan ini mendorong budaya kerja profesional, responsif, dan berorientasi kepada kebutuhan masyarakat." [ref=e298]:
+        - /url: http://127.0.0.1:8001/berita/sosialisasi-pelayanan-prima-bagi-aparatur
+        - generic [ref=e299]:
+          - img "Sosialisasi Pelayanan Prima bagi Seluruh Aparatur" [ref=e300]
+          - generic [ref=e301]: Berita
+        - generic [ref=e302]:
+          - generic [ref=e303]:
+            - generic [ref=e304]: 
+            - text: 14 Nov 2026
+          - heading "Sosialisasi Pelayanan Prima bagi Seluruh Aparatur" [level=3] [ref=e305]
+          - generic [ref=e306]: Sosialisasi
+          - paragraph [ref=e307]: Kegiatan ini mendorong budaya kerja profesional, responsif, dan berorientasi kepada kebutuhan masyarakat.
+      - text:   
+    - generic [ref=e308]:
+      - button "1" [ref=e309]
+      - button "2" [ref=e310]
+  - generic [ref=e312]:
+    - generic [ref=e313]:
+      - heading "Berita Peradilan Agama Papua Barat" [level=2] [ref=e314]
+      - link "Selengkapnya " [ref=e315]:
+        - /url: http://127.0.0.1:8001/berita
+        - text: Selengkapnya
+        - generic [ref=e316]: 
+    - generic [ref=e317]:
+      - link "PA Manokwari Tingkatkan Kualitas Pelayanan Publik Berita  15 Nov 2026 PA Manokwari PA Manokwari Tingkatkan Kualitas Pelayanan Publik Rapat PA Manokwari melakukan evaluasi layanan untuk memastikan kebutuhan masyarakat terpenuhi dengan baik." [ref=e318]:
+        - /url: http://127.0.0.1:8001/berita/pa-manokwari-tingkatkan-kualitas-pelayanan-publik
+        - generic [ref=e319]:
+          - img "PA Manokwari Tingkatkan Kualitas Pelayanan Publik" [ref=e320]
+          - generic [ref=e321]: Berita
+        - generic [ref=e322]:
+          - generic [ref=e323]:
+            - generic [ref=e324]: 
+            - text: 15 Nov 2026
+          - generic [ref=e325]: PA Manokwari
+          - heading "PA Manokwari Tingkatkan Kualitas Pelayanan Publik" [level=3] [ref=e326]
+          - generic [ref=e327]: Rapat
+          - paragraph [ref=e328]: PA Manokwari melakukan evaluasi layanan untuk memastikan kebutuhan masyarakat terpenuhi dengan baik.
+      - link "PA Sorong Gelar Sosialisasi E-Court bagi Masyarakat Berita  14 Nov 2026 PA Sorong PA Sorong Gelar Sosialisasi E-Court bagi Masyarakat Sosialisasi Sosialisasi memperkenalkan kemudahan pendaftaran dan administrasi perkara secara elektronik." [ref=e329]:
+        - /url: http://127.0.0.1:8001/berita/pa-sorong-gelar-sosialisasi-ecourt
+        - generic [ref=e330]:
+          - img "PA Sorong Gelar Sosialisasi E-Court bagi Masyarakat" [ref=e331]
+          - generic [ref=e332]: Berita
+        - generic [ref=e333]:
+          - generic [ref=e334]:
+            - generic [ref=e335]: 
+            - text: 14 Nov 2026
+          - generic [ref=e336]: PA Sorong
+          - heading "PA Sorong Gelar Sosialisasi E-Court bagi Masyarakat" [level=3] [ref=e337]
+          - generic [ref=e338]: Sosialisasi
+          - paragraph [ref=e339]: Sosialisasi memperkenalkan kemudahan pendaftaran dan administrasi perkara secara elektronik.
+      - link "PA Kaimana Laksanakan Briefing Pelayanan Pagi Berita  13 Nov 2026 PA Kaimana PA Kaimana Laksanakan Briefing Pelayanan Pagi Lainnya Briefing rutin dilaksanakan untuk memastikan kesiapan petugas dan kualitas pelayanan harian." [ref=e340]:
+        - /url: http://127.0.0.1:8001/berita/pa-kaimana-laksanakan-briefing-pelayanan
+        - generic [ref=e341]:
+          - img "PA Kaimana Laksanakan Briefing Pelayanan Pagi" [ref=e342]
+          - generic [ref=e343]: Berita
+        - generic [ref=e344]:
+          - generic [ref=e345]:
+            - generic [ref=e346]: 
+            - text: 13 Nov 2026
+          - generic [ref=e347]: PA Kaimana
+          - heading "PA Kaimana Laksanakan Briefing Pelayanan Pagi" [level=3] [ref=e348]
+          - generic [ref=e349]: Lainnya
+          - paragraph [ref=e350]: Briefing rutin dilaksanakan untuk memastikan kesiapan petugas dan kualitas pelayanan harian.
+      - text:   
+    - generic [ref=e351]:
+      - button "1" [ref=e352]
+      - button "2" [ref=e353]
+  - generic [ref=e355]:
+    - generic [ref=e356]:
+      - heading "Agenda Pimpinan" [level=2] [ref=e358]
+      - link "Selengkapnya " [ref=e359]:
+        - /url: http://127.0.0.1:8001/agenda
+        - text: Selengkapnya
+        - generic [ref=e360]: 
+    - generic [ref=e361]:
+      - article [ref=e362]:
+        - generic [ref=e363]:
+          - generic [ref=e364]: Agenda Pimpinan
+          - generic [ref=e365]: 17 Nov 2026
+        - heading "Rapat Evaluasi Kinerja Bulanan" [level=3] [ref=e366]
+        - paragraph [ref=e367]: Evaluasi capaian program kerja dan tindak lanjut pelayanan publik.
+        - generic [ref=e368]:
+          - generic [ref=e369]:
+            - generic [ref=e370]: 
+            - text: 09:00 - 11:00
+          - generic [ref=e371]:
+            - generic [ref=e372]: 
+            - text: Ruang Rapat Pimpinan
+      - article [ref=e373]:
+        - generic [ref=e374]:
+          - generic [ref=e375]: Agenda Pimpinan
+          - generic [ref=e376]: 19 Nov 2026
+        - heading "Pembinaan Aparatur Pengadilan Agama" [level=3] [ref=e377]
+        - paragraph [ref=e378]: Pembinaan teknis dan administrasi bagi aparatur satuan kerja.
+        - generic [ref=e379]:
+          - generic [ref=e380]:
+            - generic [ref=e381]: 
+            - text: 10:00 - 12:00
+          - generic [ref=e382]:
+            - generic [ref=e383]: 
+            - text: Aula PTA Papua Barat
+      - article [ref=e384]:
+        - generic [ref=e385]:
+          - generic [ref=e386]: Agenda Pimpinan
+          - generic [ref=e387]: 21 Nov 2026
+        - heading "Audiensi dengan Mitra Kerja" [level=3] [ref=e388]
+        - paragraph [ref=e389]: Pertemuan pimpinan dalam rangka penguatan sinergi kelembagaan.
+        - generic [ref=e390]:
+          - generic [ref=e391]:
+            - generic [ref=e392]: 
+            - text: 13:00 - 15:00
+          - generic [ref=e393]:
+            - generic [ref=e394]: 
+            - text: Ruang Ketua PTA Papua Barat
+      - article [ref=e395]:
+        - generic [ref=e396]:
+          - generic [ref=e397]: Agenda Pimpinan
+          - generic [ref=e398]: 24 Nov 2026
+        - heading "Kunjungan Kerja ke PA Manokwari" [level=3] [ref=e399]
+        - paragraph [ref=e400]: Monitoring layanan, sarana prasarana, dan pelaksanaan program prioritas.
+        - generic [ref=e401]:
+          - generic [ref=e402]:
+            - generic [ref=e403]: 
+            - text: 08:00 - 10:00
+          - generic [ref=e404]:
+            - generic [ref=e405]: 
+            - text: PA Manokwari
+  - generic [ref=e407]:
+    - generic [ref=e408]:
+      - heading "Galeri PTA Papua Barat" [level=2] [ref=e409]
+      - link "Selengkapnya " [ref=e410]:
+        - /url: http://127.0.0.1:8001/foto-video
+        - text: Selengkapnya
+        - generic [ref=e411]: 
+    - generic [ref=e412]:
+      - button "Kegiatan" [ref=e413]
+      - button "Layanan" [ref=e414]
+      - button "Sosialisasi" [ref=e415]
+      - button "Lainnya" [ref=e416]
+    - generic [ref=e417]:
+      - img "Rapat Koordinasi Wilayah" [ref=e420]
+      - img "Pelayanan Terpadu Satu Pintu" [ref=e423]
+      - img "Sosialisasi Pelayanan Publik" [ref=e426]
+      - img "Kegiatan Bersama Aparatur" [ref=e429]
+      - img "Dokumentasi Pimpinan" [ref=e432]
+      - generic [ref=e434]:
+        - img "Profil Pelayanan PTA Papua Barat" [ref=e435]
+        - generic [ref=e436]: 
+  - text:  
+  - generic [ref=e439]:
+    - heading "Eviden Zona Integritas" [level=2] [ref=e441]
+    - generic [ref=e442]:
+      - link "Area 1 Area 1" [ref=e443]:
+        - /url: https://drive.google.com/
+        - img "Area 1" [ref=e445]
+        - generic [ref=e446]: Area 1
+      - link "Area 2 Area 2" [ref=e447]:
+        - /url: https://drive.google.com/
+        - img "Area 2" [ref=e449]
+        - generic [ref=e450]: Area 2
+      - link "Area 3 Area 3" [ref=e451]:
+        - /url: https://drive.google.com/
+        - img "Area 3" [ref=e453]
+        - generic [ref=e454]: Area 3
+      - link "Area 4 Area 4" [ref=e455]:
+        - /url: https://drive.google.com/
+        - img "Area 4" [ref=e457]
+        - generic [ref=e458]: Area 4
+      - link "Area 5 Area 5" [ref=e459]:
+        - /url: https://drive.google.com/
+        - img "Area 5" [ref=e461]
+        - generic [ref=e462]: Area 5
+      - link "Area 6 Area 6" [ref=e463]:
+        - /url: https://drive.google.com/
+        - img "Area 6" [ref=e465]
+        - generic [ref=e466]: Area 6
+  - generic [ref=e468]:
+    - generic [ref=e469]:
+      - heading "Survei & Indeks Pelayanan Publik" [level=2] [ref=e470]
+      - paragraph [ref=e471]: Lihat hasil survei terkini dan berikan suara Anda untuk membantu kami terus meningkatkan kualitas layanan.
+    - generic [ref=e472]:
+      - generic [ref=e473]:
+        - generic [ref=e474]: 
+        - generic [ref=e476]: Indeks Kepuasan Masyarakat
+        - generic [ref=e477]: "0"
+        - generic [ref=e478]: Sangat Baik
+      - generic [ref=e479]:
+        - generic [ref=e480]: 
+        - generic [ref=e482]: Indeks Persepsi Anti Korupsi
+        - generic [ref=e483]: "0"
+        - generic [ref=e484]: Sangat Baik
+      - generic [ref=e485]:
+        - generic [ref=e486]: 
+        - generic [ref=e488]: Indeks Pelayanan Publik
+        - generic [ref=e489]: "0"
+        - generic [ref=e490]: Sangat Baik
+      - generic [ref=e491]:
+        - generic [ref=e492]: 
+        - generic [ref=e494]: Nilai Integritas Organisasi
+        - generic [ref=e495]: "0"
+        - generic [ref=e496]: Sangat Baik
+  - generic [ref=e498]:
+    - heading "Daftar Aplikasi" [level=2] [ref=e500]
+    - generic [ref=e502]:
+      - link " e-Court MA" [ref=e503]:
+        - /url: https://ecourt.mahkamahagung.go.id
+        - generic [ref=e504]: 
+        - generic [ref=e506]: e-Court
+        - generic [ref=e507]: MA
+      - link " SIPP MA" [ref=e508]:
+        - /url: https://sipp.mahkamahagung.go.id
+        - generic [ref=e509]: 
+        - generic [ref=e511]: SIPP
+        - generic [ref=e512]: MA
+      - link " SIWAS MA" [ref=e513]:
+        - /url: https://siwas.mahkamahagung.go.id
+        - generic [ref=e514]: 
+        - generic [ref=e516]: SIWAS
+        - generic [ref=e517]: MA
+      - link " Direktori Putusan MA" [ref=e518]:
+        - /url: https://putusan3.mahkamahagung.go.id
+        - generic [ref=e519]: 
+        - generic [ref=e521]: Direktori Putusan
+        - generic [ref=e522]: MA
+      - link " Portal Inovasi PTA PTA Papua Barat" [ref=e523]:
+        - /url: https://example.com/portal-inovasi-pta
+        - generic [ref=e524]: 
+        - generic [ref=e526]: Portal Inovasi PTA
+        - generic [ref=e527]: PTA Papua Barat
+      - link " Antrian PTSP Online PTA Papua Barat" [ref=e528]:
+        - /url: https://example.com/antrian-ptsp
+        - generic [ref=e529]: 
+        - generic [ref=e531]: Antrian PTSP Online
+        - generic [ref=e532]: PTA Papua Barat
+      - link " Monitoring Kinerja PTA PTA Papua Barat" [ref=e533]:
+        - /url: https://example.com/monitoring-kinerja
+        - generic [ref=e534]: 
+        - generic [ref=e536]: Monitoring Kinerja PTA
+        - generic [ref=e537]: PTA Papua Barat
+      - link " Arsip Digital PTA PTA Papua Barat" [ref=e538]:
+        - /url: https://example.com/arsip-digital
+        - generic [ref=e539]: 
+        - generic [ref=e541]: Arsip Digital PTA
+        - generic [ref=e542]: PTA Papua Barat
+  - contentinfo [ref=e543]:
+    - generic [ref=e544]:
+      - generic [ref=e545]:
+        - generic [ref=e546]:
+          - generic [ref=e547]:
+            - heading "Pengadilan Tinggi Agama Papua Barat" [level=4] [ref=e548]
+            - paragraph [ref=e549]: Jl. Brawijaya, Kelurahan Manokwari Timur, Distrik Manokwari, Provinsi Papua Barat. Kode POS 98311
+            - generic [ref=e550]:
+              - generic [ref=e551]:
+                - generic [ref=e552]: 
+                - generic [ref=e553]: 0811 4088 3744
+              - generic [ref=e554]:
+                - generic [ref=e555]: 
+                - generic [ref=e556]: ptapapuabarat@gmail.com
+          - generic [ref=e557]:
+            - heading "Lokasi Kantor" [level=4] [ref=e558]
+            - iframe [ref=e560]
+        - generic [ref=e561]:
+          - heading "Tautan Cepat" [level=4] [ref=e562]
+          - list [ref=e563]:
+            - listitem [ref=e564]:
+              - link "> Beranda" [ref=e565]:
+                - /url: /
+            - listitem [ref=e566]:
+              - link "> Berita" [ref=e567]:
+                - /url: /berita
+            - listitem [ref=e568]:
+              - link "> Pengumuman" [ref=e569]:
+                - /url: /pengumuman
+        - generic [ref=e570]:
+          - heading "PA Sewilayah Hukum" [level=4] [ref=e571]
+          - list [ref=e572]:
+            - listitem [ref=e573]:
+              - link "> PA Manokwari" [ref=e574]:
+                - /url: https://www.pa-manokwari.go.id
+            - listitem [ref=e575]:
+              - link "> PA Sorong" [ref=e576]:
+                - /url: https://www.pa-sorong.go.id
+            - listitem [ref=e577]:
+              - link "> PA Kaimana" [ref=e578]:
+                - /url: https://pa-kaimana.go.id
+            - listitem [ref=e579]:
+              - link "> PA Fakfak" [ref=e580]:
+                - /url: https://www.pa-fakfak.go.id
+        - generic [ref=e581]:
+          - heading "Tautan Eksternal" [level=4] [ref=e582]
+          - list [ref=e583]:
+            - listitem [ref=e584]:
+              - link "> Mahkamah Agung RI" [ref=e585]:
+                - /url: https://www.mahkamahagung.go.id
+            - listitem [ref=e586]:
+              - link "> Badilag" [ref=e587]:
+                - /url: https://badilag.mahkamahagung.go.id
+            - listitem [ref=e588]:
+              - link "> SIPP" [ref=e589]:
+                - /url: https://sipp.mahkamahagung.go.id
+        - generic [ref=e590]:
+          - generic [ref=e591]:
+            - generic [ref=e592]: 
+            - generic [ref=e594]:
+              - heading "STATISTIK WEB" [level=4] [ref=e595]
+              - paragraph [ref=e596]: Ringkasan kunjungan situs PTA Papua Barat
+          - generic [ref=e597]:
+            - generic [ref=e598]:
+              - generic [ref=e599]:
+                - generic [ref=e600]: Hari ini
+                - strong [ref=e601]: "4"
+              - generic [ref=e602]:
+                - generic [ref=e603]: Minggu ini
+                - strong [ref=e604]: "4"
+              - generic [ref=e605]:
+                - generic [ref=e606]: Bulan ini
+                - strong [ref=e607]: "4"
+              - generic [ref=e608]:
+                - generic [ref=e609]: Total
+                - strong [ref=e610]: "4"
+            - generic [ref=e611]:
+              - generic [ref=e612]:
+                - heading " Perangkat" [level=5] [ref=e613]:
+                  - generic [ref=e614]: 
+                  - text: Perangkat
+                - generic [ref=e615]:
+                  - generic [ref=e616]: Mobile
+                  - strong [ref=e617]: "0"
+                - generic [ref=e618]:
+                  - generic [ref=e619]: Desktop
+                  - strong [ref=e620]: "4"
+                - generic [ref=e621]:
+                  - generic [ref=e622]: Tablet
+                  - strong [ref=e623]: "0"
+                - generic [ref=e624]:
+                  - generic [ref=e625]: Unknown
+                  - strong [ref=e626]: "0"
+              - generic [ref=e627]:
+                - heading " Negara Teratas" [level=5] [ref=e628]:
+                  - generic [ref=e629]: 
+                  - text: Negara Teratas
+                - generic [ref=e630]:
+                  - generic [ref=e631]: 🌐 Unknown
+                  - strong [ref=e632]: "4"
+              - generic [ref=e633]:
+                - generic [ref=e634]:
+                  - generic [ref=e635]: 
+                  - text: Pengunjung Online
+                - strong [ref=e636]: "4"
+                - paragraph [ref=e637]: "Online: 4"
+                - paragraph [ref=e638]: Jumlah sesi aktif dalam beberapa menit terakhir.
+      - generic [ref=e639]: © 2026 Pengadilan Tinggi Agama Papua Barat. Hak Cipta Dilindungi.
+  - link "Buku Tamu" [ref=e640]:
+    - /url: https://bukutamu.pta-papuabarat.go.id/employees
+    - generic [ref=e641]: Ingin berkunjung ke PTA, lihat ketersediaan pegawai
+    - img "Buku Tamu" [ref=e644]
+  - generic [ref=e645]:
+    - button "" [ref=e646]
+    - text:     

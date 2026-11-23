@@ -57,6 +57,17 @@
                 </select>
             </div>
             @endif
+            @if($showWorkflowStatusFilter)
+            <div class="form-group mb-0" style="min-width:220px;flex:1;">
+                <label>Status Workflow</label>
+                <select name="workflow_status" class="form-control">
+                    <option value="">Semua status</option>
+                    @foreach(\App\Post::workflowStatusOptions() as $value => $label)
+                        <option value="{{ $value }}" {{ request('workflow_status') === $value ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
             <div class="form-group mb-0" style="align-self:flex-end;">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
             </div>
@@ -104,7 +115,17 @@
                         @endif
                     </td>
                     <td class="text-muted">{{ $post->user->name ?? '-' }}</td>
-                    <td><span class="badge {{ $post->is_published ? 'badge-success' : 'badge-secondary' }}">{{ $post->is_published ? 'Publik' : 'Draft' }}</span></td>
+                    <td>
+                        @php
+                            $statusClass = [
+                                \App\Post::STATUS_DRAFT => 'badge-secondary',
+                                \App\Post::STATUS_REVIEW => 'badge-warning',
+                                \App\Post::STATUS_PUBLISHED => 'badge-success',
+                                \App\Post::STATUS_ARCHIVED => 'badge-info',
+                            ][$post->workflow_status ?: ($post->is_published ? \App\Post::STATUS_PUBLISHED : \App\Post::STATUS_DRAFT)] ?? 'badge-secondary';
+                        @endphp
+                        <span class="badge {{ $statusClass }}">{{ $post->workflow_status_label }}</span>
+                    </td>
                     <td class="text-muted">{{ $post->created_at->format('d M Y') }}</td>
                     <td>
                         <div class="d-flex gap-2">

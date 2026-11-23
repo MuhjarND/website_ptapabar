@@ -1,9 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'Kelola Halaman')
+@section('title', $navigation ? 'Menu Navigasi' : 'Kelola Halaman')
 @section('content')
 <div class="card mb-4">
     <div class="card-body">
-        <form method="GET" action="{{ route('admin.pages.index') }}">
+        @if($navigation)
+            <p style="margin-bottom:16px">Edit grup, halaman induk, urutan, dan status aktif untuk mengatur halaman yang muncul di navigasi publik.</p>
+        @endif
+        <form method="GET" action="{{ route($listRoute) }}">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -13,7 +16,7 @@
                             id="keyword"
                             name="keyword"
                             class="form-control"
-                            value="{{ request('keyword') }}"
+                            value="{{ is_string(request('keyword')) ? request('keyword') : '' }}"
                             placeholder="Cari halaman..."
                         >
                     </div>
@@ -56,7 +59,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-filter"></i> Terapkan Filter
                 </button>
-                <a href="{{ route('admin.pages.index') }}" class="btn" style="background:#e9ecef">Reset</a>
+                <a href="{{ route($listRoute) }}" class="btn" style="background:#e9ecef">Reset</a>
             </div>
         </form>
     </div>
@@ -64,10 +67,10 @@
 
 <div class="card">
     <div class="card-header">
-        <h2>Daftar Halaman</h2>
+        <h2>{{ $navigation ? 'Susunan Halaman pada Navigasi' : 'Daftar Halaman' }}</h2>
         <a href="{{ route('admin.pages.create') }}" class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> Tambah Halaman</a>
     </div>
-    <div class="card-body" style="padding:0">
+    <div class="card-body" style="padding:0;overflow-x:auto">
         <table>
             <thead>
                 <tr>

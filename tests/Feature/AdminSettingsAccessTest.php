@@ -2,13 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\ActivityLog;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class AdminSettingsAccessTest extends TestCase
 {
-    use DatabaseMigrations;
+    use MigratesTestDatabase;
 
     public function test_author_is_redirected_from_admin_only_settings_routes()
     {
@@ -36,11 +37,19 @@ class AdminSettingsAccessTest extends TestCase
             'phone' => '08123456789',
             'email' => 'layanan@example.com',
             'fax' => '0987654321',
+            'instagram_url' => 'https://instagram.com/ptapapuabarat',
+            'facebook_url' => 'https://facebook.com/ptapapuabarat',
+            'youtube_url' => 'https://youtube.com/@ptapapuabarat',
         ]);
 
         $response->assertRedirect(route('admin.settings.index'));
         $this->assertDatabaseHas('settings', ['key' => 'site_name', 'value' => 'PTA Papua Barat Baru']);
         $this->assertDatabaseHas('settings', ['key' => 'email', 'value' => 'layanan@example.com']);
+        $this->assertDatabaseHas('settings', ['key' => 'instagram_url', 'value' => 'https://instagram.com/ptapapuabarat']);
+        $this->assertDatabaseHas('activity_logs', [
+            'user_id' => $admin->id,
+            'action' => 'setting.updated',
+        ]);
     }
 
     protected function makeUser($email, $role)

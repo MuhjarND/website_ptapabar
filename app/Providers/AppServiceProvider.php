@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\FloatingIcon;
+use App\FooterLink;
 use App\Page;
 use App\Setting;
+use App\Support\PublicNavigation;
 use App\Support\VisitorAnalytics;
 use App\VisitorCount;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -29,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrapFour();
+
         View::composer('layouts.public', function ($view) {
             $defaultSettings = [
                 'site_name' => 'Pengadilan Tinggi Agama Papua Barat',
@@ -37,10 +43,13 @@ class AppServiceProvider extends ServiceProvider
                 'phone' => '0811 4088 3744',
                 'email' => 'ptapapuabarat@gmail.com',
                 'fax' => '0811 4088 3744',
+                'instagram_url' => '',
+                'facebook_url' => '',
+                'youtube_url' => '',
             ];
 
             $settings = $defaultSettings;
-            $navigation = [];
+            $pagesByGroup = collect();
             $visitorStats = [
                 'today' => 0,
                 'week' => 0,
@@ -50,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
                 'countries' => collect(),
                 'online' => 0,
             ];
+            $floatingIcons = collect();
+            $footerLinks = collect();
             $groupLabels = [
                 'tentang-pengadilan' => 'Tentang Pengadilan',
                 'informasi-umum' => 'Informasi Umum',
@@ -73,22 +84,33 @@ class AppServiceProvider extends ServiceProvider
                     ->get()
                     ->groupBy('menu_group');
 
-                foreach ($groupLabels as $groupSlug => $groupName) {
-                    $navigation[$groupSlug] = [
-                        'label' => $groupName,
-                        'pages' => $pagesByGroup->get($groupSlug, collect()),
-                    ];
-                }
             }
 
             if (Schema::hasTable('visitor_counts') && Schema::hasTable('visitor_sessions')) {
                 $visitorStats = VisitorAnalytics::buildStatistics();
             }
 
+            if (Schema::hasTable('floating_icons')) {
+                $floatingIcons = FloatingIcon::active()
+                    ->orderBy('order')
+                    ->orderBy('title')
+                    ->get();
+            }
+
+            if (Schema::hasTable('footer_links')) {
+                $footerLinks = FooterLink::active()
+                    ->orderBy('section')
+                    ->orderBy('order')
+                    ->get()
+                    ->groupBy('section');
+            }
+
             $view->with([
                 'publicSiteSettings' => $settings,
-                'publicNavigation' => $navigation,
+                'publicNavigation' => PublicNavigation::groups($pagesByGroup),
                 'publicVisitorStats' => $visitorStats,
+                'publicFloatingIcons' => $floatingIcons,
+                'publicFooterLinks' => $footerLinks,
             ]);
         });
     }

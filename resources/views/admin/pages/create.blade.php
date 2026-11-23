@@ -6,16 +6,22 @@
     <div class="card-body">
         <form method="POST" action="{{ route('admin.pages.store') }}">
             @csrf
+            @if($managedSlug)
+                <input type="hidden" name="managed_slug" value="{{ $managedSlug }}">
+            @endif
+            @if($guidance)
+                <p style="margin-bottom:16px">{{ $guidance }}</p>
+            @endif
             <div class="form-group">
                 <label>Judul Halaman</label>
-                <input type="text" name="title" class="form-control" value="{{ old('title') }}" required>
+                <input type="text" name="title" class="form-control" value="{{ old('title', $defaultTitle) }}" required>
             </div>
             <div class="form-group">
                 <label>Grup Menu</label>
                 <select name="menu_group" class="form-control">
                     <option value="">-- Pilih Grup --</option>
                     @foreach($menuGroups as $key => $label)
-                        <option value="{{ $key }}" {{ old('menu_group') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        <option value="{{ $key }}" @selected(old('menu_group', $defaultGroup) === $key)>{{ $label }}</option>
                     @endforeach
                 </select>
             </div>
@@ -40,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label class="checkbox-label">
-                    <input type="checkbox" name="is_active" checked> Aktif
+                    <input type="checkbox" name="is_active" @checked(old('_token') ? old('is_active') : !$managedSlug && !$defaultGroup)> Aktif
                 </label>
             </div>
             <div class="d-flex gap-2">

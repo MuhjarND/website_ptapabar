@@ -1,5 +1,5 @@
 @if($integrityZones->count() > 0)
-    <section class="section section-white">
+    <section class="section section-white" id="zona-integritas">
         <div class="container">
             <div class="section-header fade-up">
                 <h2 class="section-title">Eviden Zona Integritas</h2>

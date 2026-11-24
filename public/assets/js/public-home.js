@@ -415,6 +415,7 @@
             return;
         }
 
+        showcase.querySelectorAll('[data-showcase-carousel]').forEach(initShowcaseCarousel);
         showcase.addEventListener('click', function (event) {
             var item = event.target.closest('[data-showcase-video], [data-showcase-poster]');
             if (!item || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
@@ -428,6 +429,75 @@
                 openPosterPopup(item);
             }
         });
+    }
+
+    function initShowcaseCarousel(root) {
+        var navigation = root.querySelector('[data-showcase-navigation]');
+        if (!navigation) {
+            return;
+        }
+
+        var slides = root.querySelectorAll('[data-showcase-slide]');
+        var options = navigation.querySelectorAll('[data-showcase-select]');
+        var rail = navigation.querySelector('.home-showcase-titles');
+        var position = navigation.querySelector('[data-showcase-position]');
+        var toggle = navigation.querySelector('[data-showcase-toggle]');
+        var active = 0;
+        var paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var canHover = window.matchMedia('(hover: hover)');
+        var timer;
+
+        function show(index) {
+            slides[active].hidden = true;
+            options[active].setAttribute('aria-pressed', 'false');
+            active = (index + slides.length) % slides.length;
+            slides[active].hidden = false;
+            options[active].setAttribute('aria-pressed', 'true');
+            position.textContent = (active + 1) + ' / ' + slides.length;
+
+            var option = options[active].getBoundingClientRect();
+            var visible = rail.getBoundingClientRect();
+            if (option.left < visible.left) {
+                rail.scrollLeft += option.left - visible.left - 4;
+            } else if (option.right > visible.right) {
+                rail.scrollLeft += option.right - visible.right + 4;
+            }
+        }
+
+        function schedule() {
+            window.clearInterval(timer);
+            toggle.textContent = paused ? 'Putar otomatis' : 'Jeda otomatis';
+            if (paused) {
+                return;
+            }
+
+            timer = window.setInterval(function () {
+                var bounds = root.getBoundingClientRect();
+                if (!document.hidden && bounds.bottom > 0 && bounds.top < window.innerHeight
+                    && !(canHover.matches && root.matches(':hover')) && !root.contains(document.activeElement)
+                    && document.body.style.overflow !== 'hidden' && !document.querySelector('dialog[open]')) {
+                    show(active + 1);
+                }
+            }, Number(root.dataset.showcaseDelay));
+        }
+
+        navigation.addEventListener('click', function (event) {
+            var button = event.target.closest('button');
+            if (!button) {
+                return;
+            }
+
+            if (button === toggle) {
+                paused = !paused;
+            } else if (button.hasAttribute('data-showcase-select')) {
+                show(Number(button.dataset.showcaseSelect));
+            } else if (button.hasAttribute('data-showcase-step')) {
+                show(active + Number(button.dataset.showcaseStep));
+            }
+            schedule();
+        });
+        navigation.hidden = false;
+        schedule();
     }
 
     function openVideoPopup(youtubeId) {

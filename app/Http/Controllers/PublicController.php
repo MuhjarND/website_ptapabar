@@ -57,11 +57,12 @@ class PublicController extends Controller
             ->whereIn('type', ['video', Gallery::TYPE_BANNER])
             ->lazy(20)
             ->filter(fn (Gallery $item) => $item->thumbnail !== null)
-            ->take(3)
+            ->take(12)
             ->collect();
-        $homeGreetings = collect([Gallery::TYPE_GREETING, Gallery::TYPE_CONDOLENCE])
-            ->map(fn ($type) => (clone $homeGallery)->where('type', $type)->whereNotNull('file')->first())
-            ->filter();
+        $homeGreetings = (clone $homeGallery)
+            ->whereIn('type', [Gallery::TYPE_GREETING, Gallery::TYPE_CONDOLENCE])
+            ->whereNotNull('file')->where('file', '!=', '')
+            ->take(12)->get();
         $integrityZones = IntegrityZone::active()->orderBy('order')->orderBy('title')->get();
         $leadershipNews = app(WordPressLeadershipNews::class)->latest($newsPerPage * $newsMaxPages)
             ?? Post::with('postCategory')

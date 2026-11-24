@@ -45,10 +45,10 @@
 }
 
 .home-pa-layout .header-main {
-    min-height: 116px;
+    min-height: 100px;
     justify-content: space-between;
     gap: 32px;
-    padding: 18px 0;
+    padding: 12px 0;
 }
 
 .home-pa-layout .header-identity {
@@ -59,8 +59,8 @@
 }
 
 .home-pa-layout .header-logo {
-    width: 78px;
-    height: 78px;
+    width: 68px;
+    height: 68px;
 }
 
 .home-pa-layout .header-text h1 {
@@ -681,40 +681,111 @@
     padding-top: 24px;
 }
 
-.home-media-panel .section-empty {
-    grid-column: 1 / -1;
-}
-
-.home-media-panel .card-img img.home-showcase-poster {
-    object-fit: contain;
+.home-showcase-frame {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--pa-card-border);
+    border-radius: 14px;
     background: var(--pa-green-soft);
-    transform: none;
 }
 
-.home-greeting-list {
-    display: grid;
-    gap: 8px;
-}
+.home-showcase-frame[data-showcase-video] { background: #092b21; }
+.home-greetings-panel .home-showcase-frame { aspect-ratio: 4 / 5; }
 
-.home-greeting-card {
-    display: grid;
-    grid-template-columns: 88px minmax(0, 1fr);
-    gap: 12px;
-    align-items: center;
-    padding: 9px;
-}
-
-.home-greeting-card img {
+.home-showcase-frame img {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
     object-fit: contain;
-    border-radius: 7px;
-    background: var(--pa-green-soft);
 }
 
-.home-greeting-card .section-category-pill { margin-bottom: 5px; }
-.home-greeting-card .card-title { margin-bottom: 0; overflow-wrap: anywhere; }
-.home-greeting-card .home-condolence-pill { color: #3f4753; background: #edf0f4; }
+.home-showcase-play {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    display: grid;
+    width: clamp(44px, 6vw, 74px);
+    aspect-ratio: 1;
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: var(--pa-green);
+    color: #fff;
+    font-size: clamp(16px, 2.2vw, 26px);
+    box-shadow: 0 4px 20px #0023174d;
+}
+
+.home-showcase-caption { padding-block: 12px; min-width: 0; }
+.home-showcase-caption .section-category-pill { margin-bottom: 5px; }
+.home-showcase-caption h3 { color: var(--pa-card-ink); font-size: clamp(15px, 1.6vw, 21px); line-height: 1.35; overflow-wrap: anywhere; }
+.home-showcase-caption p { margin-top: 4px; color: var(--pa-muted); font-size: .875rem; overflow-wrap: anywhere; }
+
+.home-showcase-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.home-showcase-position { margin-inline-end: auto; color: var(--pa-muted); font-size: .8125rem; }
+
+.home-showcase-controls button,
+.home-showcase-titles button {
+    border: 1px solid var(--pa-card-border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--pa-green-deep);
+    font: inherit;
+    font-size: .8125rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.home-showcase-controls button {
+    min-width: 44px;
+    min-height: 44px;
+    padding-inline: 10px;
+}
+
+.home-showcase-titles {
+    display: flex;
+    max-width: 100%;
+    gap: 12px;
+    padding: 4px 4px 8px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.home-showcase-titles button {
+    flex: 0 0 min(75%, 210px);
+    min-height: 58px;
+    padding: 8px 11px;
+    text-align: start;
+    overflow-wrap: anywhere;
+}
+
+.home-showcase-titles button span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.home-greetings-panel .home-showcase-titles button { flex-basis: min(75%, 165px); }
+.home-showcase-controls button:hover, .home-showcase-titles button:hover { background: var(--pa-green-soft); }
+.home-showcase-titles button[aria-pressed="true"] {
+    border-color: var(--pa-green);
+    background: var(--pa-green-soft);
+    box-shadow: inset 3px 0 0 var(--pa-green);
+}
+
+@media (max-width: 900px) {
+    .home-greetings-panel .home-showcase-frame { aspect-ratio: 4 / 3; max-height: 380px; }
+}
 
 .home-pa-layout .home-list-panel .section-filter-bar {
     gap: 6px;
@@ -802,7 +873,7 @@
 
     .home-pa-layout .header-main {
         min-height: 0;
-        padding-block: 12px;
+        padding-block: 9px;
     }
 
     .home-pa-layout .header-identity {

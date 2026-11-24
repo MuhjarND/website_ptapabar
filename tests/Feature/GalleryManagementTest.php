@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Gallery;
 use App\GalleryCategory;
 use App\User;
+use DOMDocument;
+use DOMXPath;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\MigratesTestDatabase;
@@ -86,9 +88,23 @@ class GalleryManagementTest extends TestCase
         $this->assertSame($banner->file, $banner->fresh()->file);
 
         Gallery::create(['type' => Gallery::TYPE_GREETING, 'title' => 'Ucapan Nonaktif', 'file' => 'private.png', 'is_active' => false]);
-        $this->get(route('home'))->assertOk()
-            ->assertSeeInOrder(['Video dan Campaign', 'Banner Baru', 'Ucapan Selamat & Duka', $items[Gallery::TYPE_GREETING], $items[Gallery::TYPE_CONDOLENCE]])
+        Gallery::create(['type' => Gallery::TYPE_GREETING, 'title' => 'Selamat Hari Jadi', 'file' => 'galleries/hari-jadi.png', 'is_active' => true, 'order' => 1]);
+        Gallery::create(['type' => 'video', 'title' => 'Video Layanan', 'video_url' => 'https://youtu.be/dQw4w9WgXcQ', 'is_active' => true, 'order' => 1]);
+
+        $home = $this->get(route('home'))->assertOk()
+            ->assertSeeInOrder(['Video dan Campaign', 'Banner Baru', 'Video Layanan', 'Ucapan Selamat & Duka', $items[Gallery::TYPE_CONDOLENCE], $items[Gallery::TYPE_GREETING], 'Selamat Hari Jadi'])
             ->assertDontSee('Ucapan Nonaktif');
+        $dom = new DOMDocument();
+        $dom->loadHTML($home->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $xpath = new DOMXPath($dom);
+        foreach (['media' => 2.0, 'greetings' => 3.0] as $carousel => $count) {
+            $root = "//*[@data-showcase-carousel='{$carousel}']";
+            $this->assertSame($count, $xpath->evaluate("count({$root}//*[@data-showcase-slide])"));
+            $this->assertSame(1.0, $xpath->evaluate("count({$root}//*[@data-showcase-slide and not(@hidden)])"));
+            $this->assertSame($count, $xpath->evaluate("count({$root}//button[@data-showcase-select and @aria-controls])"));
+            $this->assertSame(1.0, $xpath->evaluate("count({$root}//button[@data-showcase-select and @aria-pressed='true'])"));
+        }
+
         $this->get(route('gallery.index'))->assertOk()->assertDontSee('Banner Baru')->assertDontSee($items[Gallery::TYPE_GREETING]);
     }
 

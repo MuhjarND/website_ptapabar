@@ -55,36 +55,45 @@
 </header>
 
 <!-- Navigation -->
+@php
+    $pageSlug = request()->routeIs('page.show') ? request()->route('slug') : null;
+    $pageTrail = $pageSlug === null ? [] : [...($breadcrumbs ?? collect())->pluck('slug')->all(), $pageSlug];
+@endphp
 <nav class="navbar" aria-label="Navigasi utama">
     <div class="container nav-container">
         <button type="button" class="mobile-toggle" aria-expanded="false" aria-controls="site-navigation" data-mobile-nav>
             <i class="fas fa-bars" aria-hidden="true"></i><span>Menu</span>
         </button>
         <ul class="nav-list" id="site-navigation">
-            <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="{{ route('home') }}" @if(request()->routeIs('home')) aria-current="page" @endif><i class="fas fa-home"></i> Beranda</a></li>
             @foreach($publicNavigation as $group)
                 @if($group['pages']->isNotEmpty() || $group['links'])
+                @php
+                    $groupIsCurrent = ($group['active'] ?? false)
+                        || collect($group['links'])->contains(fn ($link) => $link['current'] !== null)
+                        || $group['pages']->whereIn('slug', $pageTrail)->isNotEmpty();
+                @endphp
                 <li>
-                    <details class="site-nav-group">
+                    <details @class(['site-nav-group', 'is-current' => $groupIsCurrent])>
                     <summary>{{ $group['label'] }} <i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
                     <div class="dropdown-menu">
-                        @foreach($group['links'] as $label => $url)
-                            <a href="{{ $url }}">{{ $label }}</a>
+                        @foreach($group['links'] as $label => $link)
+                            <a href="{{ $link['url'] }}" @if($link['current']) aria-current="{{ $link['current'] }}" @endif>{{ $label }}</a>
                         @endforeach
                         @foreach($group['pages'] as $menuPage)
                             @php $children = $menuPage->activeChildren; @endphp
                             @if($children->count() > 0)
-                                <details class="site-nav-subgroup">
+                                <details @class(['site-nav-subgroup', 'is-current' => in_array($menuPage->slug, $pageTrail, true)])>
                                     <summary>{{ $menuPage->title }}</summary>
                                     <div class="site-nav-children">
-                                        <a href="{{ route('page.show', $menuPage->slug) }}">Ikhtisar {{ $menuPage->title }}</a>
+                                        <a href="{{ route('page.show', $menuPage->slug) }}" @if($menuPage->slug === $pageSlug) aria-current="page" @endif>Ikhtisar {{ $menuPage->title }}</a>
                                         @foreach($children as $child)
-                                            <a href="{{ route('page.show', $child->slug) }}">{{ $child->title }}</a>
+                                            <a href="{{ route('page.show', $child->slug) }}" @if($child->slug === $pageSlug) aria-current="page" @endif>{{ $child->title }}</a>
                                         @endforeach
                                     </div>
                                 </details>
                             @else
-                                <a href="{{ route('page.show', $menuPage->slug) }}">{{ $menuPage->title }}</a>
+                                <a href="{{ route('page.show', $menuPage->slug) }}" @if($menuPage->slug === $pageSlug) aria-current="page" @endif>{{ $menuPage->title }}</a>
                             @endif
                         @endforeach
                     </div>
@@ -93,7 +102,7 @@
                 @endif
             @endforeach
             <li class="nav-search-item">
-                <details class="nav-search site-nav-group">
+                <details @class(['nav-search', 'site-nav-group', 'is-current' => request()->routeIs('search')])>
                     <summary class="nav-search-btn"><i class="fas fa-search" aria-hidden="true"></i><span>Cari</span></summary>
                     <div class="search-dropdown" id="searchDrop">
                         <form action="{{ route('search') }}" method="GET">

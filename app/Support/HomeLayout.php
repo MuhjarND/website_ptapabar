@@ -14,10 +14,10 @@ class HomeLayout
         'hero-slider' => ['Slider Utama', 'images', 12],
         'welcome-strip' => ['Sambutan Beranda', 'align-left', 12],
         'quick-links' => ['Pintasan Layanan', 'th-large', 12],
-        'announcement' => ['Pengumuman', 'bullhorn', 6],
-        'article' => ['Tinta Peradilan', 'book-open', 6],
-        'latest-news' => ['Berita Terkini', 'newspaper', 12],
-        'religious-court-news' => ['Berita Peradilan Agama Papua Barat', 'newspaper', 12],
+        'latest-news' => ['Berita Terkini', 'newspaper', 8],
+        'announcement' => ['Pengumuman', 'bullhorn', 4],
+        'religious-court-news' => ['Berita Peradilan Agama Papua Barat', 'newspaper', 8],
+        'article' => ['Tinta Peradilan', 'book-open', 4],
         'agendas' => ['Agenda Pimpinan', 'calendar-alt', 12],
         'gallery-showcase' => ['Galeri PTA Papua Barat', 'photo-video', 12],
         'integrity-zones' => ['Zona Integritas', 'shield-alt', 12],
@@ -44,9 +44,9 @@ class HomeLayout
         $blocks = [];
 
         foreach (self::BLOCKS as $type => [, , $w]) {
-            $x = $type === 'article' ? 7 : 1;
+            $x = in_array($type, ['announcement', 'article'], true) ? 9 : 1;
             $blocks[] = ['type' => $type, 'x' => $x, 'y' => $row, 'w' => $w, 'h' => 1];
-            if ($type !== 'announcement') {
+            if (!in_array($type, ['latest-news', 'religious-court-news'], true)) {
                 $row++;
             }
         }

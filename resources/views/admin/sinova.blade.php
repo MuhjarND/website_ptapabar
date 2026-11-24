@@ -76,10 +76,11 @@
                                     <p class="sinova-description">{{ $item['description'] }}</p>
                                 </td>
                                 <td>
-                                    <span class="badge {{ $item['url'] ? 'badge-success' : ($item['type'] === 'URL Sistem' ? 'badge-warning' : 'badge-secondary') }}">{{ $item['type'] }}</span>
+                                    <span class="badge {{ $item['url'] && !$item['note'] ? 'badge-success' : ($item['type'] === 'URL Sistem' ? 'badge-warning' : 'badge-secondary') }}">{{ $item['type'] }}</span>
                                     @if($item['url'])
                                         <input class="form-control sinova-url" type="text" readonly id="{{ $inputId }}" value="{{ $item['url'] }}" aria-label="URL {{ $code }} {{ $item['title'] }}">
-                                    @else
+                                    @endif
+                                    @if($item['note'])
                                         <p class="sinova-description">{{ $item['note'] }}</p>
                                     @endif
                                     <div class="sinova-actions">

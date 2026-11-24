@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
+    public const LEGACY_OFFICE_ADDRESS = 'Jl. Brawijaya, Kelurahan Manokwari Timur, Distrik Manokwari, Provinsi Papua Barat. Kode POS 98311';
+    public const OFFICE_ADDRESS = 'Jalan Brigjen Marinir (Purna) Abraham O Atururi, Kompleks Perkantoran Gubernur Provinsi Papua Barat, Katebu, Distrik Manokwari Selatan, Kabupaten Manokwari, Papua Barat 98315';
+
+    public static function officeAddress(?string $address): string
+    {
+        return !$address || $address === self::LEGACY_OFFICE_ADDRESS ? self::OFFICE_ADDRESS : $address;
+    }
+
     protected $fillable = ['key', 'value'];
 
     public static function get($key, $default = null)

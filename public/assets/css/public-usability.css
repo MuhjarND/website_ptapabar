@@ -26,6 +26,18 @@ body:not(.home-pa-layout) .header-utility-link small { display: block; }
 .site-nav-subgroup > summary::before { content: '+'; margin-right: 8px; }
 .site-nav-subgroup[open] > summary::before { content: '-'; }
 .site-nav-children { padding-left: 12px; background: var(--bg); }
+.navbar .nav-list > li > a[aria-current],
+.navbar .site-nav-group.is-current > summary {
+    background-color: rgba(255,255,255,.14);
+    box-shadow: inset 0 -3px 0 #ffc15b;
+}
+.navbar .dropdown-menu a[aria-current],
+.navbar .site-nav-subgroup.is-current > summary {
+    background-color: #e6f4ee;
+    box-shadow: inset 3px 0 0 var(--green);
+    color: #034c35;
+    font-weight: 700;
+}
 .survey-empty { color: #fff; text-align: center; }
 .survey-period, .survey-report-link { display: block; margin-top: 12px; color: #fff; }
 .survey-report-link { text-decoration: underline; }

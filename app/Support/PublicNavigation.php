@@ -5,6 +5,15 @@ namespace App\Support;
 class PublicNavigation
 {
     public const SIPP_BANDING_URL = 'https://banding.mahkamahagung.go.id/';
+    public const ECOURT_URL = 'https://ecourt.mahkamahagung.go.id/';
+
+    public static function serviceUrl(?string $url): ?string
+    {
+        return match (rtrim($url ?? '', '/')) {
+            'https://sipp.mahkamahagung.go.id', 'http://sipp.mahkamahagung.go.id' => self::SIPP_BANDING_URL,
+            default => $url,
+        };
+    }
 
     public static function verdictsUrl(): ?string
     {
@@ -36,26 +45,45 @@ class PublicNavigation
             ['label' => 'Profil Pengadilan', 'pages' => $pages->get('tentang-pengadilan', collect()), 'links' => []],
             ['label' => 'Layanan Hukum', 'pages' => $pages->get('informasi-hukum', collect())
                 ->concat($general->whereNotIn('slug', $publicServicePages))->concat($pages->get('peraturan-kebijakan', collect())),
-                'links' => ['Jadwal Sidang Banding' => route('court-hearings.index'), 'Statistik Perkara' => route('case-statistics.index')]],
+                'links' => [
+                    'Jadwal Sidang Banding' => self::link('court-hearings.index'),
+                    'Statistik Perkara' => self::link('case-statistics.index'),
+                    'Direktori Putusan' => self::link('court-verdicts.index'),
+                    'e-Court' => self::link('court-ecourt.index'),
+                ]],
             ['label' => 'Transparansi', 'pages' => $pages->get('transparansi', collect()), 'links' => []],
             ['label' => 'Layanan Publik & Pengaduan', 'pages' => $services,
-                'links' => ['Form Layanan Publik' => route('service-request.form'), 'Survei Pelayanan' => route('home') . '#survei-pelayanan']],
+                'links' => [
+                    'Form Layanan Publik' => self::link('service-request.form'),
+                    'Hasil Survei Pelayanan' => self::link('surveys.public'),
+                ]],
             ['label' => 'Berita dan Publikasi', 'pages' => $pages->get('informasi', collect()), 'links' => [
-                'Berita' => route('berita.index'), 'Pengumuman' => route('pengumuman.index'),
-                'Tinta Peradilan' => route('article.index'), 'Galeri' => route('gallery.index'), 'Agenda Pimpinan' => route('agenda.index'),
+                'Berita' => self::link('berita.index', 'post.detail'),
+                'Pengumuman' => self::link('pengumuman.index', 'pengumuman.detail'),
+                'Tinta Peradilan' => self::link('article.index', 'article.detail'),
+                'Galeri' => self::link('gallery.index'),
+                'Agenda Pimpinan' => self::link('agenda.index'),
             ]],
+        ];
+    }
+
+    private static function link(string $route, string ...$relatedRoutes): array
+    {
+        return [
+            'url' => route($route),
+            'current' => request()->routeIs($route) ? 'page' : (request()->routeIs(...$relatedRoutes) ? 'location' : null),
         ];
     }
 
     public static function quickLinks()
     {
         return [
-            ['SIPP Banding', 'Penelusuran perkara tingkat banding.', static::SIPP_BANDING_URL, 'fas fa-search'],
             ['Jadwal Sidang', 'Jadwal persidangan banding per hari.', route('court-hearings.index'), 'fas fa-calendar-alt'],
-            ['E-Court', 'Layanan administrasi perkara elektronik.', 'https://ecourt.mahkamahagung.go.id/', 'fas fa-scale-balanced'],
-            ['Direktori Putusan', 'Informasi dan tautan penelusuran putusan.', route('court-verdicts.index'), 'fas fa-folder-open'],
-            ['Survei Pelayanan', 'Lihat indeks pelayanan pengadilan.', route('home') . '#survei-pelayanan', 'fas fa-chart-bar'],
-            ['Pengaduan', 'Sampaikan pengaduan atau permohonan informasi.', route('service-request.form'), 'fas fa-headset'],
+            ['Direktori Putusan', 'Arsip putusan Mahkamah Agung.', route('court-verdicts.index'), 'fas fa-balance-scale'],
+            ['E-Court', 'Pendaftaran dan persidangan elektronik.', route('court-ecourt.index'), 'far fa-file-alt'],
+            ['E-AC', 'Layanan akta cerai dan salinan putusan.', 'https://eac.mahkamahagung.go.id/', 'fas fa-book'],
+            ['Penelusuran Perkara', 'Lacak status perkara tingkat banding.', static::SIPP_BANDING_URL, 'fas fa-search'],
+            ['SIWAS', 'Sistem Informasi Pengawasan Mahkamah Agung.', 'https://siwas.mahkamahagung.go.id/', 'fas fa-shield-alt'],
         ];
     }
 }

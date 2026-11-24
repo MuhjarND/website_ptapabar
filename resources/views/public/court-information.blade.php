@@ -1,5 +1,15 @@
 @extends('layouts.public')
-@php($title = ['hearings' => 'Jadwal Sidang Banding', 'statistics' => 'Statistik Perkara Banding', 'verdicts' => 'Direktori Putusan'][$type])
+@php($title = [
+    'hearings' => 'Jadwal Sidang Banding',
+    'statistics' => 'Statistik Perkara Banding',
+    'verdicts' => 'Direktori Putusan',
+    'ecourt' => 'e-Court Mahkamah Agung',
+    'contact' => 'Alamat dan Kontak Pengadilan',
+    'duties' => 'Tugas Pokok dan Fungsi Pengadilan',
+    'jurisdiction' => 'Wilayah Yurisdiksi',
+    'service-standards' => 'Standar dan Maklumat Pelayanan',
+    'summons' => 'Panggilan Ghaib',
+][$type])
 @section('title', $title)
 @section('content')
 <div class="section court-section">
@@ -21,7 +31,62 @@
                 </form>
             @endif
 
-            @if($type === 'verdicts')
+            @if($type === 'ecourt')
+                <p>e-Court adalah layanan Mahkamah Agung Republik Indonesia untuk administrasi perkara dan persidangan secara elektronik.</p>
+                <ul>
+                    <li><strong>e-Filing:</strong> pendaftaran perkara dan pengiriman berkas secara elektronik.</li>
+                    <li><strong>e-Payment:</strong> taksiran dan pembayaran panjar biaya perkara.</li>
+                    <li><strong>e-Summons:</strong> panggilan dan pemberitahuan melalui sarana elektronik.</li>
+                    <li><strong>e-Litigation:</strong> persidangan dan pertukaran dokumen secara elektronik.</li>
+                </ul>
+                <p><a href="{{ \App\Support\PublicNavigation::ECOURT_URL }}">Buka aplikasi resmi e-Court Mahkamah Agung</a>.</p>
+            @elseif($type === 'contact')
+                <figure>
+                    <img width="640" src="{{ \App\Support\WordPressContent::imageUrl('2026/11/WhatsApp-Image-2026-11-01-at-11.55.19-AM.jpeg') }}" alt="Gedung Pengadilan Tinggi Agama Papua Barat" loading="lazy">
+                    <figcaption>Gedung Pengadilan Tinggi Agama Papua Barat</figcaption>
+                </figure>
+                <p><strong>Alamat:</strong> {{ \App\Setting::officeAddress($contact['address']) }}</p>
+                <p><strong>Telepon:</strong> <a href="tel:{{ preg_replace('/[^0-9+]/', '', $contact['phone']) }}">{{ $contact['phone'] }}</a></p>
+                <p><strong>Email:</strong> <a href="mailto:{{ $contact['email'] }}">{{ $contact['email'] }}</a></p>
+                <p><strong>Website resmi:</strong> <a href="https://pta-papuabarat.go.id/">pta-papuabarat.go.id</a></p>
+            @elseif($type === 'duties')
+                <h2>Tugas pokok</h2>
+                <p>Pengadilan Tinggi Agama Papua Barat memeriksa dan memutus perkara peradilan agama pada tingkat banding serta sengketa kewenangan mengadili antar-Pengadilan Agama di wilayah hukumnya pada tingkat pertama dan terakhir.</p>
+                <h2>Fungsi</h2>
+                <ul>
+                    <li>Memberikan pelayanan teknis dan administrasi perkara tingkat banding.</li>
+                    <li>Melakukan pembinaan dan pengawasan terhadap Pengadilan Agama di wilayah hukumnya.</li>
+                    <li>Memberikan pertimbangan hukum Islam kepada instansi pemerintah di wilayah hukumnya apabila diminta.</li>
+                    <li>Menyelenggarakan administrasi umum dan layanan pendukung peradilan.</li>
+                </ul>
+                <p>Dasar hukum: Pasal 51, 52, dan 53 Undang-Undang Nomor 7 Tahun 1989 tentang Peradilan Agama beserta perubahannya.</p>
+            @elseif($type === 'jurisdiction')
+                <p>Wilayah kerja PTA Papua Barat mencakup 12 kabupaten dan 1 kota yang dilayani oleh empat Pengadilan Agama di Papua Barat dan Papua Barat Daya.</p>
+                <dl>
+                    <dt><strong>Pengadilan Agama Manokwari</strong></dt>
+                    <dd>Kabupaten Manokwari, Kabupaten Manokwari Selatan, Kabupaten Pegunungan Arfak, Kabupaten Teluk Bintuni, Kabupaten Teluk Wondama, dan Kabupaten Tambrauw.</dd>
+                    <dt><strong>Pengadilan Agama Sorong</strong></dt>
+                    <dd>Kota Sorong, Kabupaten Sorong, Kabupaten Sorong Selatan, Kabupaten Raja Ampat, dan Kabupaten Maybrat.</dd>
+                    <dt><strong>Pengadilan Agama Fakfak</strong></dt>
+                    <dd>Kabupaten Fakfak.</dd>
+                    <dt><strong>Pengadilan Agama Kaimana</strong></dt>
+                    <dd>Kabupaten Kaimana.</dd>
+                </dl>
+                <p><a href="https://jdih.mahkamahagung.go.id/storage/uploads/produk_hukum/2025/2025sk-kma28/KMA/SK.OT1.1/II/2025.pdf">Dasar penetapan wilayah hukum (PDF)</a>.</p>
+                <p><a href="{{ \App\Support\WordPressContent::fileUrl('2024/05/LKJIP_3300_526718_PENGADILAN-TINGGI-AGAMA-PAPUA-BARAT_2024__VUtDL1lPOXMvVFhN-1.pdf') }}">Buka peta wilayah yurisdiksi pada halaman 3 LKjIP 2023 (PDF)</a>.</p>
+            @elseif($type === 'service-standards')
+                <h2>Standar Pelayanan</h2>
+                <p><a href="{{ \App\Support\WordPressContent::fileUrl('2025/11/6.1.a.-Kebijakan-Standar-Pelayanan.pdf') }}">Baca Kebijakan Standar Pelayanan PTA Papua Barat (PDF)</a>.</p>
+                <h2>Maklumat Pelayanan</h2>
+                <figure>
+                    <a href="{{ \App\Support\WordPressContent::imageUrl('2025/11/SELAMAT-DATANG-DAN-MAKLUMAT-PELAYANAN.png') }}">
+                        <img width="640" src="{{ \App\Support\WordPressContent::imageUrl('2025/11/SELAMAT-DATANG-DAN-MAKLUMAT-PELAYANAN.png') }}" alt="Buka gambar Maklumat Pelayanan PTA Papua Barat dalam ukuran penuh" loading="lazy">
+                    </a>
+                </figure>
+            @elseif($type === 'summons')
+                <p>Panggilan ghaib merupakan pemanggilan pihak yang alamatnya tidak diketahui dalam perkara di pengadilan tingkat pertama. Pengadilan Tinggi Agama Papua Barat tidak menerbitkan panggilan ghaib untuk perkara tingkat banding.</p>
+                <p>Untuk pengumuman dan informasi perkara, hubungi Pengadilan Agama tingkat pertama yang menangani perkara tersebut.</p>
+            @elseif($type === 'verdicts')
                 @if($verdictsUrl)
                     <p><a href="{{ $verdictsUrl }}">Buka koleksi putusan PTA Papua Barat</a>.</p>
                 @else

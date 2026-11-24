@@ -7,7 +7,7 @@
             <div class="applications-layout">
                 <div class="app-logo-list fade-up">
                     @foreach($applications as $application)
-                        <a href="{{ $application->url ?: '#' }}" class="app-logo-item" @if($application->url) target="_blank" rel="noopener noreferrer" @endif>
+                        <a href="{{ \App\Support\PublicNavigation::serviceUrl($application->url) ?: '#' }}" class="app-logo-item" @if($application->url) target="_blank" rel="noopener noreferrer" @endif>
                             <div class="app-logo-badge">
                                 @if($application->icon)
                                     <img src="{{ asset('storage/' . $application->icon) }}" alt="{{ $application->title }}">

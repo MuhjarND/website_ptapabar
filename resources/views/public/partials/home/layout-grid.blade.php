@@ -5,9 +5,14 @@
             data-home-block="{{ $type }}"
             style="--block-column: {{ $block['x'] }}; --block-row: {{ $block['y'] }}; --block-width: {{ $block['w'] }}; --block-height: {{ $block['h'] }}">
             @if(in_array($type, ['announcement', 'article'], true))
-                @include('public.partials.home.announcements', ['publicationPart' => $type])
+                @include('public.partials.home.announcements', [
+                    'publicationPart' => $type,
+                    'publicationPanel' => $block['w'] <= 4,
+                ])
             @elseif(isset(\App\Support\HomeLayout::BLOCKS[$type]))
-                @include('public.partials.home.' . $type)
+                @include('public.partials.home.' . $type, [
+                    'publicationPanel' => in_array($type, ['latest-news', 'religious-court-news'], true) && $block['w'] <= 8,
+                ])
             @elseif($type === 'banner')
                 <figure class="home-layout-banner">
                     @if(!empty($block['link']))

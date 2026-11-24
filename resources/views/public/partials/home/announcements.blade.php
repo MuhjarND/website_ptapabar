@@ -1,8 +1,8 @@
-@php($publicationPart = $publicationPart ?? null)
-<section class="section section-white">
+@php($compactPublication = !empty($publicationPanel))
+<section class="section section-white {{ $compactPublication ? 'home-publication-panel home-list-panel' : '' }}">
     <div class="container">
-        <div class="announcement-section-layout {{ !$publicationPart && $articles->count() ? 'has-article-sidebar' : '' }}">
-            @if($publicationPart !== 'article')
+        <div class="announcement-section-layout">
+            @if($publicationPart === 'announcement')
             <div class="announcement-column">
                 <div class="section-header fade-up announcement-column-header">
                     <h2 class="section-title">Pengumuman</h2>
@@ -22,16 +22,22 @@
                             data-announcement-category="{{ $item->announcement_category ?: \App\Post::ANNOUNCEMENT_CATEGORY_LAIN_LAIN }}"
                         >
                             <a href="{{ route('pengumuman.detail', $item->slug) }}" class="pengumuman-item">
-                                <div class="date-box">
-                                    <span class="day">{{ $item->created_at->format('d') }}</span>
-                                    <span class="month">{{ $item->created_at->format('M') }}</span>
-                                </div>
+                                @unless($compactPublication)
+                                    <div class="date-box">
+                                        <span class="day">{{ $item->created_at->format('d') }}</span>
+                                        <span class="month">{{ $item->created_at->format('M') }}</span>
+                                    </div>
+                                @endunless
                                 <div class="item-content">
                                     <h4>{{ $item->title }}</h4>
-                                    @if($item->announcement_category_label)
-                                        <div class="section-category-pill announcement-category-pill">{{ $item->announcement_category_label }}</div>
+                                    @if($compactPublication)
+                                        <time datetime="{{ $item->created_at->toDateString() }}">{{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</time>
+                                    @else
+                                        @if($item->announcement_category_label)
+                                            <div class="section-category-pill announcement-category-pill">{{ $item->announcement_category_label }}</div>
+                                        @endif
+                                        <p>{{ \Illuminate\Support\Str::limit($item->excerpt_plain, 100) }}</p>
                                     @endif
-                                    <p>{{ \Illuminate\Support\Str::limit($item->excerpt_plain, 100) }}</p>
                                 </div>
                             </a>
                         </li>
@@ -60,8 +66,7 @@
                     @endif
                 </div>
             </div>
-            @endif
-            @if($publicationPart === 'article' || (!$publicationPart && $articles->count()))
+            @else
                 <aside class="announcement-column announcement-article-sidebar">
                     <div class="section-header fade-up announcement-column-header announcement-article-section-header">
                         <h2 class="section-title">Tinta Peradilan</h2>
@@ -82,16 +87,22 @@
                                     data-article-category="{{ $article->article_category ?: \App\Article::CATEGORY_LAIN_LAIN }}"
                                     {{ $article->target_is_external ? 'target="_blank" rel="noopener"' : '' }}
                                 >
-                                <div class="date-box">
-                                    <span class="day">{{ $article->created_at->format('d') }}</span>
-                                    <span class="month">{{ $article->created_at->format('M') }}</span>
-                                </div>
+                                @unless($compactPublication)
+                                    <div class="date-box">
+                                        <span class="day">{{ $article->created_at->format('d') }}</span>
+                                        <span class="month">{{ $article->created_at->format('M') }}</span>
+                                    </div>
+                                @endunless
                                 <div class="item-content announcement-article-content">
                                     <h4>{{ $article->title }}</h4>
-                                    @if($article->article_category_label)
-                                        <div class="section-category-pill announcement-category-pill">{{ $article->article_category_label }}</div>
+                                    @if($compactPublication)
+                                        <time datetime="{{ $article->created_at->toDateString() }}">{{ $article->created_at->locale('id')->translatedFormat('d F Y') }}</time>
+                                    @else
+                                        @if($article->article_category_label)
+                                            <div class="section-category-pill announcement-category-pill">{{ $article->article_category_label }}</div>
+                                        @endif
+                                        <p>{{ \Illuminate\Support\Str::limit($article->excerpt_plain, 95) }}</p>
                                     @endif
-                                    <p>{{ \Illuminate\Support\Str::limit($article->excerpt_plain, 95) }}</p>
                                 </div>
                                 </a>
                             </li>

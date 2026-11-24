@@ -77,7 +77,7 @@ class CourtReadinessTest extends TestCase
     public function test_deployment_redirects_are_opt_in_and_use_only_explicit_targets()
     {
         $this->get('/direktori-putusan')->assertOk()->assertHeader('X-Content-Type-Options', 'nosniff')
-            ->assertSee('Direktori Putusan Mahkamah Agung');
+            ->assertSee('Buka koleksi putusan PTA Papua Barat');
         $this->get('/renstra')->assertNotFound();
         config(['site-deployment.wordpress_redirects' => true]);
         $this->get('/renstra')->assertNotFound();

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes(['register' => false]);
+Route::get('admin-verifikasi', 'Auth\AdminMfaController@show')->middleware('auth')->name('admin-mfa.show');
+Route::post('admin-verifikasi', 'Auth\AdminMfaController@verify')
+    ->middleware(['auth', 'throttle:5,1'])->name('admin-mfa.verify');
 
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
@@ -94,6 +97,8 @@ Route::get('/agenda', 'PublicController@agendas')->name('agenda.index');
 Route::get('/jadwal-sidang-banding', 'CourtInformationController@hearings')->name('court-hearings.index');
 Route::get('/statistik-perkara', 'CourtInformationController@statistics')->name('case-statistics.index');
 Route::get('/direktori-putusan', 'CourtInformationController@verdicts')->name('court-verdicts.index');
+Route::get('/e-court', 'CourtInformationController@ecourt')->name('court-ecourt.index');
+Route::get('/hasil-survei-pelayanan', 'PublicController@surveyReports')->name('surveys.public');
 Route::get('/berita', 'PublicController@berita')->name('berita.index');
 Route::get('/pengumuman', 'PublicController@pengumuman')->name('pengumuman.index');
 Route::get('/tinta-peradilan', 'PublicController@articles')->name('article.index');

@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
             $defaultSettings = [
                 'site_name' => 'Pengadilan Tinggi Agama Papua Barat',
                 'site_description' => 'Website Resmi Pengadilan Tinggi Agama Papua Barat - Mahkamah Agung Republik Indonesia',
-                'address' => 'Jl. Brawijaya, Kelurahan Manokwari Timur, Distrik Manokwari, Provinsi Papua Barat. Kode POS 98311',
+                'address' => Setting::OFFICE_ADDRESS,
                 'phone' => '0811 4088 3744',
                 'email' => 'ptapapuabarat@gmail.com',
                 'fax' => '0811 4088 3744',
@@ -73,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
             if (Schema::hasTable('settings')) {
                 $settings = Setting::getMany($defaultSettings);
             }
+            $settings['address'] = Setting::officeAddress($settings['address']);
 
             if (Schema::hasTable('pages')) {
                 $pagesByGroup = Page::with(['activeChildren'])

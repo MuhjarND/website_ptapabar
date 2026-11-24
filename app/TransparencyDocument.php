@@ -46,4 +46,19 @@ class TransparencyDocument extends Model
             'Cache-Control' => 'private, no-store',
         ]);
     }
+
+    public function preview()
+    {
+        $disk = Storage::disk('local');
+        abort_unless($this->pdf_path && $disk->exists($this->pdf_path), 404);
+
+        $response = response()->file($disk->path($this->pdf_path), [
+            'Content-Type' => 'application/pdf',
+            'X-Content-Type-Options' => 'nosniff',
+            'Cache-Control' => 'private, no-store',
+        ]);
+
+        $response->setPrivate();
+        return $response->setContentDisposition('inline', (Str::slug($this->title) ?: 'dokumen') . '.pdf');
+    }
 }

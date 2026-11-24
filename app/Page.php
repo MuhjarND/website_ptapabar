@@ -9,6 +9,22 @@ class Page extends Model
 {
     protected $fillable = ['parent_id', 'title', 'slug', 'content', 'menu_group', 'order', 'is_active'];
 
+    public const PUBLIC_FALLBACKS = [
+        'alamat-dan-kontak' => 'contact',
+        'fungsi-tugas-dan-yuridiksi-pengadilan' => 'duties',
+        'panggilan-ghaib' => 'summons',
+        'standar-dan-maklumat-pelayanan' => 'service-standards',
+        'wilayah-yurisdiksi' => 'jurisdiction',
+    ];
+
+    public function hasPublicContent(): bool
+    {
+        $text = strtolower(Post::sanitizeExcerpt($this->content));
+
+        return !str_contains($text, 'konten halaman ini sedang dalam proses pembaruan')
+            && ($text !== '' || preg_match('/<(?:img|iframe)\b[^>]*\bsrc\s*=/i', (string) $this->content));
+    }
+
     public static function menuGroupOptions()
     {
         return [

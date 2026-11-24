@@ -116,6 +116,13 @@ class PublicController extends Controller
         ]);
     }
 
+    public function surveyReports()
+    {
+        $surveys = SurveyIndex::where('is_active', true)->orderBy('order')->latest()->get();
+
+        return view('public.survey-reports', compact('surveys'));
+    }
+
     public function page($slug)
     {
         $dedicatedPages = ['jadwal-sidang' => 'court-hearings.index', 'statistik-perkara' => 'case-statistics.index'];
@@ -123,7 +130,24 @@ class PublicController extends Controller
             return redirect()->route($dedicatedPages[$slug], request()->query());
         }
 
-        $page = Page::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        $page = Page::where('slug', $slug)->first();
+        abort_if($page && !$page->is_active, 404);
+        $emptyServicePage = ['ecourt' => 'court-ecourt.index', 'direktori-putusan' => 'court-verdicts.index'][$slug] ?? null;
+        if ($emptyServicePage && !$page?->hasPublicContent()) {
+            return redirect()->route($emptyServicePage);
+        }
+
+        $fallback = Page::PUBLIC_FALLBACKS[$slug] ?? null;
+        if ($fallback && !$page?->hasPublicContent()) {
+            $contact = $fallback === 'contact' ? Setting::getMany([
+                'address' => Setting::OFFICE_ADDRESS,
+                'phone' => '0811 4088 3744',
+                'email' => 'ptapapuabarat@gmail.com',
+            ]) : [];
+
+            return view('public.court-information', ['type' => $fallback, 'contact' => $contact]);
+        }
+        abort_unless($page, 404);
         $breadcrumbs = $page->ancestors();
         $siblings = $page->parent
             ? $page->parent->activeChildren
@@ -142,7 +166,7 @@ class PublicController extends Controller
     {
         abort_unless(Schema::hasTable('transparency_documents'), 404);
 
-        return TransparencyDocument::visibleToPublic()->findOrFail($document)->download();
+        return TransparencyDocument::visibleToPublic()->findOrFail($document)->preview();
     }
 
     public function berita()

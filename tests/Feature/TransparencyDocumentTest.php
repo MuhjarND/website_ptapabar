@@ -64,7 +64,11 @@ class TransparencyDocumentTest extends TestCase
         Auth::logout();
         $this->get($pageUrl)->assertOk()->assertSee('Dokumen Uji Renstra')->assertSee('2025-2029');
         $this->get(route('page.show', $dipa->slug))->assertOk()->assertDontSee('Dokumen Uji Renstra');
-        $this->get($download)->assertOk()->assertHeader('Content-Type', 'application/pdf');
+        Storage::disk('local')->put($document->pdf_path, '%PDF-1.4 test');
+        $this->get($download)->assertOk()->assertHeader('Content-Type', 'application/pdf')
+            ->assertHeader('Content-Disposition', 'inline; filename=dokumen-uji-renstra.pdf');
+        $this->get($download, ['Range' => 'bytes=0-4'])->assertStatus(206)
+            ->assertHeader('Content-Range', 'bytes 0-4/13');
         $this->get(route('admin.transparency-documents.download', $document))->assertRedirect(route('login'));
 
         $this->actingAs($admin)->from($index)->post(route('admin.transparency-documents.unpublish', $document))

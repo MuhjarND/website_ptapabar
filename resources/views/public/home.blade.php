@@ -25,9 +25,16 @@
         @include('public.partials.home.hero-slider')
         @include('public.partials.home.welcome-strip')
         @include('public.partials.home.quick-links')
-        @include('public.partials.home.announcements')
-        @include('public.partials.home.latest-news')
-        @include('public.partials.home.religious-court-news')
+        <div class="home-publications">
+            <div class="container home-publications-board" data-home-publications>
+                @include('public.partials.home.latest-news', ['publicationPanel' => true])
+                @include('public.partials.home.announcements', ['publicationPart' => 'announcement', 'publicationPanel' => true])
+            </div>
+            <div class="container home-publications-board" data-home-publications>
+                @include('public.partials.home.religious-court-news', ['publicationPanel' => true])
+                @include('public.partials.home.announcements', ['publicationPart' => 'article', 'publicationPanel' => true])
+            </div>
+        </div>
         @include('public.partials.home.agendas')
         @include('public.partials.home.gallery-showcase')
         @include('public.partials.home.integrity-zones')

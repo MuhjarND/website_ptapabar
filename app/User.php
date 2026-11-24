@@ -19,12 +19,21 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'admin_mfa_secret', 'admin_mfa_step',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'admin_mfa_secret' => 'encrypted',
+        'admin_mfa_step' => 'integer',
     ];
+
+    public function adminMfaVersion(): ?string
+    {
+        $encrypted = $this->getRawOriginal('admin_mfa_secret');
+
+        return $encrypted ? hash('sha256', $encrypted) : null;
+    }
 
     public static function roleOptions()
     {

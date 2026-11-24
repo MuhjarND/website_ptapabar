@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'admin_mfa_required' => env('ADMIN_MFA_REQUIRED', false),
 
     /*
     |--------------------------------------------------------------------------

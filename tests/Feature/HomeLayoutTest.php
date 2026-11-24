@@ -12,6 +12,17 @@ class HomeLayoutTest extends TestCase
 {
     use MigratesTestDatabase;
 
+    public function test_default_editor_places_both_publication_pairs_in_separate_rows(): void
+    {
+        $blocks = collect(HomeLayout::defaults())->keyBy('type');
+        foreach (['latest-news' => 'announcement', 'religious-court-news' => 'article'] as $news => $sidebar) {
+            $this->assertSame($blocks[$news]['y'], $blocks[$sidebar]['y']);
+            $this->assertSame([1, 8], [$blocks[$news]['x'], $blocks[$news]['w']]);
+            $this->assertSame([9, 4], [$blocks[$sidebar]['x'], $blocks[$sidebar]['w']]);
+        }
+        $this->assertSame($blocks['latest-news']['y'] + 1, $blocks['religious-court-news']['y']);
+    }
+
     public function test_admin_can_publish_and_reset_home_layout_without_changing_existing_content(): void
     {
         $this->get('/')->assertOk()->assertSee('Pengumuman')->assertDontSee('class="home-layout-grid"', false);

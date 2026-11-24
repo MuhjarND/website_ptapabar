@@ -11,7 +11,7 @@ return [
         ],
         '1.a.2 Kepaniteraan' => [
             '1.a.2.a' => ['Sistem Informasi Penelusuran Perkara (SIPP)', 'Tautan menuju aplikasi SIPP web satuan kerja.', 'sipp'],
-            '1.a.2.b' => ['Agenda/Jadwal Persidangan', 'Jadwal persidangan harian untuk tingkat pertama; aplikasi atau alat bantu untuk tingkat banding.', 'hearings'],
+            '1.a.2.b' => ['Agenda/Jadwal Persidangan', 'Jadwal persidangan per hari, termasuk untuk pengadilan tingkat banding.', 'hearings'],
             '1.a.2.c' => ['Statistik Perkara', 'Statistik perkara per bulan: sisa bulan lalu, masuk, putus, dan sisa saat ini.', 'statistics'],
             '1.a.2.d' => ['Panggilan Ghaib', 'Informasi panggilan ghaib. Untuk PTA, isi penjelasan dan rujukan tingkat pertama, bukan data pihak atau relaas.', 'page:panggilan-ghaib'],
             '1.a.2.e' => ['Laporan Penggunaan Biaya Perkara', 'Rincian penggunaan biaya perkara per bulan.', 'page:laporan-penggunaan-biaya-perkara'],
@@ -39,6 +39,9 @@ return [
         '1.a.4.3 Pengawasan' => [
             '1.a.4.3.a' => ['Hukuman Disiplin Hasil Pengawasan', 'Ringkasan publik mengenai inisial, jenis pelanggaran, tindak lanjut, dan hukuman disiplin.', 'page:hukuman-disiplin'],
         ],
+        'A.1 / 4.4 Survei Pelayanan Masyarakat' => [
+            'A.1.4.4' => ['Survei Pelayanan Masyarakat', 'Nilai dan laporan untuk Survei Kepuasan Masyarakat, Survei Persepsi Anti Korupsi, dan Survei Persepsi Kualitas Layanan. Kode ini merujuk ke Lampiran II SK.', 'surveys'],
+        ],
         '1.a.4.4 Informasi Lainnya' => [
             '1.a.4.4.a' => ['Statistik Kunjungan Website', 'Statistik kunjungan pada bagian Statistik Web di situs publik.', 'visitors'],
         ],
@@ -46,7 +49,7 @@ return [
             '1.b.1' => ['Visi dan Misi Pengadilan', 'Halaman yang memuat visi dan misi pengadilan.', 'page:visi-dan-misi'],
         ],
         '1.b.2 Kepaniteraan' => [
-            '1.b.2.a' => ['e-Court', 'Informasi e-Court dan tautan ke e-Court Mahkamah Agung.', 'page:ecourt'],
+            '1.b.2.a' => ['e-Court', 'Informasi e-Court dan tautan ke e-Court Mahkamah Agung.', 'ecourt'],
             '1.b.2.b' => ['Direktori Putusan', 'Tautan koleksi Direktori Putusan MA RI untuk satuan kerja ini.', 'verdicts'],
             '1.b.2.c' => ['Prosedur Berperkara', 'Prosedur tingkat pertama, banding, kasasi, PK, pengambilan produk, dan gugatan sederhana.', 'page:prosedur-pengajuan-dan-biaya-perkara'],
             '1.b.2.d' => ['Biaya Proses Berperkara', 'Rincian biaya proses berperkara.', 'page:biaya-proses-berperkara'],

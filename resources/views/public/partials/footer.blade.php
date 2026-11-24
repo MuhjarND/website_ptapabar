@@ -6,6 +6,7 @@
                 <div class="footer-profile-copy">
                     <h4>{{ $publicSiteSettings['site_name'] }}</h4>
                     <p>{{ $publicSiteSettings['address'] }}</p>
+                    <p><a href="{{ route('page.show', 'alamat-dan-kontak') }}">Alamat dan kontak lengkap</a></p>
                     <div class="footer-contact-list">
                         <div class="footer-contact-item">
                             <i class="fas fa-phone"></i>
@@ -52,7 +53,7 @@
                 <h4>Tautan Eksternal</h4>
                 <ul>
                     @forelse(($publicFooterLinks[\App\FooterLink::SECTION_EXTERNAL] ?? collect()) as $link)
-                        <li><a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a></li>
+                        <li><a href="{{ \App\Support\PublicNavigation::serviceUrl($link->url) }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a></li>
                     @empty
                         <li><span class="text-muted">Belum ada tautan.</span></li>
                     @endforelse

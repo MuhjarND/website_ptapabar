@@ -14,6 +14,25 @@
 
 **Rekap awal:** 26 perlu diisi atau diverifikasi isinya, 5 perlu disesuaikan, 2 perlu dirancang, 1 perlu diuji secara operasional, dan 1 ditandai N/A. Jumlah ini bukan skor.
 
+## Pemeriksaan 24 November 2026
+
+Pembaruan: lihat [hasil penyesuaian per butir dan verifikasi 30 PDF](hasil-penyesuaian-lampiran-sk.md) serta [langkah pemasangan di subdomain](rilis-sinova-subdomain.md).
+
+Pembobotan Lampiran II: **konten 60%, desain dan aksesibilitas 20%, keamanan dan performa 20%**. Tabel di bawah tetap menjadi catatan pemeriksaan awal. Temuan terbaru membedakan kode lokal dari isi subdomain tes sebelum rilis.
+
+| Area | Sudah diperbaiki di kode lokal | Yang masih perlu dilengkapi atau diuji |
+|---|---|---|
+| Perkara | Pintasan SIPP Banding, tautan koleksi Direktori Putusan PTA, halaman e-Court, serta penjelasan Panggilan Ghaib tingkat pertama. Eviden SINOVA mengarah ke jadwal banding per tanggal dan statistik per tahun saat ada data publik. | Halaman jadwal dan statistik di subdomain tes tidak menampilkan data pada tanggal dan tahun yang diperiksa. Terbitkan jadwal harian, rekap bulanan, laporan penggunaan biaya perkara, serta prosedur dan tarif resmi. Verifikasi akses koleksi putusan dengan browser tanpa login. |
+| Profil dan pelayanan | Alamat Katebu dan foto gedung, tugas pokok dan fungsi, serta 12 kabupaten dan 1 kota per PA dengan sumber dan peta. Halaman Standar dan Maklumat memakai arsip resmi jika belum diisi admin. | Terbitkan diagram organisasi dan profil lengkap yang terbaru. Konfirmasi standar dan maklumat versi yang masih berlaku. |
+| Survei dan akses informasi | Halaman `/hasil-survei-pelayanan` menampilkan nilai, periode, dan tautan laporan yang tayang. SINOVA menandai jenis laporan yang belum lengkap. | Terbitkan nilai dan laporan untuk SKM, SPAK, dan SPKL. Isi laporan akses informasi, rekap pengaduan, dan hukuman disiplin dari rekap resmi yang boleh dipublikasikan, bukan tiket atau laporan mentah. |
+| SAKIP, keuangan, dan LHKPN | Gunakan Halaman dan Dokumen Transparansi yang sudah ada; tidak diperlukan menu unduhan baru. | Sejumlah halaman di subdomain tes masih kosong, antara lain Rencana Aksi Kinerja, Laporan Tahunan, Renstra, DIPA, RKT, LKjIP dan LHKPN. Periksa dokumen yang telah dihimpun di [inventaris arsip](inventaris-dokumen-sinova.md), tahun cakupan, tiga komponen DIPA, dan ikhtisar LHKPN per pejabat sebelum tayang. |
+| Desain dan aksesibilitas | Navigasi, pencarian, kontras tinggi, ukuran teks, serta fitur baca halaman sudah tersedia. | Uji keyboard dan pembaca layar sungguhan, tampilan ponsel, pencarian, dan hierarki menu. Fitur baca halaman bukan bukti otomatis dukungan pembaca layar. |
+| Keamanan dan performa | Subdomain tes dapat diakses via HTTPS. | Autentikasi multifaktor admin belum diterapkan. Verifikasi HTTPS dan versi PHP/CMS pada domain produksi, ukur waktu muat pertama sesuai Lampiran II, dan cek semua tautan eviden tanpa login setelah rilis. Belum ada skor resmi. |
+
+Sumber konten lokal: [alamat dan foto kantor](https://pta-papuabarat.go.id/tentang-pengadilan/profil-pengadilan/alamat-dan-kontak/), [tugas dan fungsi](https://pta-papuabarat.go.id/tentang-pengadilan/profil-pengadilan/fungsi-tugas-dan-yuridiksi-pengadilan/), [SK Ketua MA, Lampiran II halaman 65](https://jdih.mahkamahagung.go.id/storage/uploads/produk_hukum/2025/2025sk-kma28/KMA/SK.OT1.1/II/2025.pdf), [standar dan maklumat](https://pta-papuabarat.go.id/informasi-umum/standar-dan-maklumat-pelayanan/), serta [koleksi putusan dari situs lama](https://pta-papuabarat.go.id/informasi-umum/layanan-informasi-perkara/direktori-putusan/).
+
+Rilis kode ini tidak membutuhkan migrasi atau seeder baru. Jika `COURT_VERDICTS_URL` masih diisi dengan tautan lama, kosongkan agar aplikasi memakai tautan resmi bawaan. Pastikan `WORDPRESS_MEDIA_URL` masih mengarah ke direktori arsip yang dapat diakses publik dan berisi foto gedung serta berkas eviden.
+
 ## A1. Informasi berkala
 
 | No. / kode SK | Indikator | URL atau lokasi kandidat | Status | Bukti yang perlu disiapkan / tindakan | PIC usulan |

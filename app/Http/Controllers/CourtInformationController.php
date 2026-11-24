@@ -39,4 +39,9 @@ class CourtInformationController extends Controller
     {
         return view('public.court-information', ['type' => 'verdicts', 'verdictsUrl' => PublicNavigation::verdictsUrl()]);
     }
+
+    public function ecourt()
+    {
+        return view('public.court-information', ['type' => 'ecourt']);
+    }
 }

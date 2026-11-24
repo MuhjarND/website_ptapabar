@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section {{ !empty($publicationPanel) ? 'home-publication-panel home-news-panel' : '' }}">
     <div class="container">
         <div class="section-header fade-up">
             <h2 class="section-title">{{ $sectionTitle }}</h2>
@@ -36,6 +36,9 @@
                             <div class="section-category-pill news-category-pill">{{ $post->postCategory->name }}</div>
                         @endif
                         <p class="card-excerpt">{{ $post->excerpt_plain }}</p>
+                        @if(!empty($publicationPanel))
+                            <span class="home-news-more" aria-hidden="true">Selengkapnya <i class="fas fa-arrow-right"></i></span>
+                        @endif
                     </div>
                 </a>
             @empty

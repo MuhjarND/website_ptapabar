@@ -47,6 +47,12 @@ class PublicHomePageTest extends TestCase
             'order' => 1,
             'is_active' => true,
         ]);
+        QuickLink::create([
+            'title' => 'Layanan PTSP',
+            'url' => 'https://example.test/ptsp',
+            'order' => 2,
+            'is_active' => true,
+        ]);
 
         Post::create([
             'title' => 'Berita Homepage',
@@ -217,6 +223,24 @@ class PublicHomePageTest extends TestCase
         $response->assertSee('Layanan');
         $response->assertSee('data-announcement-filter', false);
         $response->assertSee('data-announcement-category="pta-papua-barat"', false);
+        $response->assertSeeInOrder([
+            'data-quick-links-primary',
+            '<h3>Jadwal Sidang</h3>',
+            '<h3>Direktori Putusan</h3>',
+            '<h3>E-Court</h3>',
+            '<h3>E-AC</h3>',
+            '<h3>Penelusuran Perkara</h3>',
+            '<h3>SIWAS</h3>',
+            '<summary>Layanan lainnya</summary>',
+            '<h3>Layanan PTSP</h3>',
+            'data-home-publications',
+            '>Berita Terkini</h2>',
+            '>Pengumuman</h2>',
+            'data-home-publications',
+            '>Berita Peradilan Agama Papua Barat</h2>',
+            '>Tinta Peradilan</h2>',
+        ], false);
+        $response->assertDontSee('https://example.com/e-court', false);
         $response->assertSee('data-gallery-filter', false);
         $response->assertSee('data-gallery-category="' . $kegiatanGalleryCategory->id . '"', false);
     }

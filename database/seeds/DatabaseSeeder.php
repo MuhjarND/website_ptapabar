@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         // Settings
         Setting::set('site_name', 'Pengadilan Tinggi Agama Papua Barat');
         Setting::set('site_description', 'Website Resmi Pengadilan Tinggi Agama Papua Barat - Mahkamah Agung Republik Indonesia');
-        Setting::set('address', 'Jl. Brawijaya, Kelurahan Manokwari Timur, Distrik Manokwari, Provinsi Papua Barat. Kode POS 98311');
+        Setting::set('address', Setting::OFFICE_ADDRESS);
         Setting::set('phone', '0811 4088 3744');
         Setting::set('email', 'ptapapuabarat@gmail.com');
         Setting::set('fax', '0811 4088 3744');

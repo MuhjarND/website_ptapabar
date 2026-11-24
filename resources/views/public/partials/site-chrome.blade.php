@@ -33,7 +33,7 @@
     <div class="container">
         <div class="header-main">
             <a href="{{ route('home') }}" class="header-identity" aria-label="Beranda {{ $publicSiteSettings['site_name'] }}">
-                <div class="header-logo"><img src="{{ asset('logo_pta.png') }}" alt="Logo PTA Papua Barat"></div>
+                <div class="header-logo"><img src="{{ asset('logo-pta-160.webp') }}" width="160" height="199" alt="Logo PTA Papua Barat"></div>
                 <div class="header-text">
                     <h1>Mahkamah Agung Republik Indonesia</h1>
                     <h2>{{ $publicSiteSettings['site_name'] }}</h2>

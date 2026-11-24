@@ -1,8 +1,25 @@
 <div class="hero-slider" id="heroSlider">
     @forelse($sliders as $index => $slider)
-        @php($imageUrl = \App\Support\HomeImage::url($slider->image, 1600, $slider->image_url))
+        @php
+            $imageUrl = \App\Support\HomeImage::url($slider->image, 1600, $slider->image_url);
+            $mobileImageUrl = $slider->image
+                ? \App\Support\HomeImage::url($slider->image, 640)
+                : \App\Support\HomeImage::wordpressPreview($imageUrl, 640);
+        @endphp
         <div class="slide {{ $index === 0 ? 'active' : '' }}">
-            <img @if($index === 0) src="{{ $imageUrl }}" fetchpriority="high" @else data-slide-src="{{ $imageUrl }}" @endif alt="{{ $slider->title }}">
+            <picture>
+                @if($mobileImageUrl && $mobileImageUrl !== $imageUrl)
+                    <source media="(max-width: 768px)" @if($index === 0) srcset="{{ $mobileImageUrl }}" @else data-srcset="{{ $mobileImageUrl }}" @endif>
+                @endif
+                <img
+                    @if($index === 0)
+                        src="{{ $imageUrl }}" fetchpriority="high"
+                    @else
+                        data-slide-src="{{ $imageUrl }}"
+                    @endif
+                    @if(!$slider->image && $mobileImageUrl) onerror="this.onerror = null; this.previousElementSibling.remove();" @endif
+                    alt="{{ $slider->title }}">
+            </picture>
             @if($slider->title && !$slider->wordpress_id)
                 <div class="slide-overlay pos-{{ $slider->text_position ?? 'bottom-left' }}">
                     <span class="hero-kicker">Informasi Publik</span>

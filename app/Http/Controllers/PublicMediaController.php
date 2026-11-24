@@ -50,7 +50,7 @@ class PublicMediaController extends Controller
             if ($preview = HomeImage::preview($file, $mime, $size)) {
                 return response()->file($preview, [
                     'Content-Type' => 'image/webp',
-                    'Cache-Control' => 'public, max-age=86400',
+                    'Cache-Control' => 'public, max-age=604800',
                     'X-Content-Type-Options' => 'nosniff',
                 ]);
             }

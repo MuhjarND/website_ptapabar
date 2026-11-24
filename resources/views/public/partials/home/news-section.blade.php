@@ -20,8 +20,15 @@
                     @if($loop->index >= $newsPerPage) hidden @endif
                 >
                     <div class="card-img">
-                        @if($post->image_url)
-                            <img src="{{ \App\Support\HomeImage::url($post->image, 640, $post->image_url) }}" alt="{{ $post->title }}" loading="lazy" decoding="async">
+                        @if($imageUrl = \App\Support\HomeImage::url($post->image, 640, $post->image_url))
+                            @php($mobileImageUrl = \App\Support\HomeImage::wordpressPreview($imageUrl, 480))
+                            <picture>
+                                @if($mobileImageUrl)
+                                    <source media="(max-width: 768px)" srcset="{{ $mobileImageUrl }}">
+                                @endif
+                                <img src="{{ $imageUrl }}" alt="{{ $post->title }}" loading="lazy" decoding="async"
+                                    @if($mobileImageUrl) onerror="this.onerror = null; this.previousElementSibling.remove();" @endif>
+                            </picture>
                         @else
                             <div class="post-card-placeholder">
                                 <i class="fas fa-newspaper"></i>

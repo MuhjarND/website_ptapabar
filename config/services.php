@@ -31,7 +31,7 @@ return [
     ],
 
     'papeda' => [
-        'public_calendar_url' => env('PAPEDA_PUBLIC_CALENDAR_URL'),
+        'public_calendar_url' => env('PAPEDA_PUBLIC_CALENDAR_URL', 'https://papeda.pta-papuabarat.go.id/api/kalender-publik'),
     ],
 
 ];

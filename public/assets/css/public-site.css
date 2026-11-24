@@ -1,3 +1,39 @@
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(../fonts/plus-jakarta-sans-v12-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(../fonts/plus-jakarta-sans-v12-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(../fonts/plus-jakarta-sans-v12-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(../fonts/plus-jakarta-sans-v12-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 :root{--green:#0d5c2f;--green-light:#1a7a42;--green-dark:#083d1f;--green-darker:#062d17;--gold:#c8a951;--gold-light:#e6c964;--gold-dark:#a88b3a;--bg:#f5f7f5;--white:#fff;--text:#2d3748;--text-light:#718096;--border:#e2e8f0;--shadow:0 1px 3px rgba(0,0,0,.08);--shadow-lg:0 10px 40px rgba(0,0,0,.1)}
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--bg)}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto}.container{max-width:1200px;margin:0 auto;padding:0 20px}
 .topbar{background:var(--green-darker);color:rgba(255,255,255,.8);font-size:12px;padding:8px 0}.topbar .container{display:flex;justify-content:space-between;align-items:center}.topbar a{color:rgba(255,255,255,.8);transition:color .2s}.topbar a:hover{color:var(--gold-light)}.topbar .topbar-links{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.topbar .topbar-links i{margin-right:4px}.topbar-social-links{display:flex;align-items:center;gap:8px;margin-left:8px;padding-left:8px;border-left:1px solid rgba(255,255,255,.14)}.topbar-social-links a{width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);vertical-align:middle;padding:0}.topbar-social-links a i{margin:0;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;width:12px;height:12px;transform:translateY(.25px)}

@@ -25,7 +25,8 @@ class PublicMediaTest extends TestCase
         $bytes = filesize($original);
 
         $url = '/media-preview/1600/sliders/banner.png';
-        $response = $this->get($url)->assertOk()->assertHeader('Content-Type', 'image/webp');
+        $response = $this->get($url)->assertOk()->assertHeader('Content-Type', 'image/webp')
+            ->assertHeader('Cache-Control', 'max-age=604800, public');
         $preview = $response->baseResponse->getFile()->getRealPath();
         try {
             $this->assertSame([1600, 800], array_slice(getimagesize($preview), 0, 2));

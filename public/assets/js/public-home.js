@@ -3,7 +3,6 @@
     var requestedSlide = 0;
     var slides = [];
     var dots = [];
-    var sliderTimer = null;
 
     function refreshSliderElements() {
         slides = Array.prototype.slice.call(document.querySelectorAll('.hero-slider .slide'));
@@ -22,6 +21,11 @@
         requestedSlide = index;
         var image = slides[index].querySelector('img');
         if (image && image.dataset.slideSrc) {
+            var source = image.previousElementSibling;
+            if (source) {
+                source.srcset = source.dataset.srcset;
+                delete source.dataset.srcset;
+            }
             image.src = image.dataset.slideSrc;
             delete image.dataset.slideSrc;
         }
@@ -140,12 +144,6 @@
             counters.forEach(function (el) {
                 observer.observe(el);
             });
-
-            window.setTimeout(function () {
-                counters.forEach(function (el) {
-                    startCounter(el);
-                });
-            }, 1400);
 
             return;
         }
@@ -475,6 +473,14 @@
                 return;
             }
 
+            var option = options[next].getBoundingClientRect();
+            var visible = rail.getBoundingClientRect();
+            if (option.left < visible.left) {
+                rail.scrollBy(option.left - visible.left - 4, 0);
+            } else if (option.right > visible.right) {
+                rail.scrollBy(option.right - visible.right + 4, 0);
+            }
+
             var previous = slides[active];
             var incoming = slides[next];
             var direction = index < active ? -1 : 1;
@@ -506,14 +512,6 @@
                     }
                 };
                 animations = [outgoingAnimation, incomingAnimation];
-            }
-
-            var option = options[active].getBoundingClientRect();
-            var visible = rail.getBoundingClientRect();
-            if (option.left < visible.left) {
-                rail.scrollLeft += option.left - visible.left - 4;
-            } else if (option.right > visible.right) {
-                rail.scrollLeft += option.right - visible.right + 4;
             }
         }
 
@@ -610,7 +608,25 @@
         refreshSliderElements();
 
         if (slides.length > 1) {
-            sliderTimer = window.setInterval(nextSlide, 5000);
+            var sliderTimer;
+            function startSlider() {
+                sliderTimer = window.setInterval(function () {
+                    if (!document.hidden && !homePopup?.open) {
+                        nextSlide();
+                    }
+                }, 5000);
+            }
+            if ('IntersectionObserver' in window) {
+                var slider = document.getElementById('heroSlider');
+                new IntersectionObserver(function (entries) {
+                    window.clearInterval(sliderTimer);
+                    if (entries[0].isIntersecting) {
+                        startSlider();
+                    }
+                }).observe(slider);
+            } else {
+                startSlider();
+            }
         }
 
         initSurveyCounters();

@@ -7,13 +7,23 @@
 <link href="{{ asset('assets/css/public-pa-layout.css') }}?v={{ filemtime(public_path('assets/css/public-pa-layout.css')) }}" rel="stylesheet">
 @endpush
 
+@if(!empty($homePopup['image']))
+    @php($mobilePopup = \App\Support\HomeImage::url($homePopup['image'], 640))
+    @push('preloads')
+        <link rel="preload" as="image" href="{{ $mobilePopup }}" media="(max-width: 768px)" fetchpriority="high">
+    @endpush
+@endif
+
 @section('content')
     @if(!empty($homePopup['image']))
         <dialog class="home-image-popup" id="homeImagePopup" aria-label="Informasi PTA Papua Barat">
             <form method="dialog">
                 <button type="submit" aria-label="Tutup pengumuman" autofocus>&times;</button>
             </form>
-            <img src="{{ \App\Support\HomeImage::url($homePopup['image'], 960) }}" alt="{{ $homePopup['alt'] ?? 'Informasi PTA Papua Barat' }}" decoding="async">
+            <picture>
+                <source media="(max-width: 768px)" srcset="{{ $mobilePopup }}">
+                <img src="{{ \App\Support\HomeImage::url($homePopup['image'], 960) }}" alt="{{ $homePopup['alt'] ?? 'Informasi PTA Papua Barat' }}" decoding="async">
+            </picture>
         </dialog>
     @endif
     @include('public.partials.home.hero-slider')
@@ -37,5 +47,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/js/public-home.js') }}?v={{ filemtime(public_path('assets/js/public-home.js')) }}"></script>
+<script src="{{ asset('assets/js/public-home.js') }}?v={{ filemtime(public_path('assets/js/public-home.js')) }}" defer></script>
 @endpush

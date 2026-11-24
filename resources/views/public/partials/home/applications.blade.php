@@ -10,7 +10,7 @@
                         <a href="{{ \App\Support\PublicNavigation::serviceUrl($application->url) ?: '#' }}" class="app-logo-item" @if($application->url) target="_blank" rel="noopener noreferrer" @endif>
                             <div class="app-logo-badge">
                                 @if($application->icon)
-                                    <img src="{{ asset('storage/' . $application->icon) }}" alt="{{ $application->title }}">
+                                    <img src="{{ asset('storage/' . $application->icon) }}" alt="{{ $application->title }}" loading="lazy" decoding="async">
                                 @else
                                     <i class="fas fa-link"></i>
                                 @endif

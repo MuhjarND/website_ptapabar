@@ -37,7 +37,7 @@ Jika hosting tidak mengizinkan `php artisan storage:link`, lewati perintah itu. 
 
 Pastikan document root tetap `public`, URL `/storage/...` yang tidak ditemukan diteruskan ke `index.php`, dan tidak ada symlink rusak atau aturan server yang menolak URL sebelum Laravel menerimanya. Jika rute sebelumnya di-cache, jalankan `php artisan route:clear` setelah deploy. Uji gambar unggahan Laravel dan satu PDF publik. Arsip WordPress tetap memakai URL unggahan WordPress dan tidak memerlukan symlink ini.
 
-Untuk optimasi gambar beranda, aktifkan ekstensi `gd` dengan dukungan WebP pada PHP 8.5 yang dipakai web server. Ekstensi `exif` mempertahankan orientasi foto JPEG dari kamera. Pastikan `storage/framework/cache` bisa ditulis; versi gambar yang diperkecil dibuat saat pertama diminta dan disimpan di `storage/framework/cache/image-previews`. Cache ini bisa dibersihkan jika ruang penyimpanan menipis. File asli tidak diubah. Gambar dari URL WordPress atau YouTube tetap dimuat dari asalnya, tanpa diproses ulang oleh Laravel.
+Untuk optimasi gambar beranda, aktifkan ekstensi `gd` dengan dukungan WebP pada PHP 8.5 yang dipakai web server. Ekstensi `exif` mempertahankan orientasi foto JPEG dari kamera. Pastikan `storage/framework/cache` bisa ditulis. Versi gambar yang diperkecil dibuat saat pertama diminta dan disimpan di `storage/framework/cache/image-previews`. Cache ini bisa dibersihkan jika ruang penyimpanan menipis. Di mobile, gambar beranda dari unggahan WordPress lama memakai versi kecil dari CDN Jetpack dengan gambar asli sebagai cadangan. Thumbnail YouTube tetap dimuat dari YouTube.
 
 ## Arsip WordPress Tanpa Sinkronisasi
 

@@ -269,7 +269,7 @@ class PublicHomePageTest extends TestCase
         $response->assertOk();
         $response->assertSee('assets/css/public-home.css', false);
         $response->assertSee('assets/js/public-home.js', false);
-        $response->assertSee('<link rel="icon" type="image/png" href="' . asset('logo_pta.png') . '">', false);
+        $response->assertSee('<link rel="icon" type="image/webp" href="' . asset('logo-pta-160.webp') . '">', false);
         $response->assertSeeText('MAJU: Modern, Akuntabel, Jujur, Unggul');
         $response->assertSee('Slider Utama');
         $dom = new DOMDocument();

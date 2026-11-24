@@ -9,6 +9,13 @@
 
     RewriteEngine On
 
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{QUERY_STRING} ^v=[0-9]+$
+    RewriteRule ^assets/(?:css|js)/public-[a-z-]+\.(?:css|js)$ - [E=pta_versioned_asset:1]
+
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^(?:logo-pta-160\.webp|assets/fonts/plus-jakarta-sans-v12-[a-z-]+\.woff2|assets/vendor/fontawesome-6\.4\.0/(?:css/all\.min\.css|webfonts/fa-[a-z0-9-]+\.woff2))$ - [E=pta_versioned_asset:1]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -22,4 +29,8 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable" env=pta_versioned_asset
 </IfModule>

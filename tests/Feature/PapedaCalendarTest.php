@@ -39,9 +39,9 @@ class PapedaCalendarTest extends TestCase
         Http::fake([$url . '*' => Http::response('Unavailable', 503)]);
 
         $this->get(route('home'))->assertOk()
-            ->assertSee('Tersingkronisasi dengan aplikasi inovasi PAPEDA PTA Papua Barat.')
-            ->assertDontSee('Kalender Papeda belum dapat dimuat.')
-            ->assertDontSee('Sumber: Kalender Terpadu Papeda')
+            ->assertSee('Jadwal dari Papeda sedang tidak tersedia.')
+            ->assertDontSee('Tersingkronisasi dengan aplikasi inovasi PAPEDA PTA Papua Barat.')
+            ->assertDontSee('Belum ada kegiatan publik pada bulan ini.')
             ->assertSee('Video dan Campaign');
     }
 

@@ -54,7 +54,9 @@
     </tbody>
 </table>
 
-@if($calendar['events'] === [])
+@if($calendar['events'] === null)
+    <p class="home-calendar-note">Jadwal dari Papeda sedang tidak tersedia.</p>
+@elseif($calendar['events'] === [])
     <p class="home-calendar-note">Belum ada kegiatan publik pada bulan ini.</p>
 @elseif($calendar['events'])
     <ul class="home-calendar-events" tabindex="0" aria-label="Daftar kegiatan publik">
@@ -72,4 +74,6 @@
         @endforeach
     </ul>
 @endif
-<p class="home-calendar-note">Tersingkronisasi dengan aplikasi inovasi PAPEDA PTA Papua Barat.</p>
+@if($calendar['events'] !== null)
+    <p class="home-calendar-note">Tersingkronisasi dengan aplikasi inovasi PAPEDA PTA Papua Barat.</p>
+@endif

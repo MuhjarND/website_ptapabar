@@ -948,7 +948,7 @@
     }
 
     .home-pa-layout .hero-slider:has(.slider-nav) .slide-overlay { padding-bottom: 58px; }
-    .home-pa-layout .hero-slider .slide:not(:has(.slide-overlay)) > img { object-fit: contain; }
+    .home-pa-layout .hero-slider .slide:not(:has(.slide-overlay)) img { object-fit: contain; }
     .home-pa-layout .hero-kicker { min-height: 24px; padding-inline: 9px; }
     .home-pa-layout .hero-more-link { min-height: 44px; margin-top: 10px; padding-inline: 14px; }
 

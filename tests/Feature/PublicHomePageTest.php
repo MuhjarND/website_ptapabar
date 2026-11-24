@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Article;
-use App\Agenda;
 use App\FloatingIcon;
 use App\Gallery;
 use App\GalleryCategory;
@@ -11,16 +10,96 @@ use App\IntegrityZone;
 use App\Post;
 use App\PostCategory;
 use App\QuickLink;
+use App\Setting;
 use App\SiteApplication;
 use App\Slider;
 use App\SurveyIndex;
 use App\User;
+use DOMDocument;
+use DOMXPath;
 use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
 class PublicHomePageTest extends TestCase
 {
     use MigratesTestDatabase;
+
+    public function test_homepage_uses_fixed_layout_without_discarding_saved_settings(): void
+    {
+        $legacy = '[{"type":"text","title":"Konten dari editor lama","x":1,"y":1,"w":12,"h":1}]';
+        Setting::set('home_layout', $legacy);
+        Setting::set('home_popup', '{"image":"poster.png"}');
+
+        $this->get(route('home'))->assertOk()
+            ->assertSee('data-home-publications', false)
+            ->assertSee('id="homeImagePopup"', false)
+            ->assertDontSee('Konten dari editor lama');
+        $this->assertSame($legacy, Setting::get('home_layout'));
+
+        $this->actingAs(User::factory()->create(['role' => User::ROLE_ADMIN]));
+        $this->get(route('admin.dashboard'))->assertOk()->assertDontSee('Editor Beranda');
+        $this->get('/admin/editor-beranda')->assertNotFound();
+        $this->put('/admin/editor-beranda')->assertNotFound();
+        $this->delete('/admin/editor-beranda')->assertNotFound();
+    }
+
+    public function test_homepage_shows_four_entries_before_javascript_and_keeps_later_pages(): void
+    {
+        $author = User::factory()->create(['role' => User::ROLE_AUTHOR]);
+        for ($i = 1; $i <= 9; $i++) {
+            $entry = ['title' => "Publikasi {$i}", 'slug' => "publikasi-{$i}", 'content' => 'Isi publikasi'];
+            Post::create($entry + ['category' => 'pengumuman', 'is_published' => true, 'user_id' => $author->id]);
+            Article::create($entry + ['image' => '', 'is_active' => true, 'order' => $i]);
+        }
+
+        $response = $this->get(route('home'))->assertOk();
+        $dom = new DOMDocument();
+        $dom->loadHTML($response->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $xpath = new DOMXPath($dom);
+
+        foreach (['announcement', 'article'] as $type) {
+            $this->assertSame(4.0, $xpath->evaluate("count(//li[@data-{$type}-category and not(@hidden)])"));
+            $this->assertSame(5.0, $xpath->evaluate("count(//li[@data-{$type}-category and @hidden])"));
+            $this->assertSame(3.0, $xpath->evaluate("count(//*[@data-{$type}-pagination-nav]//button)"));
+            $this->assertSame('4', $xpath->evaluate("string(//*[@data-{$type}-pagination]/@data-{$type}-per-page)"));
+        }
+    }
+
+    public function test_homepage_news_sections_show_three_posts_per_page(): void
+    {
+        $author = User::factory()->create(['role' => User::ROLE_AUTHOR]);
+        $sections = [
+            'terkini' => Post::NEWS_SCOPE_TERKINI,
+            'peradilan-agama' => Post::NEWS_SCOPE_PERADILAN_AGAMA_PAPUA_BARAT,
+        ];
+
+        foreach ($sections as $section => $scope) {
+            for ($i = 1; $i <= 10; $i++) {
+                Post::create([
+                    'title' => "Berita {$section} {$i}",
+                    'slug' => "{$section}-{$i}",
+                    'content' => 'Isi berita',
+                    'category' => 'berita',
+                    'news_scope' => $scope,
+                    'is_published' => true,
+                    'user_id' => $author->id,
+                ]);
+            }
+        }
+
+        $response = $this->get(route('home'))->assertOk();
+        $dom = new DOMDocument();
+        $dom->loadHTML($response->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $xpath = new DOMXPath($dom);
+
+        foreach (array_keys($sections) as $section) {
+            $items = "//a[@data-news-page-item='{$section}'";
+            $this->assertSame(3.0, $xpath->evaluate("count({$items} and not(@hidden)])"));
+            $this->assertSame(6.0, $xpath->evaluate("count({$items} and @hidden])"));
+            $this->assertSame(3.0, $xpath->evaluate("count(//*[@data-news-pagination-nav='{$section}']//button)"));
+            $this->assertSame('3', $xpath->evaluate("string(//*[@data-news-pagination='{$section}']/@data-news-per-page)"));
+        }
+    }
 
     public function test_homepage_renders_key_public_modules_and_page_assets()
     {
@@ -127,14 +206,13 @@ class PublicHomePageTest extends TestCase
             'is_active' => true,
         ]);
 
-        Agenda::create([
+        Post::create([
             'title' => 'Kegiatan Pimpinan Homepage',
             'slug' => 'kegiatan-pimpinan-homepage',
-            'agenda_type' => Agenda::TYPE_KEGIATAN,
-            'summary' => 'Kegiatan pimpinan untuk homepage.',
-            'start_at' => now()->addDays(2),
-            'location' => 'Aula PTA',
-            'is_active' => true,
+            'content' => 'Kegiatan pimpinan untuk homepage.',
+            'category' => 'berita',
+            'post_category_id' => PostCategory::where('slug', PostCategory::LEADERSHIP_AGENDA)->firstOrFail()->id,
+            'is_published' => true,
             'user_id' => $author->id,
         ]);
 
@@ -190,10 +268,14 @@ class PublicHomePageTest extends TestCase
         $response->assertOk();
         $response->assertSee('assets/css/public-home.css', false);
         $response->assertSee('assets/js/public-home.js', false);
+        $response->assertSee('<link rel="icon" type="image/png" href="' . asset('logo_pta.png') . '">', false);
+        $response->assertSeeText('MAJU: Modern, Akuntabel, Jujur, Unggul');
         $response->assertSee('Slider Utama');
         $response->assertSee('E-Court');
         $response->assertSee('Berita Homepage');
         $response->assertSee('Berita Peradilan Agama Homepage');
+        $response->assertSee('Ringkasan berita homepage');
+        $response->assertDontSee('Ringkasan berita peradilan agama homepage');
         $response->assertSee('Berita Terkini');
         $response->assertSee('Berita Peradilan Agama Papua Barat');
         $response->assertSee('PA Manokwari');
@@ -205,7 +287,7 @@ class PublicHomePageTest extends TestCase
         $response->assertSee('Artikel');
         $response->assertSee('Tinta Peradilan');
         $response->assertSee('Galeri Kegiatan');
-        $response->assertSee('Galeri Layanan');
+        $response->assertDontSee('Galeri Layanan');
         $response->assertSee('IKM');
         $response->assertSee('98.76');
         $response->assertSee('Ingin berkunjung ke PTA, lihat ketersediaan pegawai');
@@ -234,15 +316,25 @@ class PublicHomePageTest extends TestCase
             '<summary>Layanan lainnya</summary>',
             '<h3>Layanan PTSP</h3>',
             'data-home-publications',
+            'data-mobile-publication="Berita Terkini"',
             '>Berita Terkini</h2>',
+            'data-mobile-publication="Pengumuman"',
             '>Pengumuman</h2>',
             'data-home-publications',
+            'data-mobile-publication="Berita Satker"',
             '>Berita Peradilan Agama Papua Barat</h2>',
+            'data-mobile-publication="Tinta Peradilan"',
             '>Tinta Peradilan</h2>',
+            'data-mobile-publication="Agenda Pimpinan"',
+            '>Agenda Pimpinan</h2>',
+            'data-mobile-publication="Kalender Kegiatan"',
+            '>Kalender Kegiatan PTA Papua Barat</h2>',
+            '>Video dan Campaign</h2>',
         ], false);
+        $response->assertSee(route('berita.index', ['news_scope' => Post::NEWS_SCOPE_PERADILAN_AGAMA_PAPUA_BARAT]), false);
         $response->assertDontSee('https://example.com/e-court', false);
-        $response->assertSee('data-gallery-filter', false);
-        $response->assertSee('data-gallery-category="' . $kegiatanGalleryCategory->id . '"', false);
+        $response->assertSee('data-showcase-video="dQw4w9WgXcQ"', false);
+        $this->get(route('gallery.index'))->assertOk()->assertSee('Galeri Kegiatan')->assertSee('Galeri Layanan');
     }
 
     protected function makeUser($email, $role, $name = null)

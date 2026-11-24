@@ -29,7 +29,7 @@
 | 4.2 Rekapitulasi Pengaduan | Halaman `/halaman/laporan-rekapitulasi-pengaduan` tersedia. | Terbitkan rekap yang diizinkan, bukan tiket atau lampiran mentah. |
 | 4.3 Hukuman Disiplin | Halaman `/halaman/hukuman-disiplin` tersedia. | Ringkasan resmi yang telah disunting untuk publik. |
 | 4.4 Survei | `/hasil-survei-pelayanan`: arsip Triwulan II 2025 memuat SKM 3,71; SPKL 3,74; SPAK 3,82. Ketiganya merujuk ke satu PDF resmi yang sama. | Laporan periode terbaru, dan dokumen lengkap per jenis bila tersedia. Angka arsip bukan nilai terkini. |
-| 5.1 Statistik pengunjung | Beranda `/#statistik-web` menyediakan hari, minggu, bulan, dan total. | Verifikasi pencatatan kunjungan nyata setelah pemasangan. |
+| 5.1 Statistik pengunjung | Beranda `/#statistik-web` menampilkan jumlah kunjungan hari ini, kemarin, dan total. | Verifikasi pencatatan kunjungan nyata setelah pemasangan. |
 
 ## A2. Informasi wajib (20%)
 

@@ -8,7 +8,6 @@ use App\Page;
 use App\Setting;
 use App\Support\PublicNavigation;
 use App\Support\VisitorAnalytics;
-use App\VisitorCount;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -50,15 +49,7 @@ class AppServiceProvider extends ServiceProvider
 
             $settings = $defaultSettings;
             $pagesByGroup = collect();
-            $visitorStats = [
-                'today' => 0,
-                'week' => 0,
-                'month' => 0,
-                'total' => 0,
-                'devices' => ['mobile' => 0, 'desktop' => 0, 'tablet' => 0, 'unknown' => 0],
-                'countries' => collect(),
-                'online' => 0,
-            ];
+            $visitorStats = ['today' => 0, 'yesterday' => 0, 'total' => 0];
             $floatingIcons = collect();
             $footerLinks = collect();
             $groupLabels = [
@@ -87,7 +78,7 @@ class AppServiceProvider extends ServiceProvider
 
             }
 
-            if (Schema::hasTable('visitor_counts') && Schema::hasTable('visitor_sessions')) {
+            if (Schema::hasTable('visitor_counts')) {
                 $visitorStats = VisitorAnalytics::buildStatistics();
             }
 

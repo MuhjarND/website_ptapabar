@@ -9,6 +9,6 @@
 <div class="welcome-strip">
     <div class="container">
         <h3><i class="fas fa-landmark"></i> Selamat Datang di Website Resmi PTA Papua Barat</h3>
-        <p>Melayani Masyarakat dengan Integritas, Profesionalitas dan Akuntabilitas</p>
+        <p><strong>MAJU:</strong> Modern, Akuntabel, Jujur, Unggul</p>
     </div>
 </div>

@@ -41,9 +41,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 
     // Admin-only routes
     Route::middleware('admin.only')->group(function () {
-        Route::get('editor-beranda', 'Admin\HomeLayoutController@index')->name('home-layout.index');
-        Route::put('editor-beranda', 'Admin\HomeLayoutController@update')->name('home-layout.update');
-        Route::delete('editor-beranda', 'Admin\HomeLayoutController@destroy')->name('home-layout.destroy');
         Route::get('popup-beranda', 'Admin\HomePopupController@index')->name('home-popup.index');
         Route::put('popup-beranda', 'Admin\HomePopupController@update')->name('home-popup.update');
         Route::delete('popup-beranda', 'Admin\HomePopupController@destroy')->name('home-popup.destroy');
@@ -94,6 +91,7 @@ Route::get('/storage/{path}', 'PublicMediaController')
     ->withoutMiddleware('web')->name('public-storage.file');
 Route::get('/', 'PublicController@index')->name('home');
 Route::get('/agenda', 'PublicController@agendas')->name('agenda.index');
+Route::get('/agenda/wordpress/{id}', 'PublicController@wordpressLeadershipDetail')->whereNumber('id')->name('agenda.wordpress.show');
 Route::get('/jadwal-sidang-banding', 'CourtInformationController@hearings')->name('court-hearings.index');
 Route::get('/statistik-perkara', 'CourtInformationController@statistics')->name('case-statistics.index');
 Route::get('/direktori-putusan', 'CourtInformationController@verdicts')->name('court-verdicts.index');

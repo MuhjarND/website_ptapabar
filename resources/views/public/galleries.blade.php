@@ -61,7 +61,7 @@
             @endforelse
         </div>
 
-        <div class="pub-pagination archive-pagination">{{ $galleries->appends(request()->query())->links() }}</div>
+        {{ $galleries->withQueryString()->onEachSide(1)->links('public.partials.pagination') }}
     </div>
 </div>
 

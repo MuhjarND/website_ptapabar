@@ -13,7 +13,7 @@
         </div>
         @if($category === 'berita')
             <div class="archive-filter-bar">
-                <a href="{{ route('berita.index') }}" class="archive-filter-button {{ !$activeNewsScope && !$showWordPressArchive ? 'is-active' : '' }}">
+                <a href="{{ route('berita.index') }}" class="archive-filter-button {{ !$activeNewsScope && !$showWordPressArchive && !$leadershipAgenda ? 'is-active' : '' }}">
                     Semua
                 </a>
                 @foreach($newsScopes as $value => $label)
@@ -48,7 +48,7 @@
         @endif
         <div class="posts-grid">
             @forelse($posts as $post)
-                <a href="{{ $category === 'berita' ? route('post.detail', $post->slug) : route('pengumuman.detail', $post->slug) }}" class="post-card">
+                <a href="{{ $post->public_url ?? ($category === 'berita' ? route('post.detail', $post->slug) : route('pengumuman.detail', $post->slug)) }}" class="post-card">
                     <div class="card-img">
                         @if($post->image_url)
                             <img src="{{ $post->image_url }}" alt="{{ $post->title }}" loading="lazy">
@@ -79,7 +79,7 @@
                 </div>
             @endforelse
         </div>
-        <div class="pub-pagination archive-pagination">{{ $posts->appends(request()->query())->links() }}</div>
+        {{ $posts->withQueryString()->onEachSide(1)->links('public.partials.pagination') }}
     </div>
 </div>
 @endsection

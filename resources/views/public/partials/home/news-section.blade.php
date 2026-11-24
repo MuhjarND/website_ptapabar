@@ -1,20 +1,23 @@
-<section class="section {{ !empty($publicationPanel) ? 'home-publication-panel home-news-panel' : '' }}">
+@php($satkerNews = $newsFilterKey === 'peradilan-agama')
+<section class="section home-news-section home-publication-panel home-news-panel"
+    data-mobile-publication="{{ $satkerNews ? 'Berita Satker' : $sectionTitle }}">
     <div class="container">
         <div class="section-header fade-up">
             <h2 class="section-title">{{ $sectionTitle }}</h2>
-            <a href="{{ route('berita.index') }}" class="section-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+            <a href="{{ $newsArchiveUrl ?? route('berita.index', ['news_scope' => $satkerNews ? \App\Post::NEWS_SCOPE_PERADILAN_AGAMA_PAPUA_BARAT : \App\Post::NEWS_SCOPE_TERKINI]) }}" class="section-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
         </div>
         <div
-            class="posts-grid posts-grid-home-news"
+            class="posts-grid"
             data-news-pagination="{{ $newsFilterKey }}"
-            data-news-per-page="3"
-            data-news-max-pages="3"
+            data-news-per-page="{{ $newsPerPage }}"
+            data-news-max-pages="{{ $newsMaxPages }}"
         >
             @forelse($newsItems as $post)
                 <a
-                    href="{{ route('post.detail', $post->slug) }}"
+                    href="{{ $post->public_url ?? route('post.detail', $post->slug) }}"
                     class="post-card fade-up"
                     data-news-page-item="{{ $newsFilterKey }}"
+                    @if($loop->index >= $newsPerPage) hidden @endif
                 >
                     <div class="card-img">
                         @if($post->image_url)
@@ -35,10 +38,10 @@
                         @if($post->postCategory)
                             <div class="section-category-pill news-category-pill">{{ $post->postCategory->name }}</div>
                         @endif
-                        <p class="card-excerpt">{{ $post->excerpt_plain }}</p>
-                        @if(!empty($publicationPanel))
-                            <span class="home-news-more" aria-hidden="true">Selengkapnya <i class="fas fa-arrow-right"></i></span>
-                        @endif
+                        @unless($satkerNews)
+                            <p class="card-excerpt">{{ $post->excerpt_plain }}</p>
+                        @endunless
+                        <span class="home-news-more" aria-hidden="true">Selengkapnya <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
             @empty
@@ -48,7 +51,7 @@
                 </div>
             @endforelse
         </div>
-        @php($newsPageCount = min(3, (int) ceil($newsItems->count() / 3)))
+        @php($newsPageCount = min($newsMaxPages, (int) ceil($newsItems->count() / $newsPerPage)))
         @if($newsPageCount > 1)
             <div class="news-home-pagination fade-up" data-news-pagination-nav="{{ $newsFilterKey }}">
                 @for($page = 1; $page <= $newsPageCount; $page++)

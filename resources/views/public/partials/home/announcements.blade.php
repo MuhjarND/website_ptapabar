@@ -1,5 +1,6 @@
-@php($compactPublication = !empty($publicationPanel))
-<section class="section section-white {{ $compactPublication ? 'home-publication-panel home-list-panel' : '' }}">
+@php($perPage = 4)
+<section class="section section-white home-list-section home-publication-panel home-list-panel"
+    data-mobile-publication="{{ $publicationPart === 'announcement' ? 'Pengumuman' : 'Tinta Peradilan' }}">
     <div class="container">
         <div class="announcement-section-layout">
             @if($publicationPart === 'announcement')
@@ -14,30 +15,18 @@
                         <button type="button" class="section-filter-button announcement-filter-button" data-filter="{{ $value }}">{{ $label }}</button>
                     @endforeach
                 </div>
-                <div class="announcements-wrap" data-announcement-pagination data-announcement-per-page="5">
+                <div class="announcements-wrap" data-announcement-pagination data-announcement-per-page="{{ $perPage }}">
                 <ul class="pengumuman-list">
                     @forelse($pengumuman as $item)
                         <li
                             class="fade-up announcement-entry"
                             data-announcement-category="{{ $item->announcement_category ?: \App\Post::ANNOUNCEMENT_CATEGORY_LAIN_LAIN }}"
+                            @if($loop->index >= $perPage) hidden @endif
                         >
                             <a href="{{ route('pengumuman.detail', $item->slug) }}" class="pengumuman-item">
-                                @unless($compactPublication)
-                                    <div class="date-box">
-                                        <span class="day">{{ $item->created_at->format('d') }}</span>
-                                        <span class="month">{{ $item->created_at->format('M') }}</span>
-                                    </div>
-                                @endunless
                                 <div class="item-content">
                                     <h4>{{ $item->title }}</h4>
-                                    @if($compactPublication)
-                                        <time datetime="{{ $item->created_at->toDateString() }}">{{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</time>
-                                    @else
-                                        @if($item->announcement_category_label)
-                                            <div class="section-category-pill announcement-category-pill">{{ $item->announcement_category_label }}</div>
-                                        @endif
-                                        <p>{{ \Illuminate\Support\Str::limit($item->excerpt_plain, 100) }}</p>
-                                    @endif
+                                    <time datetime="{{ $item->created_at->toDateString() }}">{{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</time>
                                 </div>
                             </a>
                         </li>
@@ -50,7 +39,7 @@
                         </li>
                     @endif
                 </ul>
-                @php($announcementPageCount = (int) ceil($pengumuman->count() / 5))
+                @php($announcementPageCount = (int) ceil($pengumuman->count() / $perPage))
                 @if($announcementPageCount > 1)
                     <div class="news-home-pagination fade-up" data-announcement-pagination-nav>
                         @for($page = 1; $page <= $announcementPageCount; $page++)
@@ -78,32 +67,21 @@
                             <button type="button" class="section-filter-button article-filter-button" data-filter="{{ $value }}">{{ $label }}</button>
                         @endforeach
                     </div>
-                    <ul class="pengumuman-list announcement-article-list" data-article-pagination data-article-per-page="5">
+                    <ul class="pengumuman-list announcement-article-list" data-article-pagination data-article-per-page="{{ $perPage }}">
                         @forelse($articles as $article)
-                            <li class="announcement-article-entry fade-up">
+                            <li class="announcement-article-entry fade-up"
+                                data-article-category="{{ $article->article_category ?: \App\Article::CATEGORY_LAIN_LAIN }}"
+                                @if($loop->index >= $perPage) hidden @endif
+                            >
                                 <a
                                     href="{{ $article->target_url }}"
                                     class="announcement-article-item pengumuman-item"
-                                    data-article-category="{{ $article->article_category ?: \App\Article::CATEGORY_LAIN_LAIN }}"
                                     {{ $article->target_is_external ? 'target="_blank" rel="noopener"' : '' }}
                                 >
-                                @unless($compactPublication)
-                                    <div class="date-box">
-                                        <span class="day">{{ $article->created_at->format('d') }}</span>
-                                        <span class="month">{{ $article->created_at->format('M') }}</span>
-                                    </div>
-                                @endunless
-                                <div class="item-content announcement-article-content">
-                                    <h4>{{ $article->title }}</h4>
-                                    @if($compactPublication)
+                                    <div class="item-content announcement-article-content">
+                                        <h4>{{ $article->title }}</h4>
                                         <time datetime="{{ $article->created_at->toDateString() }}">{{ $article->created_at->locale('id')->translatedFormat('d F Y') }}</time>
-                                    @else
-                                        @if($article->article_category_label)
-                                            <div class="section-category-pill announcement-category-pill">{{ $article->article_category_label }}</div>
-                                        @endif
-                                        <p>{{ \Illuminate\Support\Str::limit($article->excerpt_plain, 95) }}</p>
-                                    @endif
-                                </div>
+                                    </div>
                                 </a>
                             </li>
                         @empty
@@ -115,7 +93,7 @@
                             </li>
                         @endif
                     </ul>
-                    @php($articlePageCount = (int) ceil($articles->count() / 5))
+                    @php($articlePageCount = (int) ceil($articles->count() / $perPage))
                     @if($articlePageCount > 1)
                         <div class="news-home-pagination fade-up" data-article-pagination-nav>
                             @for($page = 1; $page <= $articlePageCount; $page++)

@@ -3,53 +3,18 @@
 namespace App\Support;
 
 use App\VisitorCount;
-use App\VisitorSession;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VisitorAnalytics
 {
     public static function buildStatistics()
     {
-        $today = Carbon::today();
-        $weekStart = Carbon::today()->subDays(6);
-        $monthStart = Carbon::now()->startOfMonth();
-        $onlineSince = Carbon::now()->subMinutes(5);
-
-        $devices = VisitorSession::query()
-            ->selectRaw('device_type, COUNT(*) as total')
-            ->groupBy('device_type')
-            ->pluck('total', 'device_type');
-
-        $countries = VisitorSession::query()
-            ->selectRaw('country_code, country_name, COUNT(*) as total')
-            ->whereNotNull('country_name')
-            ->groupBy('country_code', 'country_name')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get()
-            ->map(function ($country) {
-                return [
-                    'code' => $country->country_code,
-                    'name' => $country->country_name,
-                    'flag' => static::flagEmoji($country->country_code),
-                    'total' => (int) $country->total,
-                ];
-            });
+        $today = today();
 
         return [
-            'today' => (int) (VisitorCount::whereDate('visit_date', $today)->sum('count') ?? 0),
-            'week' => (int) (VisitorCount::whereDate('visit_date', '>=', $weekStart->toDateString())->sum('count') ?? 0),
-            'month' => (int) (VisitorCount::whereDate('visit_date', '>=', $monthStart->toDateString())->sum('count') ?? 0),
-            'total' => (int) (VisitorCount::sum('count') ?? 0),
-            'devices' => [
-                'mobile' => (int) ($devices->get('mobile', 0)),
-                'desktop' => (int) ($devices->get('desktop', 0)),
-                'tablet' => (int) ($devices->get('tablet', 0)),
-                'unknown' => (int) ($devices->get('unknown', 0)),
-            ],
-            'countries' => $countries,
-            'online' => (int) VisitorSession::where('last_seen_at', '>=', $onlineSince)->count(),
+            'today' => (int) VisitorCount::whereDate('visit_date', $today)->sum('count'),
+            'yesterday' => (int) VisitorCount::whereDate('visit_date', $today->copy()->subDay())->sum('count'),
+            'total' => (int) VisitorCount::sum('count'),
         ];
     }
 
@@ -122,20 +87,6 @@ class VisitorAnalytics
         ];
 
         return $fallbacks[$countryCode] ?? $countryCode;
-    }
-
-    public static function flagEmoji($countryCode)
-    {
-        $countryCode = strtoupper((string) $countryCode);
-
-        if (strlen($countryCode) !== 2 || !preg_match('/^[A-Z]{2}$/', $countryCode)) {
-            return '🌐';
-        }
-
-        $first = 127397 + ord($countryCode[0]);
-        $second = 127397 + ord($countryCode[1]);
-
-        return html_entity_decode('&#' . $first . ';&#' . $second . ';', ENT_NOQUOTES, 'UTF-8');
     }
 
     protected static function countryCodeFromHeaders(Request $request)

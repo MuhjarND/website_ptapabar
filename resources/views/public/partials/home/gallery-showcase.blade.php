@@ -1,50 +1,78 @@
-@if($galleries->count() > 0)
-    <section class="section section-white">
-        <div class="container">
-            <div class="section-header fade-up">
-                <h2 class="section-title">Galeri PTA Papua Barat</h2>
-                <a href="{{ route('gallery.index') }}" class="section-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="section-filter-bar gallery-filter-bar fade-up" data-gallery-filter>
-                @foreach($galleryCategories as $galleryCategory)
-                    <button type="button" class="section-filter-button gallery-filter-button" data-filter="{{ $galleryCategory->id }}">{{ $galleryCategory->name }}</button>
-                @endforeach
-            </div>
-            <div class="fv-tile-grid fv-tile-grid-home">
-                @foreach($galleries as $item)
-                    <div class="fv-card fade-up" data-gallery-category="{{ $item->gallery_category_id ?: 'uncategorized' }}">
-                        @if($item->type === 'video' && $item->youtube_id)
-                            <div class="fv-media fv-video" data-preview-kind="video" onclick="openVideoPopup('{{ $item->youtube_id }}')">
-                                <img src="https://img.youtube.com/vi/{{ $item->youtube_id }}/hqdefault.jpg" alt="{{ $item->title }}">
-                                <div class="fv-play"><i class="fas fa-play"></i></div>
+<div class="home-publications home-showcase">
+    <div class="container home-publications-board">
+        <section class="section home-publication-panel home-news-section home-news-panel home-media-panel">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Video dan Campaign</h2>
+                    <a href="{{ route('gallery.index') }}" class="section-link">Arsip Galeri <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="posts-grid">
+                    @forelse($homeMedia as $item)
+                        @php($videoId = $item->youtube_id)
+                        <a class="post-card" href="{{ $videoId ? 'https://www.youtube.com/watch?v=' . $videoId : $item->thumbnail }}"
+                            @if($videoId) data-showcase-video="{{ $videoId }}" @else data-showcase-poster @endif>
+                            <div class="card-img">
+                                <img src="{{ $item->thumbnail }}" alt="" loading="lazy" @class(['home-showcase-poster' => !$videoId])>
+                                <span class="category-badge">{{ $videoId ? 'Video' : 'Banner' }}</span>
+                                @if($videoId)
+                                    <span class="fv-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                                @endif
                             </div>
-                        @elseif($item->file)
-                            <div class="fv-media fv-poster" data-preview-kind="image" onclick="openPosterPopup(this)">
-                                <img src="{{ asset('storage/' . $item->file) }}" alt="{{ $item->title }}">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ $item->title }}</h3>
+                                @if($item->description)
+                                    <p class="card-excerpt">{{ $item->description }}</p>
+                                @endif
+                                <span class="home-news-more">{{ $videoId ? 'Putar Video' : 'Lihat Banner' }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
                             </div>
-                        @endif
-                    </div>
-                @endforeach
+                        </a>
+                    @empty
+                        <p class="section-empty section-empty-compact">Belum ada video atau banner.</p>
+                    @endforelse
+                </div>
             </div>
-            <div class="section-empty section-empty-compact gallery-empty-state" data-gallery-empty-message hidden>
-                Belum ada foto atau video untuk kategori ini.
+        </section>
+
+        <section class="section home-publication-panel home-greetings-panel">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Ucapan Selamat &amp; Duka</h2>
+                </div>
+                <div class="home-greeting-list">
+                    @forelse($homeGreetings as $item)
+                        <a href="{{ $item->thumbnail }}" class="post-card home-greeting-card" data-showcase-poster>
+                            <img src="{{ $item->thumbnail }}" alt="" loading="lazy">
+                            <div class="home-greeting-copy">
+                                <span @class(['section-category-pill', 'home-condolence-pill' => $item->type === \App\Gallery::TYPE_CONDOLENCE])>
+                                    {{ \App\Gallery::typeOptions()[$item->type] }}
+                                </span>
+                                <h3 class="card-title">{{ $item->title }}</h3>
+                                @if($item->description)
+                                    <p class="card-excerpt">{{ $item->description }}</p>
+                                @endif
+                            </div>
+                        </a>
+                    @empty
+                        <p class="section-empty section-empty-compact">Belum ada ucapan.</p>
+                    @endforelse
+                </div>
             </div>
-        </div>
-    </section>
-
-    <div id="videoPopup" class="media-popup" onclick="closeVideoPopup()">
-        <button type="button" class="media-popup-close" onclick="closeVideoPopup()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="media-popup-frame" onclick="event.stopPropagation()">
-            <iframe id="videoFrame" src="" allowfullscreen></iframe>
-        </div>
+        </section>
     </div>
+</div>
 
-    <div id="posterPopup" class="media-popup" onclick="closePosterPopup()">
-        <button type="button" class="media-popup-close" onclick="closePosterPopup()">
-            <i class="fas fa-times"></i>
-        </button>
-        <img id="posterImg" src="" class="poster-popup-image" alt="Poster galeri" onclick="event.stopPropagation()">
+<div id="videoPopup" class="media-popup" onclick="closeVideoPopup()">
+    <button type="button" class="media-popup-close" aria-label="Tutup video" onclick="closeVideoPopup()">
+        <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <div class="media-popup-frame" onclick="event.stopPropagation()">
+        <iframe id="videoFrame" title="Pemutar video YouTube" allow="autoplay" allowfullscreen></iframe>
     </div>
-@endif
+</div>
+
+<div id="posterPopup" class="media-popup" onclick="closePosterPopup()">
+    <button type="button" class="media-popup-close" aria-label="Tutup gambar" onclick="closePosterPopup()">
+        <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <img id="posterImg" class="poster-popup-image" alt="Poster beranda" onclick="event.stopPropagation()">
+</div>

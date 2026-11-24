@@ -9,7 +9,7 @@
             ['Slider Beranda', 'images', 'admin.sliders'],
             ['Popup Beranda', 'image', 'admin.home-popup'],
             ['Pintasan Layanan', 'th-large', 'admin.quicklinks'],
-            ['Foto & Video', 'photo-video', 'admin.galleries'],
+            ['Foto, Video & Banner', 'photo-video', 'admin.galleries'],
         ] : []),
     ];
     $groups = [];
@@ -17,7 +17,6 @@
         $groups['Konten'] = [
             ['Halaman', 'file-alt', 'admin.pages'],
             ['Menu Navigasi', 'bars', 'admin.navigation'],
-            ['Editor Beranda', 'th-large', 'admin.home-layout'],
         ];
     }
     $groups['Berita & Publikasi'] = $publication;

@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 
 class PostCategory extends Model
 {
+    public const LEADERSHIP_AGENDA = 'agenda-pimpinan';
+
     protected $fillable = ['name', 'slug', 'order', 'is_active'];
 
     public function posts()

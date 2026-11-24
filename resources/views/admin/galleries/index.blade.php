@@ -1,9 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Foto & Video')
+@section('title', 'Foto, Video & Banner')
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>Foto & Video</h2>
+        <h2>Foto, Video & Banner</h2>
         <a href="{{ route('admin.galleries.create') }}" class="btn btn-gold btn-sm"><i class="fas fa-plus"></i> Tambah Item</a>
     </div>
     <div class="card-body">
@@ -55,7 +55,7 @@
                         @endif
                     </td>
                     <td>{{ Str::limit($item->title, 40) }}</td>
-                    <td><span class="badge {{ $item->type === 'video' ? 'badge-danger' : 'badge-info' }}">{{ $item->type === 'video' ? 'Video' : 'Foto' }}</span></td>
+                    <td><span class="badge {{ $item->type === 'video' ? 'badge-danger' : 'badge-info' }}">{{ \App\Gallery::typeOptions()[$item->type] ?? $item->type }}</span></td>
                     <td class="text-muted">{{ $item->galleryCategory->name ?? '-' }}</td>
                     <td>{{ $item->order }}</td>
                     <td><span class="badge {{ $item->is_active ? 'badge-success' : 'badge-secondary' }}">{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>

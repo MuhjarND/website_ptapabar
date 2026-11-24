@@ -3,7 +3,11 @@
         <a href="{{ route('home') }}">Beranda</a>
         &nbsp;/&nbsp;
         @if($post->category === 'berita')
-            <a href="{{ route('berita.index') }}">Berita</a>
+            @if($post->public_url)
+                <a href="{{ route('berita.index', ['kategori' => \App\PostCategory::LEADERSHIP_AGENDA]) }}">Agenda Pimpinan</a>
+            @else
+                <a href="{{ route('berita.index') }}">Berita</a>
+            @endif
         @else
             <a href="{{ route('pengumuman.index') }}">Pengumuman</a>
         @endif

@@ -50,7 +50,7 @@
                 @endforelse
             </div>
 
-            <div class="archive-pagination">{{ $agendas->appends(request()->query())->links() }}</div>
+            {{ $agendas->withQueryString()->onEachSide(1)->links('public.partials.pagination') }}
         </div>
     </div>
 </section>

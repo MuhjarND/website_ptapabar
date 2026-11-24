@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ $publicSiteSettings['site_description'] }}">
     <title>@yield('title', 'Beranda') - {{ $publicSiteSettings['site_name'] }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('logo_pta.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('assets/css/public-site.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/public-site.css') }}?v={{ filemtime(public_path('assets/css/public-site.css')) }}" rel="stylesheet">
     @stack('styles')
     <link href="{{ asset('assets/css/public-usability.css') }}" rel="stylesheet">
 </head>

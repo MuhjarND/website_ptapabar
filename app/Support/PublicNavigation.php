@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use App\PostCategory;
+
 class PublicNavigation
 {
     public const SIPP_BANDING_URL = 'https://banding.mahkamahagung.go.id/';
@@ -40,6 +42,7 @@ class PublicNavigation
         ];
         $general = $pages->get('informasi-umum', collect());
         $services = $general->whereIn('slug', $publicServicePages);
+        $agendaNews = request()->routeIs('berita.index') && request('kategori') === PostCategory::LEADERSHIP_AGENDA;
 
         return [
             ['label' => 'Profil Pengadilan', 'pages' => $pages->get('tentang-pengadilan', collect()), 'links' => []],
@@ -58,11 +61,14 @@ class PublicNavigation
                     'Hasil Survei Pelayanan' => self::link('surveys.public'),
                 ]],
             ['label' => 'Berita dan Publikasi', 'pages' => $pages->get('informasi', collect()), 'links' => [
-                'Berita' => self::link('berita.index', 'post.detail'),
+                'Berita' => $agendaNews ? ['url' => route('berita.index'), 'current' => null] : self::link('berita.index', 'post.detail'),
                 'Pengumuman' => self::link('pengumuman.index', 'pengumuman.detail'),
                 'Tinta Peradilan' => self::link('article.index', 'article.detail'),
                 'Galeri' => self::link('gallery.index'),
-                'Agenda Pimpinan' => self::link('agenda.index'),
+                'Agenda Pimpinan' => [
+                    'url' => route('berita.index', ['kategori' => PostCategory::LEADERSHIP_AGENDA]),
+                    'current' => $agendaNews ? 'page' : (request()->routeIs('agenda.wordpress.show', 'agenda.index') ? 'location' : null),
+                ],
             ]],
         ];
     }

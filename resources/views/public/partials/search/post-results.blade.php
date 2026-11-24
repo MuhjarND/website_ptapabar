@@ -17,8 +17,4 @@
     <p class="search-empty">Tidak ditemukan hasil untuk pencarian ini.</p>
 @endforelse
 
-@if($posts->hasPages())
-    <div class="pub-pagination search-pagination">
-        {{ $posts->appends(['q' => $q])->links() }}
-    </div>
-@endif
+{{ $posts->appends(['q' => $q])->onEachSide(1)->links('public.partials.pagination') }}

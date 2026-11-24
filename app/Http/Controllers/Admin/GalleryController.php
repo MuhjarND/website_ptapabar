@@ -7,6 +7,8 @@ use App\Gallery;
 use App\GalleryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class GalleryController extends Controller
 {
@@ -32,25 +34,7 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'type' => 'required|in:image,video',
-            'gallery_category_id' => 'required|exists:gallery_categories,id',
-            'file' => 'required_if:type,image|nullable|image|max:5120',
-            'video_url' => 'required_if:type,video|nullable|url|max:500',
-            'description' => 'nullable|string|max:500',
-            'order' => 'nullable|integer',
-        ]);
-
-        $data = $request->only('title', 'type', 'gallery_category_id', 'video_url', 'description', 'order');
-        $data['is_active'] = $request->has('is_active');
-        $data['order'] = $data['order'] ?? 0;
-
-        if ($request->hasFile('file')) {
-            $data['file'] = $request->file('file')->store('galleries', 'public');
-        }
-
-        Gallery::create($data);
+        $this->saveItem($request, new Gallery());
         return redirect()->route('admin.galleries.index')->with('success', 'Item galeri berhasil ditambahkan.');
     }
 
@@ -63,36 +47,46 @@ class GalleryController extends Controller
 
     public function update(Request $request, Gallery $gallery)
     {
-        $request->validate([
+        $this->saveItem($request, $gallery);
+        return redirect()->route('admin.galleries.index')->with('success', 'Item galeri berhasil diperbarui.');
+    }
+
+    private function saveItem(Request $request, Gallery $gallery): void
+    {
+        $type = $request->input('type');
+        $video = $type === 'video';
+        $previousFile = $gallery->file;
+        $data = $request->validate([
             'title' => 'required|string|max:255',
-            'type' => 'required|in:image,video',
-            'gallery_category_id' => 'required|exists:gallery_categories,id',
-            'file' => 'nullable|image|max:5120',
-            'video_url' => 'required_if:type,video|nullable|url|max:500',
+            'type' => ['required', Rule::in(array_keys(Gallery::typeOptions()))],
+            'gallery_category_id' => in_array($type, ['image', 'video'], true) ? 'required|exists:gallery_categories,id' : 'exclude',
+            'file' => $video ? 'exclude' : [$previousFile ? 'nullable' : 'required', 'image', 'max:5120'],
+            'video_url' => $video ? ['bail', 'required', 'url:http,https', 'max:255', function ($attribute, $value, $fail) {
+                if (!Gallery::youtubeId($value)) {
+                    $fail('Masukkan tautan video YouTube yang valid.');
+                }
+            }] : 'exclude',
             'description' => 'nullable|string|max:500',
             'order' => 'nullable|integer',
         ]);
 
-        $data = $request->only('title', 'type', 'gallery_category_id', 'video_url', 'description', 'order');
-        $data['is_active'] = $request->has('is_active');
+        $upload = $data['file'] ?? null;
+        $data['is_active'] = $request->boolean('is_active');
         $data['order'] = $data['order'] ?? 0;
-
-        if ($request->hasFile('file')) {
-            if ($gallery->file) Storage::disk('public')->delete($gallery->file);
-            $data['file'] = $request->file('file')->store('galleries', 'public');
-        }
-
-        if ($data['type'] === 'video') {
-            if ($gallery->file) {
-                Storage::disk('public')->delete($gallery->file);
-                $data['file'] = null;
+        $data['video_url'] = $data['video_url'] ?? null;
+        $data['gallery_category_id'] = $data['gallery_category_id'] ?? null;
+        $data['file'] = $video ? null : $previousFile;
+        if ($upload) {
+            $data['file'] = $upload->store('galleries', 'public');
+            if (!$data['file']) {
+                throw ValidationException::withMessages(['file' => 'Gambar tidak dapat disimpan.']);
             }
-        } elseif ($data['type'] === 'image') {
-            $data['video_url'] = null;
         }
 
-        $gallery->update($data);
-        return redirect()->route('admin.galleries.index')->with('success', 'Item galeri berhasil diperbarui.');
+        $gallery->fill($data)->save();
+        if ($previousFile && $previousFile !== $gallery->file) {
+            Storage::disk('public')->delete($previousFile);
+        }
     }
 
     public function destroy(Gallery $gallery)

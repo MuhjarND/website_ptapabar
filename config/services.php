@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'papeda' => [
+        'public_calendar_url' => env('PAPEDA_PUBLIC_CALENDAR_URL'),
+    ],
+
 ];

@@ -37,7 +37,7 @@
                 <div class="header-text">
                     <h1>Mahkamah Agung Republik Indonesia</h1>
                     <h2>{{ $publicSiteSettings['site_name'] }}</h2>
-                    <p>Berintegritas, Profesional, Akuntabel dan Melayani</p>
+                    <p>Modern, Akuntabel, Jujur, Unggul</p>
                 </div>
             </a>
             <div class="header-utility-links" aria-label="Layanan utama">
@@ -45,9 +45,9 @@
                     <i class="fas fa-award"></i>
                     <span><strong>Zona Integritas</strong><small>Menuju WBK / WBBM</small></span>
                 </a>
-                <a href="{{ route('service-request.form') }}" class="header-utility-link">
-                    <i class="fas fa-headset"></i>
-                    <span><strong>Layanan Publik</strong><small>Aspirasi & Pengaduan</small></span>
+                <a href="https://cctv.badilag.net/display/satker/86a6f4a5d2011e7377a09309ed4f605d" class="header-utility-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-video" aria-hidden="true"></i>
+                    <span><strong>CCTV</strong><small>Pantau CCTV</small></span>
                 </a>
             </div>
         </div>

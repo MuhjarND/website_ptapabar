@@ -37,14 +37,6 @@
     max-width: 700px;
 }
 
-.announcements-wrap:not(.is-ready) .announcement-entry:nth-of-type(n + 6) {
-    display: none;
-}
-
-.announcement-article-list:not(.is-ready) .announcement-article-entry:nth-of-type(n + 6) {
-    display: none;
-}
-
 .announcement-section-layout {
     display: block;
 }
@@ -137,10 +129,6 @@
 .announcement-column .pengumuman-item:hover,
 .announcement-article-item:hover {
     padding-left: 8px;
-}
-
-.announcement-article-item[hidden] {
-    display: none !important;
 }
 
 .announcement-article-entry[hidden] {
@@ -240,14 +228,6 @@
 .news-source-pill {
     background: #eef3fb;
     color: #2f5f93;
-}
-
-.posts-grid-home-news {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.posts-grid-home-news:not(.is-ready) > [data-news-page-item]:nth-child(n + 4) {
-    display: none;
 }
 
 .news-home-pagination {
@@ -821,10 +801,6 @@
         gap: 16px;
     }
 
-    .posts-grid-home-news {
-        grid-template-columns: 1fr;
-    }
-
     .gallery-hover-preview {
         display: none !important;
     }
@@ -853,10 +829,6 @@
     }
 
     .fv-tile-grid-home {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .posts-grid-home-news {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 

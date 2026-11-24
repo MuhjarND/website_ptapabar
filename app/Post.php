@@ -141,6 +141,12 @@ class Post extends Model
         return $query->where('category', 'berita');
     }
 
+    public function scopeLeadershipAgenda($query)
+    {
+        return $query->whereHas('postCategory', fn ($category) => $category->active()
+            ->where('slug', PostCategory::LEADERSHIP_AGENDA));
+    }
+
     public function scopePengumuman($query)
     {
         return $query->where('category', 'pengumuman');

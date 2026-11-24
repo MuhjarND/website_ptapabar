@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Gallery;
 use App\GalleryCategory;
 use App\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\MigratesTestDatabase;
 use Tests\TestCase;
 
@@ -48,6 +50,63 @@ class GalleryManagementTest extends TestCase
             'gallery_category_id' => $layanan->id,
             'is_active' => false,
         ]);
+    }
+
+    public function test_admin_can_publish_banners_and_greetings_on_the_homepage_only(): void
+    {
+        Storage::fake('public');
+        $this->actingAs($this->makeAdmin())->get(route('admin.galleries.create'))->assertOk()
+            ->assertSee('Banner Beranda')->assertSee('Ucapan Selamat')->assertSee('Turut Berduka');
+
+        $items = [
+            Gallery::TYPE_BANNER => 'Informasi Perubahan Jam Layanan',
+            Gallery::TYPE_GREETING => 'Selamat atas Prestasi PA Manokwari',
+            Gallery::TYPE_CONDOLENCE => 'Duka Cita Keluarga Besar PTA',
+        ];
+
+        foreach ($items as $type => $title) {
+            $this->post(route('admin.galleries.store'), [
+                'title' => $title,
+                'type' => $type,
+                'file' => UploadedFile::fake()->image($type . '.png'),
+                'is_active' => '1',
+            ])->assertRedirect(route('admin.galleries.index'));
+
+            $item = Gallery::where('type', $type)->firstOrFail();
+            $this->assertNull($item->gallery_category_id);
+            Storage::disk('public')->assertExists($item->file);
+        }
+
+        $banner = Gallery::where('type', Gallery::TYPE_BANNER)->firstOrFail();
+        $this->put(route('admin.galleries.update', $banner), [
+            'title' => 'Banner Baru',
+            'type' => Gallery::TYPE_BANNER,
+            'is_active' => '1',
+        ])->assertRedirect(route('admin.galleries.index'));
+        $this->assertSame($banner->file, $banner->fresh()->file);
+
+        Gallery::create(['type' => Gallery::TYPE_GREETING, 'title' => 'Ucapan Nonaktif', 'file' => 'private.png', 'is_active' => false]);
+        $this->get(route('home'))->assertOk()
+            ->assertSeeInOrder(['Video dan Campaign', 'Banner Baru', 'Ucapan Selamat & Duka', $items[Gallery::TYPE_GREETING], $items[Gallery::TYPE_CONDOLENCE]])
+            ->assertDontSee('Ucapan Nonaktif');
+        $this->get(route('gallery.index'))->assertOk()->assertDontSee('Banner Baru')->assertDontSee($items[Gallery::TYPE_GREETING]);
+    }
+
+    public function test_video_requires_a_valid_youtube_link_without_an_upload(): void
+    {
+        $category = GalleryCategory::where('slug', 'kegiatan')->firstOrFail();
+        $this->actingAs($this->makeAdmin());
+        $data = ['title' => 'Video Profil', 'type' => 'video', 'gallery_category_id' => $category->id, 'is_active' => '1'];
+
+        $this->post(route('admin.galleries.store'), $data + ['video_url' => 'https://example.test/youtube.com/watch?v=dQw4w9WgXcQ'])
+            ->assertSessionHasErrors('video_url');
+
+        $this->post(route('admin.galleries.store'), $data + ['video_url' => 'https://www.youtube.com/watch?feature=share&v=dQw4w9WgXcQ'])
+            ->assertRedirect(route('admin.galleries.index'));
+
+        $video = Gallery::where('title', $data['title'])->firstOrFail();
+        $this->assertNull($video->file);
+        $this->get(route('home'))->assertOk()->assertSee('data-showcase-video="dQw4w9WgXcQ"', false);
     }
 
     protected function makeAdmin()

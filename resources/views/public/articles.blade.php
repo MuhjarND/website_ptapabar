@@ -43,7 +43,7 @@
                 </ul>
             </div>
 
-            <div class="archive-pagination">{{ $articles->appends(request()->query())->links() }}</div>
+            {{ $articles->withQueryString()->onEachSide(1)->links('public.partials.pagination') }}
         </div>
     </div>
 </section>

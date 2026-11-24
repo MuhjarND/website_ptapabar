@@ -10,37 +10,7 @@
                 <label>Judul</label>
                 <input type="text" name="title" class="form-control" value="{{ old('title', $gallery->title) }}" required>
             </div>
-            <div class="form-group">
-                <label>Tipe</label>
-                <select name="type" id="gallery-type" class="form-control" style="max-width:200px;" onchange="toggleType()">
-                    <option value="image" {{ old('type', $gallery->type) == 'image' ? 'selected' : '' }}>Foto</option>
-                    <option value="video" {{ old('type', $gallery->type) == 'video' ? 'selected' : '' }}>Video (YouTube)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Kategori Foto/Video</label>
-                <select name="gallery_category_id" class="form-control" style="max-width:320px;" required>
-                    <option value="">Pilih kategori galeri</option>
-                    @foreach($galleryCategories as $galleryCategory)
-                        <option value="{{ $galleryCategory->id }}" {{ (string) old('gallery_category_id', $gallery->gallery_category_id) === (string) $galleryCategory->id ? 'selected' : '' }}>
-                            {{ $galleryCategory->name }}{{ !$galleryCategory->is_active ? ' (Nonaktif)' : '' }}
-                        </option>
-                    @endforeach
-                </select>
-                <small style="color:#999;font-size:12px;">Kelola kategori melalui master data kategori galeri.</small>
-            </div>
-            <div class="form-group" id="file-group">
-                <label>File Foto</label>
-                @if($gallery->file)
-                    <div style="margin-bottom:8px;"><img src="{{ asset('storage/'.$gallery->file) }}" style="max-height:100px;border-radius:6px;"></div>
-                @endif
-                <input type="file" name="file" class="form-control" accept="image/*">
-                <small style="color:#999;font-size:12px;">Kosongkan jika tidak ingin mengganti</small>
-            </div>
-            <div class="form-group" id="video-group" style="display:none;">
-                <label>URL Video YouTube</label>
-                <input type="url" name="video_url" class="form-control" value="{{ old('video_url', $gallery->video_url) }}" placeholder="https://www.youtube.com/watch?v=...">
-            </div>
+            @include('admin.galleries.media-fields')
             <div class="form-group">
                 <label>Deskripsi (opsional)</label>
                 <textarea name="description" class="form-control" rows="2">{{ old('description', $gallery->description) }}</textarea>
@@ -51,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label class="checkbox-label">
-                    <input type="checkbox" name="is_active" {{ $gallery->is_active ? 'checked' : '' }}> Aktif
+                    <input type="checkbox" name="is_active" value="1" @checked($gallery->is_active)> Aktif
                 </label>
             </div>
             <div class="d-flex gap-2" style="margin-top:24px;">
@@ -61,14 +31,4 @@
         </form>
     </div>
 </div>
-@endsection
-@section('scripts')
-<script>
-function toggleType() {
-    var type = document.getElementById('gallery-type').value;
-    document.getElementById('file-group').style.display = type === 'image' ? 'block' : 'none';
-    document.getElementById('video-group').style.display = type === 'video' ? 'block' : 'none';
-}
-toggleType();
-</script>
 @endsection

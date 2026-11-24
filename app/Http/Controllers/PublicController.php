@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Agenda;
 use App\Article;
+use App\Gallery;
 use App\GalleryCategory;
 use App\IntegrityZone;
 use App\Page;
@@ -13,7 +14,8 @@ use App\ServiceRequest;
 use App\Setting;
 use App\SiteApplication;
 use App\Slider;
-use App\Support\HomeLayout;
+use App\Support\PapedaCalendar;
+use App\Support\WordPressLeadershipNews;
 use App\SurveyIndex;
 use App\TransparencyDocument;
 use Illuminate\Http\Request;
@@ -28,38 +30,46 @@ class PublicController extends Controller
     public function index()
     {
         $homePopup = Setting::homePopup();
-        $homeLayout = HomeLayout::saved();
-        if ($homeLayout !== null) {
-            usort($homeLayout, fn ($a, $b) => [$a['y'], $a['x']] <=> [$b['y'], $b['x']]);
-        }
         $sliders = Slider::where('is_active', true)->orderBy('order')->get();
+        $newsPerPage = 3;
+        $newsMaxPages = 3;
         $beritaTerkini = Post::with(['postCategory', 'user'])
             ->published()
             ->berita()
             ->newsScope(Post::NEWS_SCOPE_TERKINI)
             ->latest()
-            ->take(9)
+            ->take($newsPerPage * $newsMaxPages)
             ->get();
         $beritaPeradilanAgama = Post::with(['postCategory', 'user'])
             ->published()
             ->berita()
             ->newsScope(Post::NEWS_SCOPE_PERADILAN_AGAMA_PAPUA_BARAT)
             ->latest()
-            ->take(9)
+            ->take($newsPerPage * $newsMaxPages)
             ->get();
         $beritaCategories = PostCategory::active()->orderBy('order')->orderBy('name')->get();
         $pengumuman = Post::published()->pengumuman()->latest()->take(15)->get();
         $articles = Article::active()->orderBy('order')->latest()->take(15)->get();
         $surveys = SurveyIndex::where('is_active', true)->orderBy('order')->get();
         $quickLinks = \App\QuickLink::where('is_active', true)->orderBy('order')->get();
-        $galleries = \App\Gallery::with('galleryCategory')->where('is_active', true)->orderBy('order')->take(16)->get();
-        $galleryCategories = GalleryCategory::active()->orderBy('order')->orderBy('name')->get();
+        $homeGallery = Gallery::where('is_active', true)->orderBy('order')->latest('id');
+        $homeMedia = (clone $homeGallery)
+            ->whereIn('type', ['video', Gallery::TYPE_BANNER])
+            ->lazy(20)
+            ->filter(fn (Gallery $item) => $item->thumbnail !== null)
+            ->take(3)
+            ->collect();
+        $homeGreetings = collect([Gallery::TYPE_GREETING, Gallery::TYPE_CONDOLENCE])
+            ->map(fn ($type) => (clone $homeGallery)->where('type', $type)->whereNotNull('file')->first())
+            ->filter();
         $integrityZones = IntegrityZone::active()->orderBy('order')->orderBy('title')->get();
-        $agendas = Agenda::active()
-            ->upcoming()
-            ->orderBy('start_at')
-            ->take(6)
+        $leadershipNews = app(WordPressLeadershipNews::class)->latest($newsPerPage * $newsMaxPages)
+            ?? Post::with('postCategory')
+            ->published()->berita()->leadershipAgenda()
+            ->latest()
+            ->take($newsPerPage * $newsMaxPages)
             ->get();
+        $calendar = app(PapedaCalendar::class)->month(request('bulan'));
         $applications = SiteApplication::active()
             ->whereIn('group_type', [
                 SiteApplication::GROUP_PTA_INOVASI,
@@ -83,19 +93,21 @@ class PublicController extends Controller
 
         return view('public.home', compact(
             'homePopup',
-            'homeLayout',
             'sliders',
             'beritaTerkini',
             'beritaPeradilanAgama',
+            'newsPerPage',
+            'newsMaxPages',
             'beritaCategories',
             'pengumuman',
             'articles',
             'surveys',
             'quickLinks',
-            'galleries',
-            'galleryCategories',
+            'homeMedia',
+            'homeGreetings',
             'integrityZones',
-            'agendas',
+            'leadershipNews',
+            'calendar',
             'applications'
         ));
     }
@@ -173,25 +185,28 @@ class PublicController extends Controller
     {
         $newsScopes = Post::newsScopeOptions();
         $activeNewsScope = request('news_scope');
+        $leadershipAgenda = request('kategori') === PostCategory::LEADERSHIP_AGENDA;
         $hasWordPressArchive = Schema::hasColumn('posts', 'wordpress_id')
             && Post::published()->berita()->whereNotNull('wordpress_id')->exists();
-        $showWordPressArchive = $hasWordPressArchive && request('sumber') === 'wordpress';
-        $posts = Post::published()
+        $showWordPressArchive = !$leadershipAgenda && $hasWordPressArchive && request('sumber') === 'wordpress';
+        $posts = ($leadershipAgenda ? app(WordPressLeadershipNews::class)->paginate(12) : null) ?? Post::published()
             ->berita()
+            ->when($leadershipAgenda, fn ($query) => $query->leadershipAgenda())
             ->when($showWordPressArchive, function ($query) {
                 $query->whereNotNull('wordpress_id');
-            }, function ($query) use ($activeNewsScope, $newsScopes) {
-                $query->newsScope(array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null);
+            }, function ($query) use ($leadershipAgenda, $activeNewsScope, $newsScopes) {
+                $query->newsScope(!$leadershipAgenda && array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null);
             })
             ->latest()
             ->paginate(12);
 
         return view('public.posts', [
             'posts' => $posts,
-            'title' => 'Berita',
+            'title' => $leadershipAgenda ? 'Agenda Pimpinan' : 'Berita',
             'category' => 'berita',
             'newsScopes' => $newsScopes,
-            'activeNewsScope' => !$showWordPressArchive && array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null,
+            'activeNewsScope' => !$leadershipAgenda && !$showWordPressArchive && array_key_exists($activeNewsScope, $newsScopes) ? $activeNewsScope : null,
+            'leadershipAgenda' => $leadershipAgenda,
             'hasWordPressArchive' => $hasWordPressArchive,
             'showWordPressArchive' => $showWordPressArchive,
             'announcementCategories' => [],
@@ -225,7 +240,8 @@ class PublicController extends Controller
         $galleryCategories = GalleryCategory::active()->orderBy('order')->orderBy('name')->get();
         $requestedGalleryCategory = (int) request('gallery_category_id');
         $activeGalleryCategory = $galleryCategories->contains('id', $requestedGalleryCategory) ? $requestedGalleryCategory : null;
-        $galleries = \App\Gallery::with('galleryCategory')
+        $galleries = Gallery::with('galleryCategory')
+            ->whereIn('type', ['image', 'video'])
             ->where('is_active', true)
             ->when($activeGalleryCategory, function ($query) use ($activeGalleryCategory) {
                 $query->where('gallery_category_id', $activeGalleryCategory);
@@ -303,6 +319,22 @@ class PublicController extends Controller
     {
         $post = Post::with(['photos', 'user'])->published()->where('slug', $slug)->firstOrFail();
         $related = Post::published()->where('category', $post->category)->where('id', '!=', $post->id)->latest()->take(4)->get();
+
+        return $this->renderPostDetail($post, $related);
+    }
+
+    public function wordpressLeadershipDetail(string $id)
+    {
+        $postId = filter_var($id, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        abort_unless($postId, 404);
+        $post = app(WordPressLeadershipNews::class)->find($postId);
+        abort_unless($post, 404);
+
+        return $this->renderPostDetail($post, collect());
+    }
+
+    private function renderPostDetail(Post $post, $related)
+    {
         [$pdfFiles, $imageFiles] = $post->photos->filter(fn ($photo) => $photo->file_url)->partition('is_pdf');
         $pdfFiles = $pdfFiles->values();
         $imageFiles = $imageFiles->values();

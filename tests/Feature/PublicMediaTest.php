@@ -10,6 +10,42 @@ use Tests\TestCase;
 
 class PublicMediaTest extends TestCase
 {
+    public function test_home_previews_resize_and_cache_large_uploads_without_replacing_the_original(): void
+    {
+        if (!function_exists('imagewebp')) {
+            $this->markTestSkipped('GD WebP is not available.');
+        }
+
+        $disk = Storage::fake('public');
+        $disk->makeDirectory('sliders');
+        $original = $disk->path('sliders/banner.png');
+        $image = imagecreatetruecolor(2400, 1200);
+        imagefilledrectangle($image, 400, 300, 1600, 900, imagecolorallocate($image, 0, 90, 60));
+        imagepng($image, $original, 0);
+        $bytes = filesize($original);
+
+        $url = '/media-preview/1600/sliders/banner.png';
+        $response = $this->get($url)->assertOk()->assertHeader('Content-Type', 'image/webp');
+        $preview = $response->baseResponse->getFile()->getRealPath();
+        try {
+            $this->assertSame([1600, 800], array_slice(getimagesize($preview), 0, 2));
+            $this->assertLessThan($bytes, filesize($preview));
+            $modified = filemtime($preview);
+            $this->assertSame($preview, $this->get($url)->assertOk()->baseResponse->getFile()->getRealPath());
+            $this->assertSame($modified, filemtime($preview));
+            $this->assertSame($bytes, filesize($original));
+            $this->get('/storage/sliders/banner.png')->assertOk()->assertHeader('Content-Type', 'image/png');
+        } finally {
+            unlink($preview);
+        }
+
+        $disk->put('sliders/small.png', UploadedFile::fake()->image('small.png')->getContent());
+        $disk->put('articles/pdfs/report.pdf', '%PDF-1.4');
+        $this->get('/media-preview/640/sliders/small.png')->assertOk()->assertHeader('Content-Type', 'image/png');
+        $this->get('/media-preview/999/sliders/banner.png')->assertNotFound();
+        $this->get('/media-preview/640/articles/pdfs/report.pdf')->assertNotFound();
+    }
+
     public function test_public_uploads_are_served_without_symlink_or_database_and_private_files_are_excluded(): void
     {
         $disk = Storage::fake('public');

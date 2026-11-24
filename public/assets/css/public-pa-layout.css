@@ -486,10 +486,13 @@
     background: var(--pa-green-deep);
 }
 
-.home-pa-layout .applications-section {
-    margin-top: 0;
-    padding-top: 72px;
-    background: var(--pa-green);
+.home-pa-layout .survey-section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.home-pa-layout .survey-section .section-title {
+    color: #fff;
 }
 
 .home-pa-layout .footer {
@@ -681,10 +684,18 @@
     padding-top: 24px;
 }
 
+.home-showcase-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    overflow: hidden;
+}
+
+.home-showcase-slide { grid-area: 1 / 1; min-width: 0; }
+
 .home-showcase-frame {
     position: relative;
     display: block;
-    aspect-ratio: 16 / 9;
+    height: clamp(180px, 28vw, 300px);
     overflow: hidden;
     border: 1px solid var(--pa-card-border);
     border-radius: 14px;
@@ -692,7 +703,7 @@
 }
 
 .home-showcase-frame[data-showcase-video] { background: #092b21; }
-.home-greetings-panel .home-showcase-frame { aspect-ratio: 4 / 5; }
+.home-showcase-frame:focus-visible { outline-offset: -5px; }
 
 .home-showcase-frame img {
     position: absolute;
@@ -706,7 +717,7 @@
     position: absolute;
     inset: 50% auto auto 50%;
     display: grid;
-    width: clamp(44px, 6vw, 74px);
+    width: clamp(44px, 4vw, 60px);
     aspect-ratio: 1;
     place-items: center;
     transform: translate(-50%, -50%);
@@ -714,13 +725,12 @@
     border-radius: 50%;
     background: var(--pa-green);
     color: #fff;
-    font-size: clamp(16px, 2.2vw, 26px);
+    font-size: clamp(16px, 1.6vw, 22px);
     box-shadow: 0 4px 20px #0023174d;
 }
 
-.home-showcase-caption { padding-block: 12px; min-width: 0; }
-.home-showcase-caption .section-category-pill { margin-bottom: 5px; }
-.home-showcase-caption h3 { color: var(--pa-card-ink); font-size: clamp(15px, 1.6vw, 21px); line-height: 1.35; overflow-wrap: anywhere; }
+.home-showcase-caption { padding-block: 9px; min-width: 0; }
+.home-showcase-caption h3 { color: var(--pa-card-ink); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.35; overflow-wrap: anywhere; }
 .home-showcase-caption p { margin-top: 4px; color: var(--pa-muted); font-size: .875rem; overflow-wrap: anywhere; }
 
 .home-showcase-controls {
@@ -762,7 +772,7 @@
 
 .home-showcase-titles button {
     flex: 0 0 min(75%, 210px);
-    min-height: 58px;
+    min-height: 50px;
     padding: 8px 11px;
     text-align: start;
     overflow-wrap: anywhere;
@@ -781,10 +791,6 @@
     border-color: var(--pa-green);
     background: var(--pa-green-soft);
     box-shadow: inset 3px 0 0 var(--pa-green);
-}
-
-@media (max-width: 900px) {
-    .home-greetings-panel .home-showcase-frame { aspect-ratio: 4 / 3; max-height: 380px; }
 }
 
 .home-pa-layout .home-list-panel .section-filter-bar {
@@ -1120,7 +1126,6 @@
     .home-pa-layout .survey-card .survey-value { margin-bottom: 6px; font-size: 1.5rem; }
     .home-pa-layout .survey-card .survey-label { padding-inline: 7px; overflow-wrap: anywhere; }
     .home-pa-layout .survey-empty { grid-column: 1 / -1; }
-    .home-pa-layout .applications-section { padding-block: 24px; }
     .home-pa-layout .applications-layout { margin-top: 12px; }
     .home-pa-layout .app-logo-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
     .home-pa-layout .app-logo-item { gap: 6px; }

@@ -1,27 +1,28 @@
 <div class="home-showcase-carousel" data-showcase-carousel="{{ $carousel }}" data-showcase-delay="{{ $delay }}" aria-labelledby="{{ $headingId }}">
-    @forelse($items as $item)
-        @php($videoId = $item->youtube_id)
-        <article class="home-showcase-slide" data-showcase-slide id="home-showcase-{{ $carousel }}-{{ $loop->index }}"
-            @unless($loop->first) hidden @endunless>
-            <a class="home-showcase-frame" href="{{ $videoId ? 'https://www.youtube.com/watch?v=' . $videoId : $item->thumbnail }}"
-                @if($videoId) data-showcase-video="{{ $videoId }}" @else data-showcase-poster @endif
-                aria-label="{{ $videoId ? 'Putar video: ' : 'Lihat gambar: ' }}{{ $item->title }}">
-                <img src="{{ $item->thumbnail }}" alt="{{ $item->title }}" loading="lazy">
-                @if($videoId)
-                    <span class="home-showcase-play" aria-hidden="true"><i class="fas fa-play"></i></span>
-                @endif
-            </a>
-            <div class="home-showcase-caption">
-                <span class="section-category-pill">{{ $videoId ? 'Video' : \App\Gallery::typeOptions()[$item->type] }}</span>
-                <h3>{{ $item->title }}</h3>
-                @if($item->description)
-                    <p>{{ $item->description }}</p>
-                @endif
-            </div>
-        </article>
-    @empty
-        <p class="section-empty section-empty-compact">{{ $emptyText }}</p>
-    @endforelse
+    <div class="home-showcase-stage">
+        @forelse($items as $item)
+            @php($videoId = $item->youtube_id)
+            <article class="home-showcase-slide" data-showcase-slide id="home-showcase-{{ $carousel }}-{{ $loop->index }}"
+                @unless($loop->first) hidden inert @endunless>
+                <a class="home-showcase-frame" href="{{ $videoId ? 'https://www.youtube.com/watch?v=' . $videoId : $item->thumbnail }}"
+                    @if($videoId) data-showcase-video="{{ $videoId }}" @else data-showcase-poster @endif
+                    aria-label="{{ $videoId ? 'Putar video: ' : 'Lihat gambar: ' }}{{ $item->title }}">
+                    <img src="{{ \App\Support\HomeImage::url($videoId ? null : $item->file, 960, $item->thumbnail) }}" alt="{{ $item->title }}" loading="lazy" decoding="async">
+                    @if($videoId)
+                        <span class="home-showcase-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                    @endif
+                </a>
+                <div class="home-showcase-caption">
+                    <h3>{{ $item->title }}</h3>
+                    @if($item->description)
+                        <p>{{ $item->description }}</p>
+                    @endif
+                </div>
+            </article>
+        @empty
+            <p class="section-empty section-empty-compact">{{ $emptyText }}</p>
+        @endforelse
+    </div>
 
     @if($items->count() > 1)
         <div data-showcase-navigation hidden>

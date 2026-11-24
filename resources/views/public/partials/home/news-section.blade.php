@@ -21,7 +21,7 @@
                 >
                     <div class="card-img">
                         @if($post->image_url)
-                            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" loading="lazy">
+                            <img src="{{ \App\Support\HomeImage::url($post->image, 640, $post->image_url) }}" alt="{{ $post->title }}" loading="lazy" decoding="async">
                         @else
                             <div class="post-card-placeholder">
                                 <i class="fas fa-newspaper"></i>

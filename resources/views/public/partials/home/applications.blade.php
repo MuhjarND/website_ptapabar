@@ -1,5 +1,5 @@
 @if($applications->count() > 0)
-    <section class="section applications-section">
+    <section class="survey-section applications-section">
         <div class="container">
             <div class="section-header fade-up">
                 <h2 class="section-title">Daftar Aplikasi</h2>

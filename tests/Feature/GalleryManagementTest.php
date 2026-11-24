@@ -101,6 +101,7 @@ class GalleryManagementTest extends TestCase
             $root = "//*[@data-showcase-carousel='{$carousel}']";
             $this->assertSame($count, $xpath->evaluate("count({$root}//*[@data-showcase-slide])"));
             $this->assertSame(1.0, $xpath->evaluate("count({$root}//*[@data-showcase-slide and not(@hidden)])"));
+            $this->assertSame(0.0, $xpath->evaluate("count({$root}//*[@data-showcase-slide]//*[contains(@class,'section-category-pill')])"));
             $this->assertSame($count, $xpath->evaluate("count({$root}//button[@data-showcase-select and @aria-controls])"));
             $this->assertSame(1.0, $xpath->evaluate("count({$root}//button[@data-showcase-select and @aria-pressed='true'])"));
         }

@@ -1,5 +1,6 @@
 (function () {
     var currentSlide = 0;
+    var requestedSlide = 0;
     var slides = [];
     var dots = [];
     var sliderTimer = null;
@@ -14,10 +15,29 @@
     }
 
     function goToSlide(index) {
-        if (!slides.length) {
+        if (!slides[index]) {
             return;
         }
 
+        requestedSlide = index;
+        var image = slides[index].querySelector('img');
+        if (image && image.dataset.slideSrc) {
+            image.src = image.dataset.slideSrc;
+            delete image.dataset.slideSrc;
+        }
+
+        if (image && !image.complete && typeof image.decode === 'function') {
+            image.decode().catch(function () {}).then(function () {
+                if (requestedSlide === index) {
+                    activateSlide(index);
+                }
+            });
+        } else {
+            activateSlide(index);
+        }
+    }
+
+    function activateSlide(index) {
         slides[currentSlide].classList.remove('active');
         if (dots[currentSlide]) {
             dots[currentSlide].classList.remove('active');
@@ -443,17 +463,50 @@
         var position = navigation.querySelector('[data-showcase-position]');
         var toggle = navigation.querySelector('[data-showcase-toggle]');
         var active = 0;
-        var paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var paused = reducedMotion.matches;
         var canHover = window.matchMedia('(hover: hover)');
+        var animations = [];
         var timer;
 
         function show(index) {
-            slides[active].hidden = true;
+            var next = (index + slides.length) % slides.length;
+            if (next === active) {
+                return;
+            }
+
+            var previous = slides[active];
+            var incoming = slides[next];
+            var direction = index < active ? -1 : 1;
+            var animate = !reducedMotion.matches && typeof incoming.animate === 'function';
+            animations.forEach(function (animation) { animation.cancel(); });
+            animations = [];
+
+            slides.forEach(function (slide) {
+                slide.hidden = slide !== incoming && (!animate || slide !== previous);
+                slide.inert = slide !== incoming;
+            });
+
             options[active].setAttribute('aria-pressed', 'false');
-            active = (index + slides.length) % slides.length;
-            slides[active].hidden = false;
+            active = next;
             options[active].setAttribute('aria-pressed', 'true');
             position.textContent = (active + 1) + ' / ' + slides.length;
+
+            if (animate) {
+                var timing = { duration: 320, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'both' };
+                var outgoingAnimation = previous.animate([
+                    { transform: 'translateX(0)' }, { transform: 'translateX(' + (-direction * 100) + '%)' }
+                ], timing);
+                var incomingAnimation = incoming.animate([
+                    { transform: 'translateX(' + (direction * 100) + '%)' }, { transform: 'translateX(0)' }
+                ], timing);
+                outgoingAnimation.onfinish = function () {
+                    if (slides[active] !== previous) {
+                        previous.hidden = true;
+                    }
+                };
+                animations = [outgoingAnimation, incomingAnimation];
+            }
 
             var option = options[active].getBoundingClientRect();
             var visible = rail.getBoundingClientRect();

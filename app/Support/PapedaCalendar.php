@@ -6,6 +6,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PapedaCalendar
 {
@@ -40,18 +41,24 @@ class PapedaCalendar
             return null;
         }
 
-        $key = 'papeda-public-calendar:' . sha1($url . '|' . $month->format('Y-m'));
+        $period = $month->format('Y-m');
+        $key = 'papeda-public-calendar:' . sha1($url . '|' . $period);
         $cached = Cache::get($key);
         if (is_array($cached)) {
             return $cached['events'];
         }
 
         try {
-            $response = Http::acceptJson()->withoutRedirecting()->connectTimeout(1)->timeout(2)
-                ->get($url, ['month' => $month->format('Y-m')]);
+            $response = Http::acceptJson()->withoutRedirecting()->connectTimeout(3)->timeout(5)
+                ->get($url, ['month' => $period]);
             $data = $response->successful() ? $response->json('events') : null;
-        } catch (ConnectionException) {
+            if (!is_array($data)) {
+                Log::warning('PAPEDA public calendar returned no event list.', ['month' => $period, 'status' => $response->status()]);
+            }
+        } catch (ConnectionException $exception) {
             $data = null;
+            preg_match('/\bcURL error (\d+)/', $exception->getMessage(), $error);
+            Log::warning('PAPEDA public calendar connection failed.', ['month' => $period, 'curl_error' => $error[1] ?? null]);
         }
 
         $events = is_array($data) ? $this->validEvents($data, $month) : null;

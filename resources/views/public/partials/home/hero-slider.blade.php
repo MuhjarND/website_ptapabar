@@ -1,7 +1,8 @@
 <div class="hero-slider" id="heroSlider">
     @forelse($sliders as $index => $slider)
+        @php($imageUrl = \App\Support\HomeImage::url($slider->image, 1600, $slider->image_url))
         <div class="slide {{ $index === 0 ? 'active' : '' }}">
-            <img src="{{ $slider->image_url }}" alt="{{ $slider->title }}">
+            <img @if($index === 0) src="{{ $imageUrl }}" fetchpriority="high" @else data-slide-src="{{ $imageUrl }}" @endif alt="{{ $slider->title }}">
             @if($slider->title && !$slider->wordpress_id)
                 <div class="slide-overlay pos-{{ $slider->text_position ?? 'bottom-left' }}">
                     <span class="hero-kicker">Informasi Publik</span>

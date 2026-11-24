@@ -37,6 +37,8 @@ Jika hosting tidak mengizinkan `php artisan storage:link`, lewati perintah itu. 
 
 Pastikan document root tetap `public`, URL `/storage/...` yang tidak ditemukan diteruskan ke `index.php`, dan tidak ada symlink rusak atau aturan server yang menolak URL sebelum Laravel menerimanya. Jika rute sebelumnya di-cache, jalankan `php artisan route:clear` setelah deploy. Uji gambar unggahan Laravel dan satu PDF publik. Arsip WordPress tetap memakai URL unggahan WordPress dan tidak memerlukan symlink ini.
 
+Untuk optimasi gambar beranda, aktifkan ekstensi `gd` dengan dukungan WebP pada PHP 8.5 yang dipakai web server. Ekstensi `exif` mempertahankan orientasi foto JPEG dari kamera. Pastikan `storage/framework/cache` bisa ditulis; versi gambar yang diperkecil dibuat saat pertama diminta dan disimpan di `storage/framework/cache/image-previews`. Cache ini bisa dibersihkan jika ruang penyimpanan menipis. File asli tidak diubah. Gambar dari URL WordPress atau YouTube tetap dimuat dari asalnya, tanpa diproses ulang oleh Laravel.
+
 ## Arsip WordPress Tanpa Sinkronisasi
 
 Konten berita, pengumuman, artikel, dan data slider yang sudah diimpor dimiliki Laravel. Situs tidak membutuhkan aplikasi, API, database, atau jadwal sinkronisasi WordPress. Foto dan dokumen tetap disajikan sebagai file statis melalui URL asal. Bagian **Dokumentasi** memakai lampiran yang tercatat untuk posting itu, referensi galeri, serta gambar dan PDF yang ditautkan di dalam isi berita.

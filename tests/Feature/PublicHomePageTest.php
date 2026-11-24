@@ -118,6 +118,7 @@ class PublicHomePageTest extends TestCase
             'order' => 1,
             'is_active' => true,
         ]);
+        Slider::create(['title' => 'Slider Berikutnya', 'image' => 'sliders/berikutnya.jpg', 'order' => 2, 'is_active' => true]);
 
         QuickLink::create([
             'title' => 'E-Court',
@@ -271,6 +272,11 @@ class PublicHomePageTest extends TestCase
         $response->assertSee('<link rel="icon" type="image/png" href="' . asset('logo_pta.png') . '">', false);
         $response->assertSeeText('MAJU: Modern, Akuntabel, Jujur, Unggul');
         $response->assertSee('Slider Utama');
+        $dom = new DOMDocument();
+        $dom->loadHTML($response->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $xpath = new DOMXPath($dom);
+        $this->assertSame(1.0, $xpath->evaluate("count(//*[@id='heroSlider']//img[@src and @fetchpriority='high'])"));
+        $this->assertSame(1.0, $xpath->evaluate("count(//*[@id='heroSlider']//img[@data-slide-src and not(@src)])"));
         $response->assertSee('E-Court');
         $response->assertSee('Berita Homepage');
         $response->assertSee('Berita Peradilan Agama Homepage');

@@ -86,9 +86,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 });
 
 // Public Routes
+$publicMediaPath = '(?:articles/pdfs|floating-icons|galleries|home-popups|integrity-zones|post-photos|posts|quicklinks|site-applications|sliders|uploads)/[A-Za-z0-9][A-Za-z0-9._-]*';
 Route::get('/storage/{path}', 'PublicMediaController')
-    ->where('path', '(?:articles/pdfs|floating-icons|galleries|home-popups|integrity-zones|post-photos|posts|quicklinks|site-applications|sliders|uploads)/[A-Za-z0-9][A-Za-z0-9._-]*')
+    ->where('path', $publicMediaPath)
     ->withoutMiddleware('web')->name('public-storage.file');
+Route::get('/media-preview/{size}/{path}', 'PublicMediaController@preview')
+    ->where('path', $publicMediaPath)->whereIn('size', \App\Support\HomeImage::SIZES)
+    ->withoutMiddleware('web')->name('public-storage.preview');
 Route::get('/', 'PublicController@index')->name('home');
 Route::get('/agenda', 'PublicController@agendas')->name('agenda.index');
 Route::get('/agenda/wordpress/{id}', 'PublicController@wordpressLeadershipDetail')->whereNumber('id')->name('agenda.wordpress.show');

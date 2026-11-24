@@ -13,7 +13,7 @@
             <form method="dialog">
                 <button type="submit" aria-label="Tutup pengumuman" autofocus>&times;</button>
             </form>
-            <img src="{{ asset('storage/' . $homePopup['image']) }}" alt="{{ $homePopup['alt'] ?? 'Informasi PTA Papua Barat' }}">
+            <img src="{{ \App\Support\HomeImage::url($homePopup['image'], 960) }}" alt="{{ $homePopup['alt'] ?? 'Informasi PTA Papua Barat' }}" decoding="async">
         </dialog>
     @endif
     @include('public.partials.home.hero-slider')

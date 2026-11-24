@@ -1,5 +1,5 @@
 @if($integrityZones->count() > 0)
-    <section class="section section-white" id="zona-integritas">
+    <section class="survey-section" id="zona-integritas">
         <div class="container">
             <div class="section-header fade-up">
                 <h2 class="section-title">Eviden Zona Integritas</h2>
@@ -8,14 +8,14 @@
                 @foreach($integrityZones as $integrityZone)
                     <a
                         href="{{ $integrityZone->url }}"
-                        class="integrity-zone-card fade-up"
+                        class="integrity-zone-link fade-up"
                         target="_blank"
                         rel="noopener"
                     >
-                        <div class="integrity-zone-poster">
-                            <img src="{{ asset('storage/' . $integrityZone->image) }}" alt="{{ $integrityZone->title }}">
-                        </div>
-                        <div class="integrity-zone-title">{{ $integrityZone->title }}</div>
+                        <span class="integrity-zone-poster">
+                            <img src="{{ \App\Support\HomeImage::url($integrityZone->image, 640) }}" alt="" loading="lazy" decoding="async">
+                        </span>
+                        <span class="integrity-zone-title">{{ $integrityZone->title }}</span>
                     </a>
                 @endforeach
             </div>
